@@ -1,18 +1,19 @@
-    <!-- Vendor JS Files -->
-    <script src="{{ asset('web/vendor/bootstrap/js/bootstrap.bundle.min.js') }}" defer></script>
-    <script src="{{ asset('web/vendor/php-email-form/validate.js') }}" defer></script>
-    <script src="{{ asset('web/vendor/aos/aos.js') }}" defer></script>
-    <script src="{{ asset('web/vendor/swiper/swiper-bundle.min.js') }}" defer></script>
-    <script src="{{ asset('web/vendor/glightbox/js/glightbox.min.js') }}" defer></script>
-    <script src="{{ asset('web/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}" defer></script>
-    <script src="{{ asset('web/vendor/isotope-layout/isotope.pkgd.min.js') }}" defer></script>
-    <script src="{{ asset('web/vendor/purecounter/purecounter_vanilla.js') }}" defer></script>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('web/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('web/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="{{ asset('web/mail/jqBootstrapValidation.min.js') }}"></script>
+    <script src="{{ asset('web/mail/contact.js') }}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{{ asset('web/js/main.js') }}"></script>
     @include('admin.layouts.sweetalert')
-    <!-- Main JS File -->
-    <script src="{{ asset('web/js/main.js') }}" defer></script>
     @yield('js')
 
-    <script>
+    {{-- <script>
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
@@ -22,4 +23,4 @@
                 e.preventDefault();
             }
         });
-    </script>
+    </script> --}}

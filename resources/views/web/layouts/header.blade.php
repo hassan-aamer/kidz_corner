@@ -1,32 +1,63 @@
-    <header id="header" class="@yield('header_class', 'header d-flex align-items-center fixed-top')">
-        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-            <a href="{{ route('home') }}" class="logo d-flex align-items-center me-auto me-lg-0">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
-                {{-- <img src="{{ App\Helpers\Image::getMediaUrl(App\Models\Setting::first(), 'logo') }}" alt=""> --}}
-                <picture>
-                    <source srcset="{{ App\Models\Setting::first()->getFirstMediaUrl('logo', 'webp') }}"
-                        type="image/webp">
-                    <img src="{{ App\Helpers\Image::getMediaUrl(App\Models\Setting::first(), 'logo') }}" alt=""
-                        data-aos="fade-in" loading="lazy" rel="preload"  />
-                </picture>
-                {{-- <h1 class="sitename">{{ setting('name') }}</h1> --}}
-                {{-- <span>.</span> --}}
-            </a>
-
-            <nav id="navmenu" class="navmenu">
-                <ul>
-                    <li>
-                        <a href="{{ route('home') }}" class="active">{{ __('attributes.home') }}<br /></a>
-                    </li>
-                    <li><a href="{{ route('home') }}#about">{{ __('attributes.about') }}</a></li>
-                    <li><a href="{{ route('home') }}#services">{{ __('attributes.services') }}</a></li>
-                    <li><a href="{{ route('home') }}#portfolio">{{ __('attributes.products') }}</a></li>
-                    {{-- <li><a href="{{route('home')}}#team">Team</a></li> --}}
-                    <li><a href="{{ route('home') }}#contact">{{ __('attributes.contacts') }}</a></li>
-                </ul>
-                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-            </nav>
-
-            <a class="btn-getstarted" href="{{ route('home') }}#about">Get Started</a>
+    <!-- Topbar Start -->
+    <div class="container-fluid">
+        <div class="row bg-secondary py-2 px-xl-5">
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-dark" href="">FAQs</a>
+                    <span class="text-muted px-2">|</span>
+                    <a class="text-dark" href="">Help</a>
+                    <span class="text-muted px-2">|</span>
+                    <a class="text-dark" href="">Support</a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a class="text-dark pl-2" href="">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-    </header>
+        <div class="row align-items-center py-3 px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a href="" class="text-decoration-none">
+                    <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+                </a>
+            </div>
+            <div class="col-lg-6 col-6 text-left">
+                <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for products">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-transparent text-primary">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-3 col-6 text-right">
+                <a href="" class="btn border">
+                    <i class="fas fa-heart text-primary"></i>
+                    <span class="badge">0</span>
+                </a>
+                <a href="" class="btn border">
+                    <i class="fas fa-shopping-cart text-primary"></i>
+                    <span class="badge">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->

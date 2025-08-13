@@ -1,113 +1,73 @@
-    <footer id="footer" class="footer dark-background">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row gy-4">
-                    <div class="col-lg-4 col-md-6 footer-about">
-                        <a href="{{ route('home') }}" class="logo d-flex align-items-center">
-                            <span class="sitename">{{ setting('name') }}</span>
-                        </a>
-                        <div class="footer-contact pt-3">
-                            {{-- <p>A108 Adam Street</p> --}}
-                            <p>{{ setting('address') }}</p>
-                            <p class="mt-3">
-                                <strong>Phone:</strong> <span>{{ setting('phone') }}</span>
-                            </p>
-                            <p><strong>Email:</strong> <span>{{ setting('email') }}</span></p>
-                        </div>
-                        <div class="social-links d-flex mt-4">
-                            <a href="{{ setting('twitter') }}"><i class="bi bi-twitter-x"></i></a>
-                            <a href="{{ setting('facebook') }}"><i class="bi bi-facebook"></i></a>
-                            <a href="{{ setting('instagram') }}"><i class="bi bi-instagram"></i></a>
-                            <a href="{{ setting('linkedIn') }}"><i class="bi bi-linkedin"></i></a>
+    <!-- Footer Start -->
+    <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
+        <div class="row px-xl-5 pt-5">
+            <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+                <a href="" class="text-decoration-none">
+                    <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-white px-3 mr-1">E</span>Shopper</h1>
+                </a>
+                <p>Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum no sit erat lorem et magna ipsum dolore amet erat.</p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
+                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
+                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
+            </div>
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                    <div class="col-md-4 mb-5">
+                        <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
+                            <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
+                            <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
+                            <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
+                            <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
                         </div>
                     </div>
-
-                    <div class="col-lg-2 col-md-3 footer-links">
-                        <h4>Useful Links</h4>
-                        <ul>
-                            <li>
-                                <i class="bi bi-chevron-right"></i> <a href="{{ route('home') }}"> Home</a>
-                            </li>
-                            <li>
-                                <i class="bi bi-chevron-right"></i> <a href="{{ route('home') }}#about"> About</a>
-                            </li>
-                            <li>
-                                <i class="bi bi-chevron-right"></i> <a href="{{ route('home') }}#services">
-                                    Services</a>
-                            </li>
-                            <li>
-                                <i class="bi bi-chevron-right"></i> <a href="{{ route('home') }}#portfolio">
-                                    Portfolio</a>
-                            </li>
-                            <li>
-                                <i class="bi bi-chevron-right"></i> <a href="{{ route('home') }}#contact"> Contact</a>
-                            </li>
-                            {{-- <li>
-                                <i class="bi bi-chevron-right"></i>
-                                <a href="#"> Terms of service</a>
-                            </li>
-                            <li>
-                                <i class="bi bi-chevron-right"></i>
-                                <a href="#"> Privacy policy</a>
-                            </li> --}}
-                        </ul>
-                    </div>
-                    @if ($result['services']->count())
-                        <div class="col-lg-2 col-md-3 footer-links">
-                            <h4>Our Services</h4>
-                            <ul>
-                                @foreach ($result['services']->sortBy('position') as $service)
-                                    <li>
-                                        <i class="bi bi-chevron-right"></i>
-                                        <a href="{{ route('services.details', $service->id) }}">
-                                            {{ shortenText($service->title ?? '', 20) }}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
+                    <div class="col-md-4 mb-5">
+                        <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
+                            <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
+                            <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
+                            <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
+                            <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
                         </div>
-                    @endif
-
-                    <div class="col-lg-4 col-md-12 footer-newsletter">
-                        <h4>Our Newsletter</h4>
-                        <p>
-                            Subscribe to our newsletter and receive the latest news about
-                            our products and services!
-                        </p>
-                        <form action="{{ route('subscription') }}" method="post">
-                            @csrf
-                            <div class="newsletter-form">
-                                <input type="email" name="email_subscription" class="@error('email_subscription') is-invalid @enderror" /><input type="submit" value="Subscribe" />
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
+                        <form action="">
+                            <div class="form-group">
+                                <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" />
                             </div>
-                            @error('email_subscription')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
+                            <div class="form-group">
+                                <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
+                                    required="required" />
+                            </div>
+                            <div>
+                                <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe Now</button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="copyright">
-            <div class="container text-center">
-                <p>
-                    {{ setting('copyrights') }} | <span>Powered by
-                        {{-- <i class="bi bi-heart-fill text-danger"></i> --}}
-                        <a href="https://future-sword-test.al-kafi.com"> Future Sword</a></span>
+        <div class="row border-top border-light mx-xl-5 py-4">
+            <div class="col-md-6 px-xl-0">
+                <p class="mb-md-0 text-center text-md-left text-dark">
+                    &copy; <a class="text-dark font-weight-semi-bold" href="#">Your Site Name</a>. All Rights Reserved. Designed
+                    by
+                    <a class="text-dark font-weight-semi-bold" href="https://htmlcodex.com">HTML Codex</a><br>
+                    Distributed By <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
                 </p>
-                {{-- <div class="credits">
-                    <!-- All the links in the footer should remain intact. -->
-                    <!-- You can delete the links only if you've purchased the pro version. -->
-                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                    <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                </div> --}}
+            </div>
+            <div class="col-md-6 px-xl-0 text-center text-md-right">
+                <img class="img-fluid" src="{{ asset('web/img/payments.png') }}" alt="">
             </div>
         </div>
-    </footer>
+    </div>
+    <!-- Footer End -->
 
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
 
-    <!-- Preloader -->
-    <div id="preloader"></div>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>

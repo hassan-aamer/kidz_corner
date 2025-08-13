@@ -1,651 +1,575 @@
 @extends('web.layouts.app')
 @section('title', __('attributes.home'))
 @section('content')
-    <main class="main">
-        <!-- Hero Section -->
-        <section id="hero" class="hero section dark-background">
 
-
-            <picture>
-                <source srcset="{{ App\Models\Setting::first()->getFirstMediaUrl('baners', 'webp') }}" type="image/webp">
-                <img src="{{ App\Helpers\Image::getMediaUrl(App\Models\Setting::first(), 'baners') }}" alt=""
-                    data-aos="fade-in" loading="lazy" width="1920" height="900" fetchpriority="high"/>
-            </picture>
-
-            <div class="container">
-                <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="col-xl-6 col-lg-8">
-                        <h2>{{ setting('name') }}</h2>
-                        <p>{{ setting('title') }}</p>
+    <!-- Navbar Start -->
+    <div class="container-fluid mb-5">
+        <div class="row border-top px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                    <h6 class="m-0">Categories</h6>
+                    <i class="fa fa-angle-down text-dark"></i>
+                </a>
+                <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
+                    <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link" data-toggle="dropdown">Dresses <i class="fa fa-angle-down float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                <a href="" class="dropdown-item">Men's Dresses</a>
+                                <a href="" class="dropdown-item">Women's Dresses</a>
+                                <a href="" class="dropdown-item">Baby's Dresses</a>
+                            </div>
+                        </div>
+                        <a href="" class="nav-item nav-link">Shirts</a>
+                        <a href="" class="nav-item nav-link">Jeans</a>
+                        <a href="" class="nav-item nav-link">Swimwear</a>
+                        <a href="" class="nav-item nav-link">Sleepwear</a>
+                        <a href="" class="nav-item nav-link">Sportswear</a>
+                        <a href="" class="nav-item nav-link">Jumpsuits</a>
+                        <a href="" class="nav-item nav-link">Blazers</a>
+                        <a href="" class="nav-item nav-link">Jackets</a>
+                        <a href="" class="nav-item nav-link">Shoes</a>
                     </div>
-                </div>
-                @if ($result['features']->count())
-                    <div class="row gy-4 mt-5 justify-content-center" data-aos="fade-up" data-aos-delay="200">
-                        @foreach ($result['features']->sortBy('position') as $feature)
-                            <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="500">
-                                <div class="icon-box">
-                                    <i class="{{ $feature->icon_class ?? '' }}"></i>
-                                    <h3><a href="">{{ $feature->title ?? '' }}</a></h3>
+                </nav>
+            </div>
+            <div class="col-lg-9">
+                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                    <a href="" class="text-decoration-none d-block d-lg-none">
+                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0">
+                            <a href="index.html" class="nav-item nav-link active">Home</a>
+                            <a href="shop.html" class="nav-item nav-link">Shop</a>
+                            <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a href="cart.html" class="dropdown-item">Shopping Cart</a>
+                                    <a href="checkout.html" class="dropdown-item">Checkout</a>
                                 </div>
                             </div>
-                        @endforeach
+                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        </div>
+                        {{-- <div class="navbar-nav ml-auto py-0">
+                            <a href="" class="nav-item nav-link">Login</a>
+                            <a href="" class="nav-item nav-link">Register</a>
+                        </div> --}}
                     </div>
-            </div>
-            @endif
-        </section>
-        <!-- /Hero Section -->
-
-        <!-- About Section -->
-        <section id="about" class="about section">
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
-                <div class="row gy-4">
-                    <div class="col-lg-6 order-1 order-lg-2">
-
-
-
-                        <picture>
-                            <source srcset="{{ App\Models\Setting::first()->getFirstMediaUrl('about', 'webp') }}"
-                                type="image/webp">
-                            <img src="{{ App\Helpers\Image::getMediaUrl(App\Models\Setting::first(), 'about') }}"
-                                class="img-fluid" alt="" loading="lazy" width="1920" height="900"/>
-                        </picture>
-
-
-                    </div>
-                    <div class="col-lg-6 order-2 order-lg-1 content">
-                        <h3>{{ setting('about') }}</h3>
-                        <p class="fst-italic">
-                            {{ setting('description') }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- /About Section -->
-
-        @if ($result['sliders']->count())
-            <!-- Clients Section -->
-            <section id="clients" class="clients section">
-                <div class="container" data-aos="fade-up" data-aos-delay="100">
-                    <div class="swiper init-swiper">
-                        <script type="application/json" class="swiper-config">
-              {
-                "loop": true,
-                "speed": 600,
-                "autoplay": {
-                  "delay": 5000
-                },
-                "slidesPerView": "auto",
-                "pagination": {
-                  "el": ".swiper-pagination",
-                  "type": "bullets",
-                  "clickable": true
-                },
-                "breakpoints": {
-                  "320": {
-                    "slidesPerView": 2,
-                    "spaceBetween": 40
-                  },
-                  "480": {
-                    "slidesPerView": 3,
-                    "spaceBetween": 60
-                  },
-                  "640": {
-                    "slidesPerView": 4,
-                    "spaceBetween": 80
-                  },
-                  "992": {
-                    "slidesPerView": 6,
-                    "spaceBetween": 120
-                  }
-                }
-              }
-            </script>
-                        <div class="swiper-wrapper align-items-center">
-                            @foreach ($result['sliders']->sortBy('position') as $sliders)
-                                <div class="swiper-slide">
-                                    <picture>
-                                        <source srcset="{{ $sliders->getFirstMediaUrl('sliders', 'webp') }}"
-                                            type="image/webp">
-                                        <img src="{{ App\Helpers\Image::getMediaUrl($sliders, 'sliders') }}"
-                                            class="img-fluid" alt="{{ $sliders->title ?? '' }}" loading="lazy" width="1920" height="900"/>
-                                    </picture>
+                </nav>
+                <div id="header-carousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" style="height: 410px;">
+                            <img class="img-fluid" src="img/carousel-1.jpg" alt="Image">
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Fashionable Dress</h3>
+                                    <a href="" class="btn btn-light py-2 px-3">Shop Now</a>
                                 </div>
-                            @endforeach
+                            </div>
                         </div>
-                        <div class="swiper-pagination"></div>
+                        <div class="carousel-item" style="height: 410px;">
+                            <img class="img-fluid" src="img/carousel-2.jpg" alt="Image">
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Reasonable Price</h3>
+                                    <a href="" class="btn btn-light py-2 px-3">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </section>
-            <!-- /Clients Section -->
-        @endif
-
-        <!-- Features Section -->
-        {{-- <section id="features" class="features section">
-            <div class="container">
-                <div class="row gy-4">
-                    <div class="features-image col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <img src="web/img/features-bg.jpg" alt="" />
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="features-item d-flex ps-0 ps-lg-3 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="200">
-                            <i class="bi bi-archive flex-shrink-0"></i>
-                            <div>
-                                <h4>Est labore ad</h4>
-                                <p>
-                                    Consequuntur sunt aut quasi enim aliquam quae harum pariatur
-                                    laboris nisi ut aliquip
-                                </p>
-                            </div>
+                    <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+                        <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                            <span class="carousel-control-prev-icon mb-n2"></span>
                         </div>
-                        <!-- End Features Item-->
-
-                        <div class="features-item d-flex mt-5 ps-0 ps-lg-3" data-aos="fade-up" data-aos-delay="300">
-                            <i class="bi bi-basket flex-shrink-0"></i>
-                            <div>
-                                <h4>Harum esse qui</h4>
-                                <p>
-                                    Excepteur sint occaecat cupidatat non proident, sunt in
-                                    culpa qui officia deserunt
-                                </p>
-                            </div>
+                    </a>
+                    <a class="carousel-control-next" href="#header-carousel" data-slide="next">
+                        <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                            <span class="carousel-control-next-icon mb-n2"></span>
                         </div>
-                        <!-- End Features Item-->
-
-                        <div class="features-item d-flex mt-5 ps-0 ps-lg-3" data-aos="fade-up" data-aos-delay="400">
-                            <i class="bi bi-broadcast flex-shrink-0"></i>
-                            <div>
-                                <h4>Aut occaecati</h4>
-                                <p>
-                                    Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut
-                                    maiores omnis facere
-                                </p>
-                            </div>
-                        </div>
-                        <!-- End Features Item-->
-
-                        <div class="features-item d-flex mt-5 ps-0 ps-lg-3" data-aos="fade-up" data-aos-delay="500">
-                            <i class="bi bi-camera-reels flex-shrink-0"></i>
-                            <div>
-                                <h4>Beatae veritatis</h4>
-                                <p>
-                                    Expedita veritatis consequuntur nihil tempore laudantium
-                                    vitae denat pacta
-                                </p>
-                            </div>
-                        </div>
-                        <!-- End Features Item-->
-                    </div>
+                    </a>
                 </div>
             </div>
-        </section> --}}
-        <!-- /Features Section -->
+        </div>
+    </div>
+    <!-- Navbar End -->
 
 
-        @if ($result['services']->count())
-            <!-- Services Section -->
-            <section id="services" class="services section">
-                <!-- Section Title -->
-                <div class="container section-title" data-aos="fade-up">
-                    <h2>Services</h2>
-                    <p>Check our Services</p>
+    <!-- Featured Start -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5 pb-3">
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0">Quality Product</h5>
                 </div>
-                <!-- End Section Title -->
-                <div class="container">
-                    <div class="row gy-4">
-                        @foreach ($result['services']->sortBy('position') as $service)
-                            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                                <div class="service-item position-relative">
-                                    <div class="icon">
-                                        {{-- <i class="bi bi-broadcast"></i> --}}
-                                        <picture>
-                                            <source srcset="{{ $service->getFirstMediaUrl('services', 'webp') }}"
-                                                type="image/webp">
-                                            <img src="{{ App\Helpers\Image::getMediaUrl($service, 'services') }}"
-                                                alt="{{ $service->title ?? '' }}" style="width: 50px;height: 50px;" loading="lazy" width="1920" height="900"/>
-
-                                        </picture>
-                                    </div>
-                                    <a href="{{ route('services.details', $service->id) }}" class="stretched-link">
-                                        <h3>{{ shortenText($service->title ?? '', 20) }}</h3>
-                                    </a>
-                                    <p>
-                                        {{ shortenText($service->description ?? '', 90) }}
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- End Service Item -->
-                        @endforeach
-                    </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
+                    <h5 class="font-weight-semi-bold m-0">Free Shipping</h5>
                 </div>
-            </section>
-            <!-- /Services Section -->
-        @endif
-
-        @if (setting('whatsapp') == !null)
-            <!-- Call To Action Section -->
-            <section id="call-to-action" class="call-to-action section dark-background">
-
-
-
-                <picture>
-
-                    <source srcset="{{ App\Models\Setting::first()->getFirstMediaUrl('callToActions', 'webp') }}"
-                        type="image/webp">
-                    <img src="{{ App\Helpers\Image::getMediaUrl(App\Models\Setting::first(), 'callToActions') }}"
-                        alt="" loading="lazy" width="1920" height="900"/>
-
-                </picture>
-
-                <div class="container">
-                    <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="col-xl-10">
-                            <div class="text-center">
-                                <h3>Call To Action</h3>
-                                <p>
-                                    Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                                    occaecat cupidatat non proident, sunt in culpa qui officia
-                                    deserunt mollit anim id est laborum.
-                                </p>
-                                <a class="cta-btn" href="https://wa.me/{{ setting('whatsapp') }}">Call To Action</a>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0">14-Day Return</h5>
                 </div>
-            </section>
-            <!-- /Call To Action Section -->
-        @endif
-
-        @if ($result['products']->count())
-            <!-- Portfolio Section -->
-            <section id="portfolio" class="portfolio section">
-                <!-- Section Title -->
-                <div class="container section-title" data-aos="fade-up">
-                    <h2>Portfolio</h2>
-                    <p>Check our Portfolio</p>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0">24/7 Support</h5>
                 </div>
-                <!-- End Section Title -->
+            </div>
+        </div>
+    </div>
+    <!-- Featured End -->
 
-                <div class="container">
-                    <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
 
-                        <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-                            <li data-filter="*" class="filter-active">{{ __('attributes.all') }}</li>
-                            @foreach ($result['categories']->sortBy('position') as $category)
-                                <li data-filter=".filter-{{ $category->id }}">{{ $category->title }}</li>
-                            @endforeach
-                        </ul>
-                        <!-- End Portfolio Filters -->
-
-                        <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-                            @foreach ($result['categories']->sortBy('position') as $category)
-                                @foreach ($result['products']->where('category_id', $category->id)->sortBy('position') as $product)
-                                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-{{ $category->id }}">
-
-                                        <picture>
-                                            <source srcset="{{ $product->getFirstMediaUrl('products', 'webp') }}"
-                                                type="image/webp">
-
-                                            <img src="{{ App\Helpers\Image::getMediaUrl($product, 'products') }}"
-                                                class="img-fluid" alt="{{ $product->title }}" loading="lazy" width="1920" height="900"/>
-
-                                        </picture>
-
-                                        <div class="portfolio-info">
-                                            <h4>{{ shortenText($product->title ?? '', 20) }}</h4>
-                                            <p>{{ shortenText($product->description ?? '', 40) }}</p>
-                                            <a href="{{ App\Helpers\Image::getMediaUrl($product, 'products') }}"
-                                                title="{{ $product->title }}"
-                                                data-gallery="portfolio-gallery-{{ $category->id }}"
-                                                class="glightbox preview-link">
-                                                <i class="bi bi-zoom-in"></i>
-                                            </a>
-                                            <a href="{{ route('product.details', $product->id) }}" title="تفاصيل أكثر"
-                                                class="details-link">
-                                                <i class="bi bi-link-45deg"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- End Portfolio Item -->
-                                @endforeach
-                            @endforeach
-                        </div>
-                        <!-- End Portfolio Container -->
-
-                    </div>
+    <!-- Categories Start -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5 pb-3">
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="img/cat-1.jpg" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">Men's dresses</h5>
                 </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="img/cat-2.jpg" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">Women's dresses</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="img/cat-3.jpg" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">Baby's dresses</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="img/cat-4.jpg" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">Accerssories</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="img/cat-5.jpg" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">Bags</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="img/cat-6.jpg" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">Shoes</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Categories End -->
 
-            </section>
-            <!-- /Portfolio Section -->
-        @endif
 
-        <!-- Stats Section -->
-        {{-- <section id="stats" class="stats section">
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
-                <div class="row gy-4 align-items-center justify-content-between">
-                    <div class="col-lg-5">
-                        <img src="web/img/stats-img.jpg" alt="" class="img-fluid" />
-                    </div>
-
-                    <div class="col-lg-6">
-                        <h3 class="fw-bold fs-2 mb-3">
-                            Voluptatem dignissimos provident quasi
-                        </h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis
-                            aute irure dolor in reprehenderit
-                        </p>
-
-                        <div class="row gy-4">
-                            <div class="col-lg-6">
-                                <div class="stats-item d-flex">
-                                    <i class="bi bi-emoji-smile flex-shrink-0"></i>
-                                    <div>
-                                        <span data-purecounter-start="0" data-purecounter-end="232"
-                                            data-purecounter-duration="1" class="purecounter"></span>
-                                        <p>
-                                            <strong>Happy Clients</strong>
-                                            <span>consequuntur quae</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Stats Item -->
-
-                            <div class="col-lg-6">
-                                <div class="stats-item d-flex">
-                                    <i class="bi bi-journal-richtext flex-shrink-0"></i>
-                                    <div>
-                                        <span data-purecounter-start="0" data-purecounter-end="521"
-                                            data-purecounter-duration="1" class="purecounter"></span>
-                                        <p>
-                                            <strong>Projects</strong>
-                                            <span>adipisci atque cum quia aut</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Stats Item -->
-
-                            <div class="col-lg-6">
-                                <div class="stats-item d-flex">
-                                    <i class="bi bi-headset flex-shrink-0"></i>
-                                    <div>
-                                        <span data-purecounter-start="0" data-purecounter-end="1453"
-                                            data-purecounter-duration="1" class="purecounter"></span>
-                                        <p>
-                                            <strong>Hours Of Support</strong>
-                                            <span>aut commodi quaerat</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Stats Item -->
-
-                            <div class="col-lg-6">
-                                <div class="stats-item d-flex">
-                                    <i class="bi bi-people flex-shrink-0"></i>
-                                    <div>
-                                        <span data-purecounter-start="0" data-purecounter-end="32"
-                                            data-purecounter-duration="1" class="purecounter"></span>
-                                        <p>
-                                            <strong>Hard Workers</strong>
-                                            <span>rerum asperiores dolor</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Stats Item -->
-                        </div>
+    <!-- Offer Start -->
+    <div class="container-fluid offer pt-5">
+        <div class="row px-xl-5">
+            <div class="col-md-6 pb-4">
+                <div class="position-relative bg-secondary text-center text-md-right text-white mb-2 py-5 px-5">
+                    <img src="img/offer-1.png" alt="">
+                    <div class="position-relative" style="z-index: 1;">
+                        <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5>
+                        <h1 class="mb-4 font-weight-semi-bold">Spring Collection</h1>
+                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
                     </div>
                 </div>
             </div>
-        </section> --}}
-        <!-- /Stats Section -->
-
-        @if ($result['reviews']->count())
-            <!-- Testimonials Section -->
-            <section id="testimonials" class="testimonials section dark-background">
-                <img src="{{ App\Helpers\Image::getMediaUrl(App\Models\Setting::first(), 'reviews') }}"
-                    class="testimonials-bg" alt="" loading="lazy" width="1920" height="900"/>
-
-                <div class="container" data-aos="fade-up" data-aos-delay="100">
-                    <div class="swiper init-swiper">
-                        <script type="application/json" class="swiper-config">
-              {
-                "loop": true,
-                "speed": 600,
-                "autoplay": {
-                  "delay": 5000
-                },
-                "slidesPerView": "auto",
-                "pagination": {
-                  "el": ".swiper-pagination",
-                  "type": "bullets",
-                  "clickable": true
-                }
-              }
-            </script>
-                        <div class="swiper-wrapper">
-                            @foreach ($result['reviews']->sortBy('position') as $reviews)
-                                <div class="swiper-slide">
-                                    <div class="testimonial-item">
-                                        <img src="{{ App\Helpers\Image::getMediaUrl($reviews, 'reviews') }}"
-                                            class="testimonial-img" alt="" loading="lazy"/>
-                                        <h3>{{ shortenText($reviews->name ?? '', 20) }}</h3>
-                                        <h4>{{ shortenText($reviews->title ?? '', 20) }}</h4>
-                                        {{-- <div class="stars">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i>
-                                </div> --}}
-                                        <p>
-                                            <i class="bi bi-quote quote-icon-left"></i>
-                                            <span>{{ shortenText($reviews->description ?? '', 100) }}</span>
-                                            <i class="bi bi-quote quote-icon-right"></i>
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- End testimonial item -->
-                            @endforeach
-                        </div>
-                        <div class="swiper-pagination"></div>
+            <div class="col-md-6 pb-4">
+                <div class="position-relative bg-secondary text-center text-md-left text-white mb-2 py-5 px-5">
+                    <img src="img/offer-2.png" alt="">
+                    <div class="position-relative" style="z-index: 1;">
+                        <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5>
+                        <h1 class="mb-4 font-weight-semi-bold">Winter Collection</h1>
+                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
                     </div>
                 </div>
-            </section>
-            <!-- /Testimonials Section -->
-        @endif
-
-        <!-- Team Section -->
-        {{-- <section id="team" class="team section">
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>Team</h2>
-                <p>our Team</p>
             </div>
-            <!-- End Section Title -->
+        </div>
+    </div>
+    <!-- Offer End -->
 
-            <div class="container">
-                <div class="row gy-4">
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                        <div class="team-member">
-                            <div class="member-img">
-                                <img src="web/img/team/team-1.jpg" class="img-fluid" alt="" />
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                            <div class="member-info">
-                                <h4>Walter White</h4>
-                                <span>Chief Executive Officer</span>
-                            </div>
+
+    <!-- Products Start -->
+    <div class="container-fluid pt-5">
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span class="px-2">Trandy Products</span></h2>
+        </div>
+        <div class="row px-xl-5 pb-3">
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
                         </div>
                     </div>
-                    <!-- End Team Member -->
-
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                        <div class="team-member">
-                            <div class="member-img">
-                                <img src="web/img/team/team-2.jpg" class="img-fluid" alt="" />
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                            <div class="member-info">
-                                <h4>Sarah Jhonson</h4>
-                                <span>Product Manager</span>
-                            </div>
-                        </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                     </div>
-                    <!-- End Team Member -->
-
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-                        <div class="team-member">
-                            <div class="member-img">
-                                <img src="web/img/team/team-3.jpg" class="img-fluid" alt="" />
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                            <div class="member-info">
-                                <h4>William Anderson</h4>
-                                <span>CTO</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Team Member -->
-
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
-                        <div class="team-member">
-                            <div class="member-img">
-                                <img src="web/img/team/team-4.jpg" class="img-fluid" alt="" />
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                            <div class="member-info">
-                                <h4>Amanda Jepson</h4>
-                                <span>Accountant</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Team Member -->
                 </div>
             </div>
-        </section> --}}
-        <!-- /Team Section -->
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact section">
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>Contact</h2>
-                <p>Contact Us</p>
-            </div>
-            <!-- End Section Title -->
-
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
-                @if (setting('map') == !null)
-                    <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <iframe style="border: 0; width: 100%; height: 270px" src="{{ setting('map') }}" frameborder="0"
-                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="img/product-2.jpg" alt="">
                     </div>
-                    <!-- End Google Maps -->
-                @endif
-                <div class="row gy-4">
-                    <div class="col-lg-4">
-                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-                            <i class="bi bi-geo-alt flex-shrink-0"></i>
-                            <div>
-                                <h3>Address</h3>
-                                <p>{{ setting('address') }}</p>
-                            </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
                         </div>
-                        <!-- End Info Item -->
-
-                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-                            <i class="bi bi-telephone flex-shrink-0"></i>
-                            <div>
-                                <h3>Call Us</h3>
-                                <p>{{ setting('phone') }}</p>
-                            </div>
-                        </div>
-                        <!-- End Info Item -->
-
-                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
-                            <i class="bi bi-envelope flex-shrink-0"></i>
-                            <div>
-                                <h3>Email Us</h3>
-                                <p>{{ setting('email') }}</p>
-                            </div>
-                        </div>
-                        <!-- End Info Item -->
                     </div>
-
-                    <div class="col-lg-8">
-                        <form action="{{ route('contact.store') }}" method="post" data-aos="fade-up"
-                            data-aos-delay="200">
-                            @csrf
-                            <div class="row gy-4">
-                                <div class="col-md-6">
-                                    <input type="text" name="name"
-                                        class="form-control @error('name') is-invalid @enderror" placeholder="Your Name"
-                                        required="" />
-                                    @error('name')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6">
-                                    <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" placeholder="Your Email" required="" />
-                                    @error('email')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control @error('phone') is-invalid @enderror"
-                                        name="phone" placeholder="phone" required="" />
-                                    @error('phone')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-12">
-                                    <textarea class="form-control @error('message') is-invalid @enderror" name="message" rows="6"
-                                        placeholder="Message" required=""></textarea>
-                                    @error('Message')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-12 text-center">
-                                    <button
-                                        style="background-color: #ffc451;border: 0;padding: 10px 30px;transition: 0.4s;border-radius: 4px;"
-                                        type="submit">Send Message</button>
-                                </div>
-                            </div>
-                        </form>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                     </div>
-                    <!-- End Contact Form -->
                 </div>
             </div>
-        </section>
-        <!-- /Contact Section -->
-    </main>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="img/product-3.jpg" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="img/product-4.jpg" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="img/product-5.jpg" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="img/product-6.jpg" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="img/product-7.jpg" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="img/product-8.jpg" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Products End -->
+
+
+    <!-- Subscribe Start -->
+    <div class="container-fluid bg-secondary my-5">
+        <div class="row justify-content-md-center py-5 px-xl-5">
+            <div class="col-md-6 col-12 py-5">
+                <div class="text-center mb-2 pb-2">
+                    <h2 class="section-title px-5 mb-3"><span class="bg-secondary px-2">Stay Updated</span></h2>
+                    <p>Amet lorem at rebum amet dolores. Elitr lorem dolor sed amet diam labore at justo ipsum eirmod duo labore labore.</p>
+                </div>
+                <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control border-white p-4" placeholder="Email Goes Here">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary px-4">Subscribe</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Subscribe End -->
+
+
+    <!-- Products Start -->
+    <div class="container-fluid pt-5">
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span class="px-2">Just Arrived</span></h2>
+        </div>
+        <div class="row px-xl-5 pb-3">
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="img/product-2.jpg" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="img/product-3.jpg" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="img/product-4.jpg" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="img/product-5.jpg" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="img/product-6.jpg" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="img/product-7.jpg" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="img/product-8.jpg" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Products End -->
+
+
+    <!-- Vendor Start -->
+    <div class="container-fluid py-5">
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class="owl-carousel vendor-carousel">
+                    <div class="vendor-item border p-4">
+                        <img src="img/vendor-1.jpg" alt="">
+                    </div>
+                    <div class="vendor-item border p-4">
+                        <img src="img/vendor-2.jpg" alt="">
+                    </div>
+                    <div class="vendor-item border p-4">
+                        <img src="img/vendor-3.jpg" alt="">
+                    </div>
+                    <div class="vendor-item border p-4">
+                        <img src="img/vendor-4.jpg" alt="">
+                    </div>
+                    <div class="vendor-item border p-4">
+                        <img src="img/vendor-5.jpg" alt="">
+                    </div>
+                    <div class="vendor-item border p-4">
+                        <img src="img/vendor-6.jpg" alt="">
+                    </div>
+                    <div class="vendor-item border p-4">
+                        <img src="img/vendor-7.jpg" alt="">
+                    </div>
+                    <div class="vendor-item border p-4">
+                        <img src="img/vendor-8.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Vendor End -->
 @endsection

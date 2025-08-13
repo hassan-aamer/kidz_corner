@@ -5,7 +5,7 @@
 @include('web.layouts.head')
 </head>
 
-<body class="@yield('class','index-page')">
+<body>
     @include('web.layouts.header')
     @yield('content')
     @include('web.layouts.footer')
