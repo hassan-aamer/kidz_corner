@@ -28,7 +28,6 @@ class SubscriptionService
         try {
             DB::beginTransaction();
 
-            $request['email'] = $request['email_subscription'];
             $this->itemRepository->createItem($this->model, $request);
 
             DB::commit();

@@ -22,7 +22,7 @@ class SubscriptionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email_subscription' => 'required|email|max:255',
+            'email' => 'required|email|max:255',
         ];
     }
 }
