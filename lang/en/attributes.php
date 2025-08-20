@@ -46,6 +46,8 @@ return [
     'Questions' => 'Questions? Chat with us!',
     'HowHelp' => 'How can we help ?',
     'no' => 'No',
+    'price' => 'Price',
+    'old_price' => 'Old Price',
     'reviews' => 'Reviews',
     'close' => 'Close',
     'no_data_found' => 'No Data Found',

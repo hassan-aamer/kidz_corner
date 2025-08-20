@@ -14,6 +14,8 @@ return [
     'role' => 'الدور',
     'profile' => 'الملف الشخصي',
     'ReadIt' => 'مقروئة',
+    'old_price' => 'السعر القديم',
+    'price' => 'السعر',
     'description' => 'وصف',
     'enter_password' => 'ادخل كلمة السر',
     'MyAccount' => 'الملف الشخصي',

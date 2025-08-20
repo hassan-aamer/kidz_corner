@@ -25,6 +25,8 @@
                                     @include('admin.components.title')
                                     @include('admin.components.description')
                                     @include('admin.components.content')
+                                    @include('admin.components.price')
+                                    @include('admin.components.old-price')
                                     @include('admin.components.position')
                                     @include('admin.components.select_category')
                                     @include('admin.components.ImageUpload', [

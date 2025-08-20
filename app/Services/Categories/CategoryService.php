@@ -18,7 +18,7 @@ class CategoryService
     }
     public function index()
     {
-        return $this->itemRepository->getPaginateItems($this->model,null);
+        return $this->itemRepository->getPaginateItems($this->model, null);
     }
     public function show(int $id)
     {
@@ -29,7 +29,11 @@ class CategoryService
         try {
             DB::beginTransaction();
 
-            $this->itemRepository->createItem($this->model, $request);
+            $repository = $this->itemRepository->createItem($this->model, $request);
+
+            if (isset($request['image']) && $request['image']) {
+                $repository->addMediaFromRequest('image')->toMediaCollection('repositories');
+            }
 
             DB::commit();
         } catch (\Throwable $e) {
@@ -47,8 +51,13 @@ class CategoryService
 
             DB::beginTransaction();
 
-            $this->itemRepository->getItemById($this->model, $id);
+            $repository = $this->itemRepository->getItemById($this->model, $id);
             $this->itemRepository->updateItem($this->model, $id, $request);
+
+            if (isset($request['image']) && $request['image']) {
+                $repository->clearMediaCollection('repositories');
+                $repository->addMediaFromRequest('image')->toMediaCollection('repositories');
+            }
 
             DB::commit();
         } catch (\Throwable $e) {

@@ -32,6 +32,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>@lang('attributes.image')</th>
                                             <th>@lang('attributes.position')</th>
                                             <th>@lang('attributes.title')</th>
                                             <th>@lang('attributes.description')</th>
@@ -44,6 +45,13 @@
                                             @foreach ($result as $categories)
                                                 <tr id="row-{{ $categories->id ?? '' }}">
                                                     <td>{{ $loop->iteration ?? '' }}</td>
+
+                                                    <td><img src="{{ App\Helpers\Image::getMediaUrl($categories, 'repositories') }}"
+                                                            alt="repositories" width="100"
+                                                            onclick="openImage('{{ App\Helpers\Image::getMediaUrl($categories, 'repositories') }}')"
+                                                            style="width: 100px; height: auto; cursor: pointer; transition: transform 0.3s;"
+                                                            onmouseover="this.style.transform='scale(1.1)'"
+                                                            onmouseout="this.style.transform='scale(1)'"></td>
                                                     <td>{{ $categories->position ?? '' }}</td>
                                                     <td>{{ shortenText($categories->title ?? '', 10) }}</td>
                                                     <td>{{ shortenText($categories->description ?? '', 10) }}</td>

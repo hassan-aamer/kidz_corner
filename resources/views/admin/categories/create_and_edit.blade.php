@@ -24,6 +24,10 @@
                                 <div class="row">
                                     @include('admin.components.title')
                                     @include('admin.components.description')
+                                    @include('admin.components.ImageUpload', [
+                                        'result' => $result ?? null,
+                                        'collection' => 'repositories',
+                                    ])
                                     @include('admin.components.position')
                                     @include('admin.components.active')
                                     @include('admin.components.submit')
