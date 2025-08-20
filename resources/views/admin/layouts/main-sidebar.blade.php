@@ -54,6 +54,13 @@
                             <span>{{ __('attributes.sliders') }}</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="{{ request()->routeIs('admin.banners.*') ? 'active' : '' }}"
+                            href="{{ route('admin.banners.index') }}">
+                            <i data-feather="layers"></i>
+                            <span>{{ __('attributes.banners') }}</span>
+                        </a>
+                    </li>
                 {{-- @endcan --}}
                 {{-- @can('list features') --}}
                     <li>
@@ -92,13 +99,13 @@
                     </li>
                 {{-- @endcan --}}
                 {{-- @can('list reviews') --}}
-                    <li>
+                    {{-- <li>
                         <a class="{{ request()->routeIs('admin.reviews.*') ? 'active' : '' }}"
                             href="{{ route('admin.reviews.index') }}">
                             <i data-feather="star"></i>
                             <span> {{ __('attributes.reviews') }} </span>
                         </a>
-                    </li>
+                    </li> --}}
                 {{-- @endcan --}}
                 {{-- @can('list settings') --}}
                     <li>

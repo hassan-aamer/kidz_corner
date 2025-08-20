@@ -98,4 +98,13 @@ Route::middleware('checkAuth')->group(function () {
         Route::delete('/delete/{id}', 'destroy')->name('reviews.delete');
         Route::post('/change-status', 'changeStatus')->name('reviews.status');
     });
+    Route::prefix('banners')->controller(\App\Http\Controllers\Admin\Banners\BannersController::class)->group(function () {
+        Route::get('/', 'index')->name('banners.index');
+        Route::get('/create', 'create')->name('banners.create');
+        Route::post('/store', 'store')->name('banners.store');
+        Route::get('/{id}/edit', 'edit')->name('banners.edit');
+        Route::put('/update/{id}', 'update')->name('banners.update');
+        Route::delete('/delete/{id}', 'destroy')->name('banners.delete');
+        Route::post('/change-status', 'changeStatus')->name('banners.status');
+    });
 });

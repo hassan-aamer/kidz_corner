@@ -47,6 +47,7 @@ return [
     'HowHelp' => 'How can we help ?',
     'no' => 'No',
     'price' => 'Price',
+    'banners' => 'Banners',
     'old_price' => 'Old Price',
     'reviews' => 'Reviews',
     'close' => 'Close',
