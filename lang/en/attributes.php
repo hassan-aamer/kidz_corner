@@ -128,6 +128,7 @@ return [
     'hour' => 'Hour',
     'minute' => 'Minute',
     'again' => 'Again',
+    'shop' => 'Shop',
     'specialOffer' => 'Get a special limited offer!',
     'infoOption' => 'Info Option',
     'infoSectionDetails' => 'Info Details',

@@ -19,11 +19,15 @@ class ProductsService
         $this->itemRepository = $itemRepository;
         $this->model = new Product();
     }
-    public function index($request)
+    public function index($request = null)
     {
-        $data = $request->all();
-        return $this->itemRepository->getPaginateItems($this->model, $data);
+        if ($request) {
+            $data = $request->all();
+            return $this->itemRepository->getPaginateItems($this->model, $data);
+        }
+        return $this->itemRepository->getPaginateItems($this->model);
     }
+
     public function show(int $id)
     {
         return $this->itemRepository->getItemById($this->model, $id);

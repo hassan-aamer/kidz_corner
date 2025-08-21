@@ -53,7 +53,7 @@ class CRUDRepository implements CRUDRepositoryInterface
         return $data;
     }
 
-    public function getPaginateItems($model, $data, $scope = null)
+    public function getPaginateItems($model, $data = null, $scope = null)
     {
         $items = $model::Recent();
         $status = $data['active'] ?? '-1';

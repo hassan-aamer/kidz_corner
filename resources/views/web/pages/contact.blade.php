@@ -33,7 +33,7 @@
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
             <h1 class="font-weight-semi-bold text-uppercase mb-3">Contact</h1>
             <div class="d-inline-flex">
-                <p class="m-0"><a href="">Home</a></p>
+                <p class="m-0"><a href="{{ route('home') }}">Home</a></p>
                 <p class="m-0 px-2">-</p>
                 <p class="m-0">Contact</p>
             </div>
@@ -97,7 +97,7 @@
             </div>
             <div class="col-lg-5 mb-5">
                 <div class="d-flex flex-column mb-3">
-                    <h5 class="font-weight-semi-bold mb-3">Store 1</h5>
+                    <h5 class="font-weight-semi-bold mb-3">{{ setting('name') }} {{ setting('title') }}</h5>
                     <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>{{ setting('address') }}</p>
                     <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>{{ setting('email') }}</p>
                     <p class="mb-2"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ setting('phone') }}</p>
