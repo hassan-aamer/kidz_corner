@@ -20,7 +20,7 @@ class ProductController extends Controller
     }
     public function index()
     {
-        // Cache::forget('products');
+        Cache::forget('products');
         $result = [
             'categories_search' => $this->categoryService->index()->where('active', 1)->take(10),
             'products' => Cache::remember('products', now()->addHours(6), function () {

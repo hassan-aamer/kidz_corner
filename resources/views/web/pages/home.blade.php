@@ -96,17 +96,7 @@
         <div class="container-fluid pt-5">
             <div class="row px-xl-5 pb-3">
                 @foreach ($result['categories']->sortBy('position') as $categories)
-                    <div class="col-lg-4 col-md-6 pb-1">
-                        <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                            <p class="text-right">{{ $categories->products->count() ?? '' }} Products</p>
-                            <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                                <img class="img-fluid"
-                                    src="{{ App\Helpers\Image::getMediaUrl($categories, 'repositories') }}"
-                                    alt="{{ $categories->title ?? '' }}">
-                            </a>
-                            <h5 class="font-weight-semi-bold m-0">{{ $categories->title ?? '' }}</h5>
-                        </div>
-                    </div>
+                    @include('web.components.category-item')
                 @endforeach
             </div>
         </div>
@@ -126,7 +116,8 @@
                 <form action="{{ route('subscription') }}" method="POST">
                     @csrf
                     <div class="input-group">
-                        <input type="text" name="email" class="form-control border-white p-4" placeholder="Email Goes Here">
+                        <input type="text" name="email" class="form-control border-white p-4"
+                            placeholder="Email Goes Here">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-primary px-4">Subscribe</button>
                         </div>
@@ -146,29 +137,7 @@
             </div>
             <div class="row px-xl-5 pb-3">
                 @foreach ($result['products']->sortBy('position') as $products)
-                    <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                        <div class="card product-item border-0 mb-4">
-                            <div
-                                class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100"
-                                    src="{{ App\Helpers\Image::getMediaUrl($products, 'products') }}"
-                                    alt="{{ $products->title ?? '' }}">
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">{{ $products->title ?? '' }}</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>${{ $products->price ?? '' }}</h6>
-                                    <h6 class="text-muted ml-2"><del>${{ $products->old_price ?? '' }}</del></h6>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="" class="btn btn-sm text-dark p-0"><i
-                                        class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i
-                                        class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
+                    @include('web.components.product-item')
                 @endforeach
             </div>
         </div>
@@ -183,10 +152,7 @@
                 <div class="col">
                     <div class="owl-carousel vendor-carousel">
                         @foreach ($result['sliders']->sortBy('position') as $sliders)
-                            <div class="vendor-item border p-4">
-                                <img src="{{ App\Helpers\Image::getMediaUrl($sliders, 'sliders') }}"
-                                    alt="{{ $sliders->title ?? '' }}">
-                            </div>
+                            @include('web.components.slider-item')
                         @endforeach
                     </div>
                 </div>

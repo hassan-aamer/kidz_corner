@@ -27,6 +27,10 @@ class ProductsService
         }
         return $this->itemRepository->getPaginateItems($this->model);
     }
+    public function getAllItems($request = null)
+    {
+        return $this->itemRepository->getAllItems($this->model);
+    }
 
     public function show(int $id)
     {

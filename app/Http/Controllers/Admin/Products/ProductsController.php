@@ -20,7 +20,8 @@ class ProductsController extends Controller
     }
     public function index(Request $request)
     {
-        $result = $this->service->index($request);
+        $result = $this->service->getAllItems($request);
+        // return $result;
         return view($this->folderPath . 'index', compact('result'));
     }
     public function show($id)
