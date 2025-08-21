@@ -48,10 +48,10 @@
             <!-- Shop Sidebar Start -->
             <div class="col-lg-3 col-md-12">
                 <!-- Price Start -->
-                <div class="border-bottom mb-4 pb-4">
+                <div class="border-bottom mb-4 pb-4 p-3 shadow-sm rounded">
                     <form id="price-filter-form">
                         <!-- Filter by Name -->
-                        <div class="border-bottom mb-4 pb-4">
+                        <div class="border-bottom mb-4 pb-3">
                             <h5 class="font-weight-semi-bold mb-3">Filter by Name</h5>
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search by name" id="search-name">
@@ -66,20 +66,27 @@
                         <!-- Filter by Price -->
                         <div class="mb-4">
                             <h5 class="font-weight-semi-bold mb-3">Filter by Price</h5>
-                            <div class="d-flex align-items-center mb-3">
-                                <label for="price-min" class="mr-2 font-weight-bold">Min</label>
-                                <input type="number" class="form-control mr-3" id="price-min" placeholder="0"
-                                    min="0">
-
-                                <label for="price-max" class="mr-2 font-weight-bold">Max</label>
-                                <input type="number" class="form-control" id="price-max" placeholder="500" min="0">
+                            <div class="row g-2">
+                                <div class="col">
+                                    <label for="price-min" class="font-weight-bold">Min</label>
+                                    <input type="number" class="form-control" id="price-min" placeholder="0"
+                                        min="0">
+                                </div>
+                                <div class="col">
+                                    <label for="price-max" class="font-weight-bold">Max</label>
+                                    <input type="number" class="form-control" id="price-max" placeholder="500"
+                                        min="0">
+                                </div>
                             </div>
                         </div>
 
                         <!-- Submit Button -->
-                        <button type="submit" class="btn btn-primary btn-sm">Apply</button>
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary btn-sm px-4">Apply</button>
+                        </div>
                     </form>
                 </div>
+
 
             </div>
             <!-- Shop Sidebar End -->
