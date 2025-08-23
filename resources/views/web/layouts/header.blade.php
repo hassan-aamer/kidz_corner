@@ -7,7 +7,7 @@
                     <span class="text-muted px-2">|</span>
                     <a class="text-dark" href="">Help</a>
                     <span class="text-muted px-2">|</span> --}}
-                    <a class="text-dark" href="">Support</a>
+                    <a class="text-dark" href="{{ route('contact') }}">Support</a>
                 </div>
             </div>
             <div class="col-lg-6 text-center text-lg-right">
@@ -51,13 +51,13 @@
                 </form>
             </div>
             <div class="col-lg-3 col-6 text-right">
-                <a href="" class="btn border">
+                {{-- <a href="" class="btn border">
                     <i class="fas fa-heart text-primary"></i>
                     <span class="badge">0</span>
-                </a>
-                <a href="" class="btn border">
+                </a> --}}
+                <a href="{{ route('cart.index') }}" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">0</span>
+                    {{-- <span class="badge">EGP </span> --}}
                 </a>
             </div>
         </div>

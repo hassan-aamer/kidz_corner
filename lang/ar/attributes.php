@@ -17,6 +17,7 @@ return [
     'ReadIt' => 'مقروئة',
     'old_price' => 'السعر القديم',
     'price' => 'السعر',
+    'cart' => 'السلة',
     'description' => 'وصف',
     'enter_password' => 'ادخل كلمة السر',
     'MyAccount' => 'الملف الشخصي',

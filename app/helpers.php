@@ -22,12 +22,14 @@ if (! function_exists('setting')) {
     }
 }
 if (!function_exists('shortenText')) {
-    function shortenText($text, $length = 50) {
+    function shortenText($text, $length = 50)
+    {
         return Str::limit($text, $length);
     }
 }
 if (!function_exists('syncRelations')) {
-    function syncRelations($model, array $data, array $relations): void {
+    function syncRelations($model, array $data, array $relations): void
+    {
         foreach ($relations as $field => $relation) {
             if (!empty($data[$field])) {
                 $model->$relation()->sync($data[$field]);
