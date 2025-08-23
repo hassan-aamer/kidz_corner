@@ -32,7 +32,6 @@ class CartController extends Controller
             'categories_search' => $this->categoryService->index()->where('active', 1)->take(10),
         ];
         $cart = $this->getCart()->load('items.product');
-        // return $cart;
 
         $total = $cart->items->sum(function ($item) {
             return $item->quantity * $item->product->price;
