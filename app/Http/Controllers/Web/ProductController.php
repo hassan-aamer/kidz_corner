@@ -30,4 +30,22 @@ class ProductController extends Controller
         ];
         return view('web.pages.shop', compact( 'result'));
     }
+
+    public function show($id)
+    {
+        $product = Product::with('category')->findOrFail($id);
+        $relatedProducts = Product::where('category_id', $product->category_id)
+            ->where('id', '!=', $product->id)
+            ->where('active', 1)
+            ->inRandomOrder()
+            ->take(12)
+            ->get();
+
+        $result = [
+            'categories_search' => $this->categoryService->index()->where('active', 1)->take(10),
+            'product' => $product,
+            'relatedProducts' => $relatedProducts,
+        ];
+        return view('web.pages.product', compact('result'));
+    }
 }
