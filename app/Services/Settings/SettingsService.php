@@ -29,50 +29,50 @@ class SettingsService
             $settings = $this->itemRepository->getItemById($this->model, $id);
             $this->itemRepository->updateItem($this->model, $id, $request);
 
-            if (isset($request['image']) && $request['image']) {
-                $settings->clearMediaCollection('about');
-                $media = $settings->addMediaFromRequest('image')->toMediaCollection('about');
+            // if (isset($request['image']) && $request['image']) {
+            //     $settings->clearMediaCollection('about');
+            //     $media = $settings->addMediaFromRequest('image')->toMediaCollection('about');
 
-                $sourcePath = $media->getPath();
+            //     $sourcePath = $media->getPath();
 
-                $webpPath = pathinfo($sourcePath, PATHINFO_DIRNAME) . '/' .
-                    pathinfo($sourcePath, PATHINFO_FILENAME) . '.webp';
+            //     $webpPath = pathinfo($sourcePath, PATHINFO_DIRNAME) . '/' .
+            //         pathinfo($sourcePath, PATHINFO_FILENAME) . '.webp';
 
-                WebPConvert::convert($sourcePath, $webpPath);
-            }
-            if (isset($request['baner']) && $request['baner']) {
-                $settings->clearMediaCollection('baners');
-                $media = $settings->addMediaFromRequest('baner')->toMediaCollection('baners');
+            //     WebPConvert::convert($sourcePath, $webpPath);
+            // }
+            // if (isset($request['baner']) && $request['baner']) {
+            //     $settings->clearMediaCollection('baners');
+            //     $media = $settings->addMediaFromRequest('baner')->toMediaCollection('baners');
 
-                $sourcePath = $media->getPath();
+            //     $sourcePath = $media->getPath();
 
-                $webpPath = pathinfo($sourcePath, PATHINFO_DIRNAME) . '/' .
-                    pathinfo($sourcePath, PATHINFO_FILENAME) . '.webp';
+            //     $webpPath = pathinfo($sourcePath, PATHINFO_DIRNAME) . '/' .
+            //         pathinfo($sourcePath, PATHINFO_FILENAME) . '.webp';
 
-                WebPConvert::convert($sourcePath, $webpPath);
-            }
-            if (isset($request['callToAction']) && $request['callToAction']) {
-                $settings->clearMediaCollection('callToActions');
-                $media = $settings->addMediaFromRequest('callToAction')->toMediaCollection('callToActions');
+            //     WebPConvert::convert($sourcePath, $webpPath);
+            // }
+            // if (isset($request['callToAction']) && $request['callToAction']) {
+            //     $settings->clearMediaCollection('callToActions');
+            //     $media = $settings->addMediaFromRequest('callToAction')->toMediaCollection('callToActions');
 
-                $sourcePath = $media->getPath();
+            //     $sourcePath = $media->getPath();
 
-                $webpPath = pathinfo($sourcePath, PATHINFO_DIRNAME) . '/' .
-                    pathinfo($sourcePath, PATHINFO_FILENAME) . '.webp';
+            //     $webpPath = pathinfo($sourcePath, PATHINFO_DIRNAME) . '/' .
+            //         pathinfo($sourcePath, PATHINFO_FILENAME) . '.webp';
 
-                WebPConvert::convert($sourcePath, $webpPath);
-            }
-            if (isset($request['review']) && $request['review']) {
-                $settings->clearMediaCollection('reviews');
-                $media = $settings->addMediaFromRequest('review')->toMediaCollection('reviews');
+            //     WebPConvert::convert($sourcePath, $webpPath);
+            // }
+            // if (isset($request['review']) && $request['review']) {
+            //     $settings->clearMediaCollection('reviews');
+            //     $media = $settings->addMediaFromRequest('review')->toMediaCollection('reviews');
 
-                $sourcePath = $media->getPath();
+            //     $sourcePath = $media->getPath();
 
-                $webpPath = pathinfo($sourcePath, PATHINFO_DIRNAME) . '/' .
-                    pathinfo($sourcePath, PATHINFO_FILENAME) . '.webp';
+            //     $webpPath = pathinfo($sourcePath, PATHINFO_DIRNAME) . '/' .
+            //         pathinfo($sourcePath, PATHINFO_FILENAME) . '.webp';
 
-                WebPConvert::convert($sourcePath, $webpPath);
-            }
+            //     WebPConvert::convert($sourcePath, $webpPath);
+            // }
             if (isset($request['logo']) && $request['logo']) {
                 $settings->clearMediaCollection('logo');
                 $media = $settings->addMediaFromRequest('logo')->toMediaCollection('logo');

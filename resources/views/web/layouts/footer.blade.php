@@ -16,9 +16,12 @@
                     <div class="col-md-6 mb-5">
                         <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-dark mb-2" href="{{ route('home') }}"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-dark mb-2" href="{{ route('products') }}"><i class="fa fa-angle-right mr-2"></i>Shop</a>
-                            <a class="text-dark" href="{{ route('contact') }}"><i class="fa fa-angle-right mr-2"></i>Contact</a>
+                            <a class="text-dark mb-2" href="{{ route('home') }}"><i
+                                    class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-dark mb-2" href="{{ route('products') }}"><i
+                                    class="fa fa-angle-right mr-2"></i>Shop</a>
+                            <a class="text-dark" href="{{ route('contact') }}"><i
+                                    class="fa fa-angle-right mr-2"></i>Contact</a>
                         </div>
                     </div>
                 </div>
@@ -27,9 +30,8 @@
         <div class="row border-top border-light mx-xl-5 py-4">
             <div class="col-md-6 px-xl-0">
                 <p class="mb-md-0 text-center text-md-left text-dark">
-                    &copy; <a class="text-dark font-weight-semi-bold"
-                        href="{{ route('home') }}">{{ setting('name') ?? '' }}{{ setting('title') ?? '' }}</a>. All
-                    Rights Reserved. Powered
+                    <a class="text-dark font-weight-semi-bold"
+                        href="{{ route('home') }}">{{ setting('copyrights') ?? '' }}</a>. Powered
                     by
                     <a class="text-dark font-weight-semi-bold" href="https://viral-monkeys.com">Viral Monkeys</a><br>
                 </p>

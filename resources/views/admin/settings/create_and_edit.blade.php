@@ -38,7 +38,7 @@
                                     @include('admin.components.description')
                                     @include('admin.components.map')
                                     <div class="row">
-                                        @include('admin.components.ImageUpload', [
+                                        {{-- @include('admin.components.ImageUpload', [
                                             'result' => $result ?? null,
                                             'collection' => 'baners',
                                             'label' => 'Baner',
@@ -60,7 +60,7 @@
                                             'collection' => 'reviews',
                                             'label' => 'Reviews',
                                             'name' => 'review',
-                                        ])
+                                        ]) --}}
                                         @include('admin.components.ImageUpload', [
                                             'result' => $result ?? null,
                                             'collection' => 'logo',

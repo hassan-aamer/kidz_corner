@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Support\Facades\Cache;
 use App\Services\Products\ProductsService;
 use App\Services\Categories\CategoryService;
@@ -24,10 +25,9 @@ class ProductController extends Controller
         $result = [
             'categories_search' => $this->categoryService->index()->where('active', 1)->take(10),
             'products' => Cache::remember('products', now()->addHours(6), function () {
-                return $this->service->index(null)->where('active', 1);
+                return Product::where('active', 1)->orderByDesc('id')->paginate(12);
             }),
         ];
-
         return view('web.pages.shop', compact( 'result'));
     }
 }

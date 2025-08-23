@@ -102,6 +102,13 @@
 
                     <div class="col-12 pb-1">
                         <nav aria-label="Page navigation">
+                            {{ $result['products']->links('pagination::bootstrap-4') }}
+                        </nav>
+                    </div>
+
+
+                    {{-- <div class="col-12 pb-1">
+                        <nav aria-label="Page navigation">
                             <ul class="pagination justify-content-center mb-3">
                                 <li class="page-item disabled">
                                     <a class="page-link" href="#" aria-label="Previous">
@@ -120,7 +127,7 @@
                                 </li>
                             </ul>
                         </nav>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <!-- Shop Product End -->
