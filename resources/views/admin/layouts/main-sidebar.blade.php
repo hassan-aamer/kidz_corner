@@ -63,13 +63,13 @@
                     </li>
                 {{-- @endcan --}}
                 {{-- @can('list features') --}}
-                    <li>
+                    {{-- <li>
                         <a class="{{ request()->routeIs('admin.features.*') ? 'active' : '' }}"
                             href="{{ route('admin.features.index') }}">
                             <i data-feather="message-circle"></i>
                             <span>{{ __('attributes.features') }}</span>
                         </a>
-                    </li>
+                    </li> --}}
                 {{-- @endcan --}}
 
                 <li>
@@ -81,13 +81,13 @@
                 </li>
 
                 {{-- @can('list services') --}}
-                    <li>
+                    {{-- <li>
                         <a class="{{ request()->routeIs('admin.services.*') ? 'active' : '' }}"
                             href="{{ route('admin.services.index') }}">
                             <i data-feather="tool"></i>
                             <span> {{ __('attributes.services') }} </span>
                         </a>
-                    </li>
+                    </li> --}}
                 {{-- @endcan --}}
                 {{-- @can('list products') --}}
                     <li>

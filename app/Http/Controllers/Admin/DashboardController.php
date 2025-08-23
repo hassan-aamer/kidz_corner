@@ -10,8 +10,9 @@ class DashboardController extends Controller
         $count = [
             'users' => \App\Models\User::count(),
             'products' => \App\Models\Product::count(),
-            'services' => \App\Models\Service::count(),
+            'categories' => \App\Models\Category::count(),
             'contacts' => \App\Models\Contact::count(),
+            'orders' => \App\Models\Order::count(),
         ];
         return view('admin.dashboard', compact('count'));
     }

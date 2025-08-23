@@ -20,7 +20,7 @@
 
                 <!-- stats with icon -->
                 <div class="row">
-                    <div class="col-md-6 col-xl-3">
+                    <div class="col-md-6 col-xl-6">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex">
@@ -37,14 +37,14 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xl-3">
+                    <div class="col-md-6 col-xl-6">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex">
                                     <div class="flex-grow-1">
                                         <span
-                                            class="text-muted text-uppercase fs-12 fw-bold">{{ __('attributes.services') }}</span>
-                                        <h3 class="mb-0">{{ $count['services'] }}</h3>
+                                            class="text-muted text-uppercase fs-12 fw-bold">{{ __('attributes.categories') }}</span>
+                                        <h3 class="mb-0">{{ $count['categories'] }}</h3>
                                     </div>
                                     <div class="align-self-center flex-shrink-0">
                                         <span class="icon-lg icon-dual-warning" data-feather="coffee"></span>
@@ -54,24 +54,25 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xl-3">
+                    <div class="col-md-6 col-xl-6">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex">
                                     <div class="flex-grow-1">
                                         <span
-                                            class="text-muted text-uppercase fs-12 fw-bold">{{ __('attributes.users') }}</span>
-                                        <h3 class="mb-0">{{ $count['users'] }}</h3>
+                                            class="text-muted text-uppercase fs-12 fw-bold">{{ __('attributes.orders') }}</span>
+                                        <h3 class="mb-0">{{ $count['orders'] }}</h3>
                                     </div>
                                     <div class="align-self-center flex-shrink-0">
-                                        <span class="icon-lg icon-dual-success" data-feather="users"></span>
+                                        <span class="icon-lg icon-dual-success" data-feather="shopping-bag"></span>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xl-3">
+                    <div class="col-md-6 col-xl-6">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex">
@@ -89,83 +90,6 @@
                     </div>
                 </div>
 
-                <!-- charts -->
-                {{-- <div class="row">
-                    <div class="col-md-6 col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="flex-grow-1">
-                                        <span class="text-muted text-uppercase fs-12 fw-bold">Today Revenue</span>
-                                        <h3 class="mb-0">$2100</h3>
-                                    </div>
-                                    <div class="align-self-center flex-shrink-0">
-                                        <div id="today-revenue-chart" class="apex-charts"></div>
-                                        <span class="text-success fw-bold fs-13"><i class='uil uil-arrow-up'></i>
-                                            10.21%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="flex-grow-1">
-                                        <span class="text-muted text-uppercase fs-12 fw-bold">Product Sold</span>
-                                        <h3 class="mb-0">558</h3>
-                                    </div>
-                                    <div class="align-self-center flex-shrink-0">
-                                        <div id="today-product-sold-chart" class="apex-charts">
-                                        </div>
-                                        <span class="text-danger fw-bold fs-13"><i class='uil uil-arrow-down'></i>
-                                            5.05%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="flex-grow-1">
-                                        <span class="text-muted text-uppercase fs-12 fw-bold">New Customers</span>
-                                        <h3 class="mb-0">65</h3>
-                                    </div>
-                                    <div class="align-self-center flex-shrink-0">
-                                        <div id="today-new-customer-chart" class="apex-charts">
-                                        </div>
-                                        <span class="text-success fw-bold fs-13"><i class='uil uil-arrow-up'></i>
-                                            25.16%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="flex-grow-1">
-                                        <span class="text-muted text-uppercase fs-12 fw-bold">New Visitors</span>
-                                        <h3 class="mb-0">958</h3>
-                                    </div>
-                                    <div class="align-self-center flex-shrink-0">
-                                        <div id="today-new-visitors-chart" class="apex-charts">
-                                        </div>
-                                        <span class="text-danger fw-bold fs-13"><i class='uil uil-arrow-down'></i>
-                                            5.05%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
             </div> <!-- content -->
         </div>
     </div>

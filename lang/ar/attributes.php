@@ -23,6 +23,7 @@ return [
     'enter_password' => 'ادخل كلمة السر',
     'MyAccount' => 'الملف الشخصي',
     'action' => 'التحكم',
+    'orders' => 'الطلبات',
     'banners' => 'اللافتات',
     'all' => 'الكل',
     'icon_class' => 'فئة الايقونة',

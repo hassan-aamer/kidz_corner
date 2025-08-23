@@ -67,6 +67,7 @@ return [
     'contuct' => 'contuct us',
     'contuctNow' => 'Contuct Us Now',
     'email' => 'Email',
+    'orders' => 'Orders',
     'phone' => 'Phone',
     'address' => 'Address',
     'social_links' => 'Social Links',
