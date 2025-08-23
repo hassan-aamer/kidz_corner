@@ -16,3 +16,4 @@ Route::post('/cart/add/{productId}',[App\Http\Controllers\Web\CartController::cl
 Route::patch('/cart/update/{item}', [App\Http\Controllers\Web\CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/remove/{item}',[App\Http\Controllers\Web\CartController::class, 'remove'])->name('cart.remove');
 Route::post('/cart/clear',          [App\Http\Controllers\Web\CartController::class, 'clear'])->name('cart.clear');
+Route::get('/order',                [App\Http\Controllers\Web\OrderController::class, 'index'])->name('order');

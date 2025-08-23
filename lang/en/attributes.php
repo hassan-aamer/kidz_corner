@@ -130,6 +130,7 @@ return [
     'again' => 'Again',
     'shop' => 'Shop',
     'cart' => 'Cart',
+    'order' => 'Order',
     'specialOffer' => 'Get a special limited offer!',
     'infoOption' => 'Info Option',
     'infoSectionDetails' => 'Info Details',

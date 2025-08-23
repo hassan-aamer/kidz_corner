@@ -2,12 +2,40 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Models\Cart;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\Categories\CategoryService;
 
 class OrderController extends Controller
 {
+    protected CategoryService $categoryService;
+    public function __construct(CategoryService $categoryService)
+    {
+        $this->categoryService = $categoryService;
+    }
+    private function getCart()
+    {
+        $sessionId = session()->getId();
+
+        return Cart::firstOrCreate([
+            'session_id' => $sessionId
+        ]);
+    }
+
+    public function index()
+    {
+        $result = [
+            'categories_search' => $this->categoryService->index()->where('active', 1)->take(10),
+        ];
+        $cart = $this->getCart()->load('items.product');
+
+        $total = $cart->items->sum(function ($item) {
+            return $item->quantity * $item->product->price;
+        });
+        return view('web.pages.order', compact('cart', 'result', 'total'));
+    }
     public function storeOrder(Request $request)
     {
         $cart = session()->get('cart', []);

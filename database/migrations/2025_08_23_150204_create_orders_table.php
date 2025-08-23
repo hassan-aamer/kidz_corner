@@ -17,9 +17,11 @@ return new class extends Migration
             $table->string('session_id')->nullable();
             $table->decimal('total', 10, 2)->default(0);
             $table->enum('status', ['pending', 'confirmed', 'shipped', 'delivered', 'canceled'])->default('pending');
-            $table->enum('payment_method', ['cash', 'online'])->nullable();
+            $table->enum('payment_method', ['cash', 'visa'])->nullable();
+            $table->enum('payment_status', ['pending', 'completed', 'failed'])->nullable();
             $table->foreignId('city_id')->nullable()->constrained('cities')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->longText('address')->nullable();
+            $table->text('full_name')->nullable();
+            $table->text('address')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->timestamps();
