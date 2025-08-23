@@ -94,12 +94,7 @@ class ProductsService
 
                 WebPConvert::convert($sourcePath, $webpPath);
             }
-            if (isset($request['images']) && $request['images']) {
-                $products->clearMediaCollection('product_collection');
-                foreach ((array) $request['images'] as $file) {
-                    $products->addMedia($file)->toMediaCollection('product_collection');
-                }
-            }
+
             if (isset($request['images']) && $request['images']) {
                 Bus::dispatch(new UploadProductImages($products, $request['images']));
             }
