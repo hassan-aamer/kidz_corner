@@ -12,4 +12,4 @@
     <link href="{{ asset('web/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="{{ asset('web/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('web/css/main.css') }}" rel="stylesheet">
