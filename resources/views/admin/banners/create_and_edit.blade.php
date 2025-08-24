@@ -27,7 +27,7 @@
                                     @include('admin.components.active')
                                     @include('admin.components.ImageUpload', [
                                         'result' => $result ?? null,
-                                        'collection' => 'sliders',
+                                        'collection' => 'banners',
                                     ])
                                     @include('admin.components.submit')
                                 </div>
