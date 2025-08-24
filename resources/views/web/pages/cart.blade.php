@@ -125,7 +125,7 @@
                 </div>
             @else
                 <div class="col-12 d-flex justify-content-center align-items-center">
-                    <img src="{{ asset('empty-folder.png') }}" alt="not found" width="400" height="400"
+                    <img src="{{ asset('empty-folder.png') }}" alt="not found" width="300" height="300"
                         loading="lazy">
                 </div>
             @endif
