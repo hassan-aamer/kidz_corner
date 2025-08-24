@@ -15,7 +15,7 @@
                     id="navbar-vertical">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
                         @foreach (App\Models\Category::where('active', 1)->get()->sortBy('position')->take(10) as $categories_search)
-                            <a href="" class="nav-item nav-link">{{ $categories_search->title ?? '' }}</a>
+                            <a href="{{ route('products.category', $categories_search->id) }}" class="nav-item nav-link">{{ $categories_search->title ?? '' }}</a>
                         @endforeach
                     </div>
                 </nav>

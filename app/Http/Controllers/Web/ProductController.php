@@ -28,7 +28,18 @@ class ProductController extends Controller
                 return Product::where('active', 1)->orderByDesc('id')->paginate(12);
             }),
         ];
-        return view('web.pages.shop', compact( 'result'));
+        return view('web.pages.shop', compact('result'));
+    }
+    public function indexByCategory($categoryId)
+    {
+        Cache::forget('products');
+        $result = [
+            'categories_search' => $this->categoryService->index()->where('active', 1)->take(10),
+            'products' => Cache::remember('products', now()->addHours(6), function () use ($categoryId) {
+                return Product::where(['active' => 1, 'category_id' => $categoryId])->orderByDesc('id')->paginate(12);
+            }),
+        ];
+        return view('web.pages.shop', compact('result'));
     }
 
     public function show($id)
