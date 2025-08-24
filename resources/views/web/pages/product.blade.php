@@ -46,14 +46,35 @@
         <div class="row px-xl-5">
             <div class="col-lg-5 pb-5">
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
+
+                    {{-- Indicators --}}
+                    <ol class="carousel-indicators">
+                        @foreach ($result['product']->getMedia('product_collection') as $key => $media)
+                            <li data-target="#product-carousel" data-slide-to="{{ $key }}"
+                                class="{{ $key === 0 ? 'active' : '' }}"></li>
+                        @endforeach
+                    </ol>
+
+                    {{-- Images --}}
                     <div class="carousel-inner border">
-                        <div class="carousel-item active">
-                            <img class="w-100 h-100"
-                                src="{{ App\Helpers\Image::getMediaUrl($result['product'], 'products') }}" alt="Image">
-                        </div>
+                        @foreach ($result['product']->getMedia('product_collection') as $key => $media)
+                            <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                <img class="w-100 h-100" src="{{ $media->getUrl() }}" alt="Product Image">
+                            </div>
+                        @endforeach
                     </div>
+
+                    {{-- Controls --}}
+                    <a class="carousel-control-prev" href="#product-carousel" role="button" data-slide="prev">
+                        <i class="fa fa-2x fa-angle-left text-dark"></i>
+                    </a>
+                    <a class="carousel-control-next" href="#product-carousel" role="button" data-slide="next">
+                        <i class="fa fa-2x fa-angle-right text-dark"></i>
+                    </a>
                 </div>
             </div>
+
+
 
             <div class="col-lg-7 pb-5">
                 <h3 class="font-weight-semi-bold">{{ $result['product']->title ?? '' }}</h3>
@@ -119,7 +140,8 @@
                                     <a href="{{ route('product.details', $products->id) }}"
                                         class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View
                                         Detail</a>
-                                    <form action="{{ route('cart.add', $products->id) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('cart.add', $products->id) }}" method="POST"
+                                        class="d-inline">
                                         @csrf
                                         <input type="hidden" name="quantity" value="1">
                                         <button type="submit" class="btn btn-sm text-dark p-0">
