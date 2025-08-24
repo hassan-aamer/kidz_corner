@@ -61,7 +61,9 @@
             <div class="col-lg-3 col-6 text-right">
                 <a href="{{ route('cart.index') }}" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">{{ cartItemCount() }}</span>
+                    @if (cartItemCount())
+                        <span class="badge">{{ cartItemCount() }}</span>
+                    @endif
                 </a>
             </div>
         </div>
