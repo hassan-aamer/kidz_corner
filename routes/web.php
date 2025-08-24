@@ -4,8 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',                     [App\Http\Controllers\Web\HomeController::class, 'index'])->name('home');
-Route::get('/services',             [App\Http\Controllers\Web\ServiceController::class, 'index'])->name('services');
-Route::get('/services/details/{id}',[App\Http\Controllers\Web\ServiceController::class, 'show'])->name('services.details');
 Route::get('/products',             [App\Http\Controllers\Web\ProductController::class, 'index'])->name('products');
 Route::get('/products/search',      [App\Http\Controllers\Web\ProductController::class, 'indexBySearch'])->name('products.search');
 Route::get('/products/{id}',        [App\Http\Controllers\Web\ProductController::class, 'indexByCategory'])->name('products.category');
@@ -19,3 +17,4 @@ Route::patch('/cart/update/{item}', [App\Http\Controllers\Web\CartController::cl
 Route::delete('/cart/remove/{item}',[App\Http\Controllers\Web\CartController::class, 'remove'])->name('cart.remove');
 Route::post('/cart/clear',          [App\Http\Controllers\Web\CartController::class, 'clear'])->name('cart.clear');
 Route::get('/order',                [App\Http\Controllers\Web\OrderController::class, 'index'])->name('order');
+Route::post('/order/store',         [App\Http\Controllers\Web\OrderController::class, 'storeOrder'])->name('order.checkout');

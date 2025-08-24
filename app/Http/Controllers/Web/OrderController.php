@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Services\Categories\CategoryService;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -38,34 +39,46 @@ class OrderController extends Controller
     }
     public function storeOrder(Request $request)
     {
-        $cart = session()->get('cart', []);
+        try {
 
-        if (empty($cart)) {
-            return redirect()->back()->with('error', 'The basket is empty');
-        }
+            DB::beginTransaction();
+            $cart = $this->getCart()->load('items.product');
 
-        $order = Order::create([
-            'session_id'  => session()->getId(),
-            'total'       => collect($cart)->sum(fn($item) => $item['price'] * $item['quantity']),
-            'status'      => 'pending',
-            'payment_method' => $request->payment_method ?? 'cash',
-            'address'     => $request->address,
-            'phone'       => $request->phone,
-            'email'      => $request->email,
-            'city_id'      => $request->city_id,
-        ]);
+            if (empty($cart)) {
+                return redirect()->back()->with('error', 'The basket is empty');
+            }
 
-        foreach ($cart as $productId => $item) {
-            $order->items()->create([
-                'product_id' => $productId,
-                'quantity'   => $item['quantity'],
-                'price'      => $item['price'],
+            $order = Order::create([
+                'session_id'          => session()->getId(),
+                'total'               => $request->total,
+                'status'              => 'pending',
+                'payment_method'      => $request->payment_method,
+                'payment_status'      => 'pending',
+                'address'             => $request->address,
+                'phone'               => $request->phone,
+                'email'               => $request->email,
+                'city_id'             => $request->city_id,
+                'full_name'           => $request->full_name,
             ]);
+
+            foreach ($cart->items as $item) {
+                $order->items()->create([
+                    'product_id' => $item->product_id,
+                    'quantity'   => $item->quantity,
+                    'price'      => $item->product->price,
+                ]);
+            }
+
+            $cart->items()->delete();
+            $cart->delete();
+
+            DB::commit();
+
+            return redirect()->route('home', $order->id)
+                ->with('success', 'The order was created successfully 🎉');
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            throw $e;
         }
-
-        session()->forget('cart');
-
-        return redirect()->route('home', $order->id)
-            ->with('success', 'The order was created successfully 🎉');
     }
 }
