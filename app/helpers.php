@@ -1,4 +1,6 @@
 <?php
+
+use App\Models\Cart;
 use Illuminate\Support\Str;
 
 if (! function_exists('setting')) {
@@ -44,4 +46,11 @@ function dateFormatted($date, $format = 'M d, Y', $showTimes = false)
     }
     return date($format, strtotime($date));
 }
-
+if (!function_exists('cartItemCount')) {
+    function cartItemCount()
+    {
+        $sessionId = session()->getId();
+        $cart = Cart::firstOrCreate(['session_id' => $sessionId]);
+        return $cart->items()->sum('quantity');
+    }
+}
