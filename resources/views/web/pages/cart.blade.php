@@ -52,7 +52,9 @@
                     <tbody class="align-middle">
                         @foreach ($cart->items as $item)
                             <tr>
-                                <td class="align-middle"><img src="img/product-4.jpg" alt="" style="width: 50px;">
+                                <td class="align-middle"><img
+                                        src="{{ App\Helpers\Image::getMediaUrl($item->product, 'products') }}"
+                                        alt="" style="width: 50px;" loading="lazy">
                                     {{ $item->product->title ?? '' }}</td>
                                 <td class="align-middle">EGP {{ $item->product->price ?? '' }}</td>
                                 <td class="align-middle">

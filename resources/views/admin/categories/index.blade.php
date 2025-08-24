@@ -51,7 +51,7 @@
                                                             onclick="openImage('{{ App\Helpers\Image::getMediaUrl($categories, 'repositories') }}')"
                                                             style="width: 100px; height: auto; cursor: pointer; transition: transform 0.3s;"
                                                             onmouseover="this.style.transform='scale(1.1)'"
-                                                            onmouseout="this.style.transform='scale(1)'"></td>
+                                                            onmouseout="this.style.transform='scale(1)'" loading="lazy"></td>
                                                     <td>{{ $categories->position ?? '' }}</td>
                                                     <td>{{ shortenText($categories->title ?? '', 10) }}</td>
                                                     <td>{{ shortenText($categories->description ?? '', 10) }}</td>

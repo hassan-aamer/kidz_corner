@@ -4,7 +4,7 @@
                             <a href="" class="cat-img position-relative overflow-hidden mb-3">
                                 <img class="img-fluid"
                                     src="{{ App\Helpers\Image::getMediaUrl($categories, 'repositories') }}"
-                                    alt="{{ $categories->title ?? '' }}">
+                                    alt="{{ $categories->title ?? '' }}"  loading="lazy">
                             </a>
                             <h5 class="font-weight-semi-bold m-0">{{ $categories->title ?? '' }}</h5>
                         </div>

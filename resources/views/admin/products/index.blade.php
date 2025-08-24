@@ -52,7 +52,7 @@
                                                             onclick="openImage('{{ App\Helpers\Image::getMediaUrl($products, 'products') }}')"
                                                             style="width: 100px; height: auto; cursor: pointer; transition: transform 0.3s;"
                                                             onmouseover="this.style.transform='scale(1.1)'"
-                                                            onmouseout="this.style.transform='scale(1)'"></td>
+                                                            onmouseout="this.style.transform='scale(1)'" loading="lazy"></td>
                                                     <td>{{ $products->position ?? '' }}</td>
                                                     <td>{{ shortenText($products->title ?? '', 10) }}</td>
                                                     <td>{{ shortenText($products->description ?? '', 10) }}</td>

@@ -45,7 +45,7 @@
                                                 <tr id="row-{{ $sliders->id ?? '' }}">
                                                     <td>{{ $loop->iteration ?? '' }}</td>
                                                     <td><img src="{{ App\Helpers\Image::getMediaUrl($sliders, 'sliders') }}"
-                                                            alt="sliders" width="100"></td>
+                                                            alt="sliders" width="100" loading="lazy"></td>
                                                     <td>{{ $sliders->position ?? '' }}</td>
                                                     <td>{{ shortenText($sliders->title ?? '', 10) }}</td>
                                                     <td>

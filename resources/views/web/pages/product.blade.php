@@ -53,7 +53,7 @@
                         <div class="carousel-inner border">
                             @foreach ($result['product']->getMedia('product_collection') as $key => $media)
                                 <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-                                    <img class="w-100 h-100" src="{{ $media->getUrl() }}" alt="Product Image">
+                                    <img class="w-100 h-100" src="{{ $media->getUrl() }}" alt="Product Image" loading="lazy">
                                 </div>
                             @endforeach
                         </div>
@@ -72,7 +72,7 @@
                     <div id="product-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner border">
                             <div class="carousel-item active">
-                                <img class="w-100 h-100" src="{{ App\Helpers\Image::getMediaUrl($result['product'], 'products') }}" alt="Image">
+                                <img class="w-100 h-100" src="{{ App\Helpers\Image::getMediaUrl($result['product'], 'products') }}" alt="Image"  loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -129,7 +129,7 @@
                                     class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                     <img class="img-fluid w-100"
                                         src="{{ App\Helpers\Image::getMediaUrl($products, 'products') }}"
-                                        alt="{{ $products->title ?? '' }}">
+                                        alt="{{ $products->title ?? '' }}"  loading="lazy">
                                 </div>
                                 <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                                     <h6 class="text-truncate mb-3">{{ $products->title ?? '' }}</h6>

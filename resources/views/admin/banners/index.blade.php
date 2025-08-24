@@ -14,8 +14,8 @@
                     <div class="col-12">
                         <div class="page-title-box">
                             {{-- @can('create banners') --}}
-                                <a class="btn btn-success"
-                                    href="{{ route('admin.banners.create') }}">{{ __('attributes.create') }}</a>
+                            <a class="btn btn-success"
+                                href="{{ route('admin.banners.create') }}">{{ __('attributes.create') }}</a>
                             {{-- @endcan --}}
                         </div>
                     </div>
@@ -45,34 +45,34 @@
                                                 <tr id="row-{{ $banners->id ?? '' }}">
                                                     <td>{{ $loop->iteration ?? '' }}</td>
                                                     <td><img src="{{ App\Helpers\Image::getMediaUrl($banners, 'banners') }}"
-                                                            alt="banners" width="100"></td>
+                                                            alt="banners" width="100" loading="lazy"></td>
                                                     <td>{{ $banners->position ?? '' }}</td>
                                                     <td>{{ shortenText($banners->title ?? '', 10) }}</td>
                                                     <td>
                                                         {{-- @can('active banners') --}}
-                                                            <div class="form-check form-switch">
-                                                                <input class="form-check-input" type="checkbox" name="status"
-                                                                    id="active-{{ $banners->id }}"
-                                                                    @if ($banners->active == 1) checked @endif
-                                                                    data-id="{{ $banners->id }}">
-                                                                <label class="form-check-label"
-                                                                    for="active-{{ $banners->id }}"></label>
-                                                            </div>
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input" type="checkbox" name="status"
+                                                                id="active-{{ $banners->id }}"
+                                                                @if ($banners->active == 1) checked @endif
+                                                                data-id="{{ $banners->id }}">
+                                                            <label class="form-check-label"
+                                                                for="active-{{ $banners->id }}"></label>
+                                                        </div>
                                                         {{-- @endcan --}}
                                                     </td>
                                                     <td>
                                                         {{-- @can('edit banners') --}}
-                                                            <a href="{{ route('admin.banners.edit', $banners->id) }}">
-                                                                <button type="button" class="btn btn-warning btn-block "><i
-                                                                        class="fa uil-edit"></i> </button>
-                                                            </a>
+                                                        <a href="{{ route('admin.banners.edit', $banners->id) }}">
+                                                            <button type="button" class="btn btn-warning btn-block "><i
+                                                                    class="fa uil-edit"></i> </button>
+                                                        </a>
                                                         {{-- @endcan --}}
                                                         {{-- @can('delete banners') --}}
-                                                            <button type="button" class="btn btn-danger btn-block btn-delete"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#delete{{ $banners->id }}">
-                                                                <i class="fa uil-trash"></i>
-                                                            </button>
+                                                        <button type="button" class="btn btn-danger btn-block btn-delete"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#delete{{ $banners->id }}">
+                                                            <i class="fa uil-trash"></i>
+                                                        </button>
                                                         {{-- @endcan --}}
 
                                                     </td>

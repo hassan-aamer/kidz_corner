@@ -4,7 +4,7 @@
                                     class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                     <img class="img-fluid w-100"
                                         src="{{ App\Helpers\Image::getMediaUrl($products, 'products') }}"
-                                        alt="{{ $products->title ?? '' }}">
+                                        alt="{{ $products->title ?? '' }}" loading="lazy">
                                 </div>
                                 <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                                     <h6 class="text-truncate mb-3">{{ $products->title ?? '' }}</h6>

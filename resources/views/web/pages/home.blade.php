@@ -15,7 +15,8 @@
                     id="navbar-vertical">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
                         @foreach (App\Models\Category::where('active', 1)->get()->sortBy('position')->take(10) as $categories_search)
-                            <a href="{{ route('products.category', $categories_search->id) }}" class="nav-item nav-link">{{ $categories_search->title ?? '' }}</a>
+                            <a href="{{ route('products.category', $categories_search->id) }}"
+                                class="nav-item nav-link">{{ $categories_search->title ?? '' }}</a>
                         @endforeach
                     </div>
                 </nav>
@@ -27,7 +28,7 @@
                         @foreach ($result['banners'] as $key => $banner)
                             <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" style="height: 410px;">
                                 <img class="img-fluid" src="{{ App\Helpers\Image::getMediaUrl($banner, 'banners') }}"
-                                    alt="{{ $banner->title ?? 'Banner' }}">
+                                    alt="{{ $banner->title ?? 'Banner' }}" loading="lazy">
 
                                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                     <div class="p-3" style="max-width: 700px;">
