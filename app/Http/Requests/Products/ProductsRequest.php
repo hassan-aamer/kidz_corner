@@ -35,6 +35,7 @@ class ProductsRequest extends FormRequest
             'content'       => 'required|array',
             'old_price'     => 'required|numeric',
             'price'         => 'required|numeric',
+            'quantity'      => 'nullable|numeric',
             'content.*'     => 'required|string|max:1000',
             'position'      => 'required',
             'image'         => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',

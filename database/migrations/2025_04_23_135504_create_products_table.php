@@ -19,6 +19,7 @@ return new class extends Migration
             $table->longText('content')->nullable();
             $table->decimal('price', 10, 2)->nullable();
             $table->decimal('old_price', 10, 2)->nullable();
+            $table->bigInteger('quantity')->nullable();
             $table->boolean('active')->default(1);
             $table->integer('position')->nullable();
             $table->integer('created_by')->nullable();

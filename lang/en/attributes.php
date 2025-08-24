@@ -60,6 +60,7 @@ return [
     'settings' => 'Settings',
     'sliders' => 'Sliders',
     'about' => 'About',
+    'quantity' => 'Quantity',
     'salesDevelopment' => 'Sales Development',
     'WhyUs' => 'Why Us',
     'home' => 'Home',
