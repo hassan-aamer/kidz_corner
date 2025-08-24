@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Services\Categories\CategoryService;
 
 class OrderController extends Controller
@@ -26,13 +27,14 @@ class OrderController extends Controller
 
     public function index()
     {
-
         $cart = $this->getCart()->load('items.product');
 
         $total = $cart->items->sum(function ($item) {
             return $item->quantity * $item->product->price;
         });
-        return view('web.pages.order', compact('cart', 'total'));
+
+        $cities = City::Publish()->get()->sortBy('position');
+        return view('web.pages.order', compact('cart', 'total', 'cities'));
     }
     public function storeOrder(Request $request)
     {

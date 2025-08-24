@@ -54,11 +54,11 @@
                         </div>
                         <div class="col-md-6 form-group">
                             <label>City</label>
-                            <select class="custom-select" name="city">
-                                <option selected>United States</option>
-                                <option>Afghanistan</option>
-                                <option>Albania</option>
-                                <option>Algeria</option>
+                            <select class="custom-select" name="city_id">
+                                <option value="" disabled selected>Select City</option>
+                                @foreach ($cities as $city)
+                                    <option value="{{ $city->id ?? '' }}">{{ $city->title ?? '' }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-md-12 form-group">

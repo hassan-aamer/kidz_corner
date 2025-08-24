@@ -107,4 +107,13 @@ Route::middleware('checkAuth')->group(function () {
         Route::delete('/delete/{id}', 'destroy')->name('banners.delete');
         Route::post('/change-status', 'changeStatus')->name('banners.status');
     });
+    Route::prefix('cities')->controller(\App\Http\Controllers\Admin\cities\CityController::class)->group(function () {
+        Route::get('/', 'index')->name('cities.index');
+        Route::get('/create', 'create')->name('cities.create');
+        Route::post('/store', 'store')->name('cities.store');
+        Route::get('/{id}/edit', 'edit')->name('cities.edit');
+        Route::put('/update/{id}', 'update')->name('cities.update');
+        Route::delete('/delete/{id}', 'destroy')->name('cities.delete');
+        Route::post('/change-status', 'changeStatus')->name('cities.status');
+    });
 });

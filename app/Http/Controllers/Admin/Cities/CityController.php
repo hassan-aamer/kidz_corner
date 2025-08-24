@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Banners;
+namespace App\Http\Controllers\Admin\Cities;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Banners\BannersRequest;
-use App\Services\Banners\BannersService;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Cities\CityRequest;
+use App\Services\Cities\CityService;
 
-class bannersController extends Controller
+class CityController extends Controller
 {
-    private $folderPath = 'admin.banners.';
-    protected BannersService $service;
-    public function __construct(BannersService $service)
+    private $folderPath = 'admin.cities.';
+    protected CityService $service;
+    public function __construct(CityService $service)
     {
         $this->service = $service;
     }
@@ -29,13 +29,13 @@ class bannersController extends Controller
     {
         return view($this->folderPath . 'create_and_edit', ['result' => null]);
     }
-    public function store(BannersRequest $request)
+    public function store(CityRequest $request)
     {
         try {
             $this->service->store($request->validated());
-            return redirect()->route('admin.banners.index')->with('success', __('attributes.OperationCompletedSuccessfully'));
+            return redirect()->route('admin.cities.index')->with('success', __('attributes.OperationCompletedSuccessfully'));
         } catch (\Throwable $e) {
-            return redirect()->back()->with('error', 'Failed to create banner: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Failed to create city: ' . $e->getMessage());
         }
     }
     public function edit($id)
@@ -43,13 +43,13 @@ class bannersController extends Controller
         $result = $this->service->edit($id);
         return view($this->folderPath . 'create_and_edit', compact('result'));
     }
-    public function update(BannersRequest $request, $id)
+    public function update(CityRequest $request, $id)
     {
         try {
             $this->service->update($request->validated(), $id);
-            return redirect()->route('admin.banners.index')->with('success', __('attributes.OperationCompletedSuccessfully'));
+            return redirect()->route('admin.cities.index')->with('success', __('attributes.OperationCompletedSuccessfully'));
         } catch (\Throwable $e) {
-            return redirect()->back()->with('error', 'Failed to update banner: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Failed to update city: ' . $e->getMessage());
         }
     }
     public function destroy($id)
