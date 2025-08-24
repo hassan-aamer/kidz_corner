@@ -23,8 +23,8 @@ class ProductController extends Controller
     // Show all products
     public function index(Request $request)
     {
-        Cache::forget('products');
-        $page = $request->get('page', 1); // رقم الصفحة
+        // Cache::forget('products');
+        $page = $request->get('page', 1);
 
         $cacheKey = "products_page_{$page}";
 
@@ -41,7 +41,7 @@ class ProductController extends Controller
     // Filter by category
     public function indexByCategory(Request $request, $categoryId)
     {
-        Cache::forget('products');
+        // Cache::forget('products');
         $page = $request->get('page', 1);
         $cacheKey = "products_category_{$categoryId}_page_{$page}";
 
@@ -61,7 +61,7 @@ class ProductController extends Controller
     // Search products
     public function indexBySearch(Request $request)
     {
-        Cache::forget('products');
+        // Cache::forget('products');
         $search = $request->get('search');
         $page = $request->get('page', 1);
 
