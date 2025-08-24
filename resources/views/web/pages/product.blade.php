@@ -37,37 +37,47 @@
     <!-- Shop Detail Start -->
     <div class="container-fluid py-5">
         <div class="row px-xl-5">
-            <div class="col-lg-5 pb-5">
-                <div id="product-carousel" class="carousel slide" data-ride="carousel">
+            @if ($result['product']->getMedia('product_collection')->count())
+                <div class="col-lg-5 pb-5">
+                    <div id="product-carousel" class="carousel slide" data-ride="carousel">
 
-                    {{-- Indicators --}}
-                    <ol class="carousel-indicators">
-                        @foreach ($result['product']->getMedia('product_collection') as $key => $media)
-                            <li data-target="#product-carousel" data-slide-to="{{ $key }}"
-                                class="{{ $key === 0 ? 'active' : '' }}"></li>
-                        @endforeach
-                    </ol>
+                        {{-- Indicators --}}
+                        <ol class="carousel-indicators">
+                            @foreach ($result['product']->getMedia('product_collection') as $key => $media)
+                                <li data-target="#product-carousel" data-slide-to="{{ $key }}"
+                                    class="{{ $key === 0 ? 'active' : '' }}"></li>
+                            @endforeach
+                        </ol>
 
-                    {{-- Images --}}
-                    <div class="carousel-inner border">
-                        @foreach ($result['product']->getMedia('product_collection') as $key => $media)
-                            <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-                                <img class="w-100 h-100" src="{{ $media->getUrl() }}" alt="Product Image">
-                            </div>
-                        @endforeach
+                        {{-- Images --}}
+                        <div class="carousel-inner border">
+                            @foreach ($result['product']->getMedia('product_collection') as $key => $media)
+                                <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                    <img class="w-100 h-100" src="{{ $media->getUrl() }}" alt="Product Image">
+                                </div>
+                            @endforeach
+                        </div>
+
+                        {{-- Controls --}}
+                        <a class="carousel-control-prev" href="#product-carousel" role="button" data-slide="prev">
+                            <i class="fa fa-2x fa-angle-left text-dark"></i>
+                        </a>
+                        <a class="carousel-control-next" href="#product-carousel" role="button" data-slide="next">
+                            <i class="fa fa-2x fa-angle-right text-dark"></i>
+                        </a>
                     </div>
-
-                    {{-- Controls --}}
-                    <a class="carousel-control-prev" href="#product-carousel" role="button" data-slide="prev">
-                        <i class="fa fa-2x fa-angle-left text-dark"></i>
-                    </a>
-                    <a class="carousel-control-next" href="#product-carousel" role="button" data-slide="next">
-                        <i class="fa fa-2x fa-angle-right text-dark"></i>
-                    </a>
                 </div>
-            </div>
-
-
+            @else
+                <div class="col-lg-5 pb-5">
+                    <div id="product-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner border">
+                            <div class="carousel-item active">
+                                <img class="w-100 h-100" src="{{ App\Helpers\Image::getMediaUrl($result['product'], 'products') }}" alt="Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
 
             <div class="col-lg-7 pb-5">
                 <h3 class="font-weight-semi-bold">{{ $result['product']->title ?? '' }}</h3>

@@ -100,23 +100,11 @@
                 </table>
             </div>
             <div class="col-lg-4">
-                {{-- <form class="mb-5" action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control p-4" placeholder="Coupon Code">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary">Apply Coupon</button>
-                        </div>
-                    </div>
-                </form> --}}
                 <div class="card border-secondary mb-5">
                     <div class="card-header bg-secondary border-0">
                         <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
                     </div>
                     <div class="card-body">
-                        {{-- <div class="d-flex justify-content-between mb-3 pt-1">
-                            <h6 class="font-weight-medium">Subtotal</h6>
-                            <h6 class="font-weight-medium">EGP 150</h6>
-                        </div> --}}
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Shipping</h6>
                             <h6 class="font-weight-medium">EGP 10</h6>
@@ -134,6 +122,7 @@
         </div>
     </div>
     <!-- Cart End -->
+
 @endsection
 @section('js')
     <script>

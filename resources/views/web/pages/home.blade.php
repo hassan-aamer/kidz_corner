@@ -58,7 +58,6 @@
     </div>
     <!-- Navbar End -->
 
-
     <!-- Featured Start -->
     <div class="container-fluid pt-5">
         <div class="row px-xl-5 pb-3">
@@ -90,7 +89,6 @@
     </div>
     <!-- Featured End -->
 
-
     @if ($result['categories']->count())
         <!-- Categories Start -->
         <div class="container-fluid pt-5">
@@ -102,7 +100,6 @@
         </div>
         <!-- Categories End -->
     @endif
-
 
     <!-- Subscribe Start -->
     <div class="container-fluid bg-secondary my-5">
@@ -128,7 +125,6 @@
     </div>
     <!-- Subscribe End -->
 
-
     @if ($result['products']->count())
         <!-- Products Start -->
         <div class="container-fluid pt-5">
@@ -143,7 +139,6 @@
         </div>
         <!-- Products End -->
     @endif
-
 
     @if ($result['sliders']->count())
         <!-- Vendor Start -->

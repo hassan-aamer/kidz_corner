@@ -4,16 +4,19 @@
             <div class="col-lg-8 col-md-12 mb-5 pr-3 pr-xl-5">
                 <a href="{{ route('home') }}" class="text-decoration-none">
                     <img class="mb-4 display-5 font-weight-semi-bold"
-                        src="{{ App\Helpers\Image::getMediaUrl(App\Models\Setting::first(), 'logo') }}" alt="{{ setting('name') ?? '' }}"
-                        height="70" width="170">
-                    {{-- <h1 class="mb-4 display-5 font-weight-semi-bold"><span
-                            class="text-primary font-weight-bold border border-white px-3 mr-1">{{ setting('name' ?? '') }}</span>{{ setting('title' ?? '') }}
-                    </h1> --}}
+                        src="{{ App\Helpers\Image::getMediaUrl(App\Models\Setting::first(), 'logo') }}"
+                        alt="{{ setting('name') ?? '' }}" height="70" width="170">
                 </a>
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>{{ setting('address') ?? '' }}
-                </p>
-                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>{{ setting('email') ?? '' }}</p>
-                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ setting('phone') ?? '' }}</p>
+                @if (setting('address'))
+                    <p class="mb-2"><i
+                            class="fa fa-map-marker-alt text-primary mr-3"></i>{{ setting('address') ?? '' }}</p>
+                @endif
+                @if (setting('email'))
+                    <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>{{ setting('email') ?? '' }}</p>
+                @endif
+                @if (setting('phone'))
+                    <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ setting('phone') ?? '' }}</p>
+                @endif
             </div>
             <div class="col-lg-4 col-md-12">
                 <div class="row">

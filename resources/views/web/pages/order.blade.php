@@ -1,6 +1,7 @@
 @extends('web.layouts.app')
 @section('title', __('attributes.order'))
 @section('content')
+
     <!-- Navbar Start -->
     <div class="container-fluid">
         <div class="row border-top px-xl-5">
@@ -19,7 +20,6 @@
     </div>
     <!-- Navbar End -->
 
-
     <!-- Page Header Start -->
     <div class="container-fluid bg-secondary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
@@ -32,7 +32,6 @@
         </div>
     </div>
     <!-- Page Header End -->
-
 
     <!-- Checkout Start -->
     <div class="container-fluid pt-5">
@@ -122,4 +121,5 @@
         </div>
     </div>
     <!-- Checkout End -->
+
 @endsection

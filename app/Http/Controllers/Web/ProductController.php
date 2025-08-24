@@ -21,41 +21,58 @@ class ProductController extends Controller
     }
 
     // Show all products
-    public function index()
+    public function index(Request $request)
     {
-        // Cache::forget('products');
+        Cache::forget('products');
+        $page = $request->get('page', 1); // رقم الصفحة
+
+        $cacheKey = "products_page_{$page}";
+
         $result = [
-            'products' => Cache::remember('products', now()->addHours(6), function () {
+            'products' => Cache::remember($cacheKey, now()->addHours(6), function () {
                 return Product::where('active', 1)->orderByDesc('id')->paginate(12);
             }),
         ];
+
         return view('web.pages.shop', compact('result'));
     }
 
 
     // Filter by category
-    public function indexByCategory($categoryId)
+    public function indexByCategory(Request $request, $categoryId)
     {
-        // Cache::forget('products');
+        Cache::forget('products');
+        $page = $request->get('page', 1);
+        $cacheKey = "products_category_{$categoryId}_page_{$page}";
+
         $result = [
-            'products' => Cache::remember('products', now()->addHours(6), function () use ($categoryId) {
-                return Product::where(['active' => 1, 'category_id' => $categoryId])->orderByDesc('id')->paginate(12);
+            'products' => Cache::remember($cacheKey, now()->addHours(6), function () use ($categoryId) {
+                return Product::where('active', 1)
+                    ->where('category_id', $categoryId)
+                    ->orderByDesc('id')
+                    ->paginate(12);
             }),
         ];
+
         return view('web.pages.shop', compact('result'));
     }
+
 
     // Search products
     public function indexBySearch(Request $request)
     {
-        // Cache::forget('products');
+        Cache::forget('products');
+        $search = $request->get('search');
+        $page = $request->get('page', 1);
+
+        $cacheKey = "products_search_{$search}_page_{$page}";
 
         $result = [
-            'products' => Cache::remember('products', now()->addHours(6), function () use ($request) {
+            'products' => Cache::remember($cacheKey, now()->addHours(6), function () use ($search) {
                 return Product::where('active', 1)
-                    ->where(function ($query) use ($request) {
-                        $query->where('title', 'like', '%' . $request->search . '%')
-                            ->orWhere('description', 'like', '%' . $request->search . '%');
+                    ->where(function ($query) use ($search) {
+                        $query->where('title', 'like', "%{$search}%")
+                            ->orWhere('description', 'like', "%{$search}%");
                     })
                     ->orderByDesc('id')
                     ->paginate(12);
@@ -64,6 +81,7 @@ class ProductController extends Controller
 
         return view('web.pages.shop', compact('result'));
     }
+
 
     // Show single product
     public function show($id)
