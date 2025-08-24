@@ -38,89 +38,98 @@
     <!-- Cart Start -->
     <div class="container-fluid pt-5">
         <div class="row px-xl-5">
-            <div class="col-lg-8 table-responsive mb-5">
-                <table class="table table-bordered text-center mb-0">
-                    <thead class="bg-secondary text-dark">
-                        <tr>
-                            <th>Products</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                            <th>Remove</th>
-                        </tr>
-                    </thead>
-                    <tbody class="align-middle">
-                        @foreach ($cart->items as $item)
+            @if ($cart->items->count())
+                <div class="col-lg-8 table-responsive mb-5">
+                    <table class="table table-bordered text-center mb-0">
+                        <thead class="bg-secondary text-dark">
                             <tr>
-                                <td class="align-middle"><img
-                                        src="{{ App\Helpers\Image::getMediaUrl($item->product, 'products') }}"
-                                        alt="" style="width: 50px;" loading="lazy">
-                                    {{ $item->product->title ?? '' }}</td>
-                                <td class="align-middle">EGP {{ $item->product->price ?? '' }}</td>
-                                <td class="align-middle">
-                                    <form action="{{ route('cart.update', $item->id) }}" method="POST"
-                                        class="d-flex justify-content-center">
-                                        @csrf
-                                        @method('PATCH')
-
-                                        <div class="input-group quantity mx-auto" style="width: 120px;">
-                                            <div class="input-group-btn">
-                                                <button type="submit" name="action" value="decrement"
-                                                    class="btn btn-sm btn-primary">
-                                                    <i class="fa fa-minus"></i>
-                                                </button>
-                                            </div>
-
-                                            <input type="text"
-                                                class="form-control form-control-sm bg-secondary text-center"
-                                                value="{{ $item->quantity }}" readonly>
-
-                                            <div class="input-group-btn">
-                                                <button type="submit" name="action" value="increment"
-                                                    class="btn btn-sm btn-primary">
-                                                    <i class="fa fa-plus"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </td>
-                                <td class="align-middle">EGP {{ $item->product->price * $item->quantity ?? '' }}</td>
-                                <td class="align-middle">
-                                    <form action="{{ route('cart.remove', $item->id) }}" method="POST"
-                                        style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-primary">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </form>
-                                </td>
-
+                                <th>Products</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th>Remove</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-lg-4">
-                <div class="card border-secondary mb-5">
-                    <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <h6 class="font-weight-medium">Shipping</h6>
-                            <h6 class="font-weight-medium">EGP 10</h6>
+                        </thead>
+                        <tbody class="align-middle">
+                            @foreach ($cart->items as $item)
+                                <tr>
+                                    <td class="align-middle"><img
+                                            src="{{ App\Helpers\Image::getMediaUrl($item->product, 'products') }}"
+                                            alt="" style="width: 50px;" loading="lazy">
+                                        {{ $item->product->title ?? '' }}</td>
+                                    <td class="align-middle">EGP {{ $item->product->price ?? '' }}</td>
+                                    <td class="align-middle">
+                                        <form action="{{ route('cart.update', $item->id) }}" method="POST"
+                                            class="d-flex justify-content-center">
+                                            @csrf
+                                            @method('PATCH')
+
+                                            <div class="input-group quantity mx-auto" style="width: 120px;">
+                                                <div class="input-group-btn">
+                                                    <button type="submit" name="action" value="decrement"
+                                                        class="btn btn-sm btn-primary">
+                                                        <i class="fa fa-minus"></i>
+                                                    </button>
+                                                </div>
+
+                                                <input type="text"
+                                                    class="form-control form-control-sm bg-secondary text-center"
+                                                    value="{{ $item->quantity }}" readonly>
+
+                                                <div class="input-group-btn">
+                                                    <button type="submit" name="action" value="increment"
+                                                        class="btn btn-sm btn-primary">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </td>
+                                    <td class="align-middle">EGP {{ $item->product->price * $item->quantity ?? '' }}</td>
+                                    <td class="align-middle">
+                                        <form action="{{ route('cart.remove', $item->id) }}" method="POST"
+                                            style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-primary">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card border-secondary mb-5">
+                        <div class="card-header bg-secondary border-0">
+                            <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
                         </div>
-                    </div>
-                    <div class="card-footer border-secondary bg-transparent">
-                        <div class="d-flex justify-content-between mt-2">
-                            <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">EGP {{ $total ?? 0 }}</h5>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="font-weight-medium">Shipping</h6>
+                                <h6 class="font-weight-medium">EGP 10</h6>
+                            </div>
                         </div>
-                        <a href="{{ route('order') }}" class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</a>
+                        <div class="card-footer border-secondary bg-transparent">
+                            <div class="d-flex justify-content-between mt-2">
+                                <h5 class="font-weight-bold">Total</h5>
+                                <h5 class="font-weight-bold">EGP {{ $total ?? 0 }}</h5>
+                            </div>
+                            <a href="{{ route('order') }}" class="btn btn-block btn-primary my-3 py-3">Proceed To
+                                Checkout</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @else
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                    <img src="{{ asset('empty-folder.png') }}" alt="not found" width="400" height="400"
+                        loading="lazy">
+                </div>
+            @endif
+
         </div>
     </div>
     <!-- Cart End -->
