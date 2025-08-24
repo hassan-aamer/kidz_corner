@@ -37,9 +37,9 @@ class ProductsRequest extends FormRequest
             'price'         => 'required|numeric',
             'content.*'     => 'required|string|max:1000',
             'position'      => 'required',
-            'image'         => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
+            'image'         => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
             'images'        => 'nullable|array|max:10',
-            'images.*'      => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'images.*'      => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
             'active'        => 'required|in:0,1',
         ];
     }

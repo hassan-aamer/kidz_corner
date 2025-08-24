@@ -19,22 +19,25 @@ class ProductController extends Controller
         $this->service = $service;
         $this->categoryService = $categoryService;
     }
+
+    // Show all products
     public function index()
     {
-        Cache::forget('products');
+        // Cache::forget('products');
         $result = [
-            'categories_search' => $this->categoryService->index()->where('active', 1)->take(10),
             'products' => Cache::remember('products', now()->addHours(6), function () {
                 return Product::where('active', 1)->orderByDesc('id')->paginate(12);
             }),
         ];
         return view('web.pages.shop', compact('result'));
     }
+
+
+    // Filter by category
     public function indexByCategory($categoryId)
     {
-        Cache::forget('products');
+        // Cache::forget('products');
         $result = [
-            'categories_search' => $this->categoryService->index()->where('active', 1)->take(10),
             'products' => Cache::remember('products', now()->addHours(6), function () use ($categoryId) {
                 return Product::where(['active' => 1, 'category_id' => $categoryId])->orderByDesc('id')->paginate(12);
             }),
@@ -42,6 +45,27 @@ class ProductController extends Controller
         return view('web.pages.shop', compact('result'));
     }
 
+    // Search products
+    public function indexBySearch(Request $request)
+    {
+        // Cache::forget('products');
+
+        $result = [
+            'products' => Cache::remember('products', now()->addHours(6), function () use ($request) {
+                return Product::where('active', 1)
+                    ->where(function ($query) use ($request) {
+                        $query->where('title', 'like', '%' . $request->search . '%')
+                            ->orWhere('description', 'like', '%' . $request->search . '%');
+                    })
+                    ->orderByDesc('id')
+                    ->paginate(12);
+            }),
+        ];
+
+        return view('web.pages.shop', compact('result'));
+    }
+
+    // Show single product
     public function show($id)
     {
         $product = Product::with('category')->findOrFail($id);
@@ -53,7 +77,6 @@ class ProductController extends Controller
             ->get();
 
         $result = [
-            'categories_search' => $this->categoryService->index()->where('active', 1)->take(10),
             'product' => $product,
             'relatedProducts' => $relatedProducts,
         ];

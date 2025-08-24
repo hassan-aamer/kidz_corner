@@ -18,10 +18,7 @@ class ContactController extends Controller
     }
     public function index()
     {
-        $result = [
-            'categories_search' => $this->categoryService->index()->where('active', 1)->take(10),
-        ];
-        return view('web.pages.contact', compact('result'));
+        return view('web.pages.contact');
     }
     public function store(ContactRequest $request)
     {

@@ -50,9 +50,7 @@ class HomeController extends Controller
             'banners'           => $this->bannersService->index($request),
             'features'          => $this->featureService->index($request)->where('active', 1),
             'categories'        => $this->categoryService->index()->where('active', 1)->take(6),
-            'categories_search' => $this->categoryService->index()->where('active', 1)->take(10),
         ];
-        // return $result['banners'];
         return view('web.pages.home', compact('result'));
     }
 }

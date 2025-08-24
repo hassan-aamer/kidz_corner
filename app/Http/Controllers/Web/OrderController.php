@@ -26,15 +26,13 @@ class OrderController extends Controller
 
     public function index()
     {
-        $result = [
-            'categories_search' => $this->categoryService->index()->where('active', 1)->take(10),
-        ];
+
         $cart = $this->getCart()->load('items.product');
 
         $total = $cart->items->sum(function ($item) {
             return $item->quantity * $item->product->price;
         });
-        return view('web.pages.order', compact('cart', 'result', 'total'));
+        return view('web.pages.order', compact('cart', 'total'));
     }
     public function storeOrder(Request $request)
     {
