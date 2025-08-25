@@ -34,7 +34,6 @@ class ProductController extends Controller
             }),
         ];
 
-        Cache::forget('products');
         return view('web.pages.shop', compact('result'));
     }
 
@@ -55,7 +54,6 @@ class ProductController extends Controller
             }),
         ];
 
-        Cache::forget('products');
         return view('web.pages.shop', compact('result'));
     }
 
@@ -81,7 +79,6 @@ class ProductController extends Controller
             }),
         ];
 
-        Cache::forget('products');
         return view('web.pages.shop', compact('result'));
     }
 
