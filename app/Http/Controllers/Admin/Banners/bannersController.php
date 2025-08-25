@@ -7,7 +7,7 @@ use App\Http\Requests\Banners\BannersRequest;
 use App\Services\Banners\BannersService;
 use Illuminate\Http\Request;
 
-class bannersController extends Controller
+class BannersController extends Controller
 {
     private $folderPath = 'admin.banners.';
     protected BannersService $service;
