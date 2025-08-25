@@ -53,16 +53,62 @@
                                                     <td>{{ $order->phone ?? '' }}</td>
                                                     <td>{{ $order->items->count() ?? '' }}</td>
                                                     <td>{{ $order->total ?? '' }}</td>
-                                                    <td>{{ $order->status ?? '' }}</td>
-                                                    <td>{{ $order->payment_method ?? '' }}</td>
-                                                    <td>{{ $order->payment_status ?? '' }}</td>
+
+                                                    <td>
+                                                        @switch($order->status)
+                                                            @case('pending')
+                                                                <span class="badge bg-warning text-dark">Pending</span>
+                                                            @break
+
+                                                            @case('confirmed')
+                                                                <span class="badge bg-info text-dark">Confirmed</span>
+                                                            @break
+
+                                                            @case('shipped')
+                                                                <span class="badge bg-primary">Shipped</span>
+                                                            @break
+
+                                                            @case('delivered')
+                                                                <span class="badge bg-success">Delivered</span>
+                                                            @break
+
+                                                            @case('canceled')
+                                                                <span class="badge bg-danger">Canceled</span>
+                                                            @break
+                                                        @endswitch
+                                                    </td>
+
+                                                    <td>
+                                                        @if ($order->payment_method == 'cash')
+                                                            <span class="badge bg-secondary">Cash</span>
+                                                        @elseif($order->payment_method == 'visa')
+                                                            <span class="badge bg-primary">Visa</span>
+                                                        @endif
+                                                    </td>
+
+                                                    <td>
+                                                        @switch($order->payment_status)
+                                                            @case('pending')
+                                                                <span class="badge bg-warning text-dark">Pending</span>
+                                                            @break
+
+                                                            @case('completed')
+                                                                <span class="badge bg-success">Completed</span>
+                                                            @break
+
+                                                            @case('failed')
+                                                                <span class="badge bg-danger">Failed</span>
+                                                            @break
+                                                        @endswitch
+                                                    </td>
+
 
                                                     <td>
 
-                                                        {{-- <a href="{{ route('admin.orders.edit', $order->id) }}">
+                                                        <a href="{{ route('admin.orders.edit', $order->id) }}">
                                                             <button type="button" class="btn btn-warning btn-block "><i
                                                                     class="fa uil-edit"></i> </button>
-                                                        </a> --}}
+                                                        </a>
 
 
                                                         <button type="button" class="btn btn-danger btn-block btn-delete"
