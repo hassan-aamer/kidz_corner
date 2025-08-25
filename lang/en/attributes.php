@@ -111,6 +111,7 @@ return [
     'WeSolutions' => 'We offer digital solutions',
     'content' => 'Content',
     'faqs' => 'Faqs',
+    'shipping_price' => 'Shipping Price',
     'MyAccount' => 'My Account',
     'DoYouHelp' => 'Do you want to help with something else',
     'messageBot' => 'Sorry, I could not answer this question.',

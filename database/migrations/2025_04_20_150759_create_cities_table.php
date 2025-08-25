@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->text('title')->nullable();
+            $table->decimal('shipping_price', 10, 2)->default(0);
             $table->boolean('active')->default(1);
             $table->integer('position')->nullable();
             $table->integer('created_by')->nullable();

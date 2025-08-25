@@ -30,6 +30,7 @@ class CityRequest extends FormRequest
                 \CodeZero\UniqueTranslation\UniqueTranslationRule::for('cities')->ignore($this->id)
             ],
             'position' => 'required',
+            'shipping_price' => 'required',
             'active'   => 'required|in:0,1',
         ];
     }

@@ -34,6 +34,7 @@
                                             <th>#</th>
                                             <th>@lang('attributes.position')</th>
                                             <th>@lang('attributes.title')</th>
+                                            <th>@lang('attributes.shipping_price')</th>
                                             <th>@lang('attributes.active')</th>
                                             <th>@lang('attributes.action')</th>
                                         </tr>
@@ -45,6 +46,7 @@
                                                     <td>{{ $loop->iteration ?? '' }}</td>
                                                     <td>{{ $cities->position ?? '' }}</td>
                                                     <td>{{ shortenText($cities->title ?? '', 10) }}</td>
+                                                    <td>{{ $cities->shipping_price ?? '' }}</td>
                                                     <td>
 
                                                         <div class="form-check form-switch">

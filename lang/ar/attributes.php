@@ -12,6 +12,7 @@ return [
     'dashboard' => 'لوحه التحكم',
     'active' => 'نشط',
     'role' => 'الدور',
+    'shipping_price' => 'سعر الشحن',
     'shop' => 'المتجر',
     'total' => 'الإجمالي',
     'created_at' => 'تاريخ الإنشاء',

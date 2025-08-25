@@ -23,6 +23,7 @@
                                 @endif
                                 <div class="row">
                                     @include('admin.components.title')
+                                    @include('admin.components.shipping_price')
                                     @include('admin.components.position')
                                     @include('admin.components.active')
                                     @include('admin.components.submit')
