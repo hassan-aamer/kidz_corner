@@ -58,7 +58,7 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>City</label>
-                                <select class="custom-select" name="city_id" required>
+                                <select class="custom-select" name="city_id" id="citySelect" required>
                                     <option value="" disabled selected>Select City</option>
                                     @foreach ($cities as $city)
                                         <option value="{{ $city->id ?? '' }}">{{ $city->title ?? '' }}</option>
@@ -89,7 +89,7 @@
                             <hr class="mt-0">
                             <div class="d-flex justify-content-between">
                                 <h6 class="font-weight-medium">Shipping</h6>
-                                <h6 class="font-weight-medium">EGP 10</h6>
+                                <h6 class="font-weight-medium" id="shippingPrice">EGP 0</h6>
                             </div>
                         </div>
                         <div class="card-footer border-secondary bg-transparent">
@@ -138,4 +138,27 @@
     </div>
     <!-- Checkout End -->
 
+@endsection
+@section('js')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#citySelect').change(function() {
+        var cityId = $(this).val();
+        if(cityId) {
+            $.ajax({
+                url: '{{ route("getCityShipping") }}', // مسار الويب الذي يرجع السعر
+                type: 'GET',
+                data: { city_id: cityId },
+                success: function(response) {
+                    $('#shippingPrice').text('EGP ' + response.shipping_price);
+                },
+                error: function() {
+                    $('#shippingPrice').text('EGP 0');
+                }
+            });
+        }
+    });
+});
+</script>
 @endsection

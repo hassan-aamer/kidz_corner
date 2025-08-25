@@ -37,6 +37,7 @@
                                             <th>@lang('attributes.phone')</th>
                                             <th>@lang('attributes.product_count')</th>
                                             <th>@lang('attributes.total')</th>
+                                            <th>@lang('attributes.shipping_price')</th>
                                             <th>@lang('attributes.status')</th>
                                             <th>@lang('attributes.payment_method')</th>
                                             <th>@lang('attributes.payment_status')</th>
@@ -53,7 +54,8 @@
                                                     <td>{{ $order->email ?? '' }}</td>
                                                     <td>{{ $order->phone ?? '' }}</td>
                                                     <td>{{ $order->items->count() ?? '' }}</td>
-                                                    <td>{{ $order->total ?? '' }}</td>
+                                                    <td>EGP {{ $order->total ?? '' }}</td>
+                                                    <td>EGP {{ $order->shipping_price ?? '' }}</td>
 
                                                     <td>
                                                         @switch($order->status)

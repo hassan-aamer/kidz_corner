@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('session_id')->nullable();
             $table->decimal('total', 10, 2)->default(0);
+            $table->decimal('shipping_price', 10, 2)->default(0);
             $table->enum('status', ['pending', 'confirmed', 'shipped', 'delivered', 'canceled'])->default('pending');
             $table->enum('payment_method', ['cash', 'visa','instapay'])->nullable();
             $table->enum('payment_status', ['pending', 'completed', 'failed'])->nullable();

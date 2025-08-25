@@ -17,6 +17,15 @@ class OrderController extends Controller
     {
         $this->categoryService = $categoryService;
     }
+
+    public function getCityShipping(Request $request)
+    {
+        $city = City::find($request->city_id);
+
+        return response()->json([
+            'shipping_price' => $city ? $city->shipping_price : 0
+        ]);
+    }
     private function getCart()
     {
         $sessionId = session()->getId();
@@ -48,6 +57,8 @@ class OrderController extends Controller
                 return redirect()->back()->with('error', 'The basket is empty');
             }
 
+            $city = City::find($request->city_id);
+
             $order = Order::create([
                 'session_id'          => session()->getId(),
                 'total'               => $request->total,
@@ -59,6 +70,7 @@ class OrderController extends Controller
                 'email'               => $request->email,
                 'city_id'             => $request->city_id,
                 'full_name'           => $request->full_name,
+                'shipping_price'      => $city ? $city->shipping_price : 0,
             ]);
 
             foreach ($cart->items as $item) {
