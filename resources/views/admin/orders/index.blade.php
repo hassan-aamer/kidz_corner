@@ -40,6 +40,7 @@
                                             <th>@lang('attributes.status')</th>
                                             <th>@lang('attributes.payment_method')</th>
                                             <th>@lang('attributes.payment_status')</th>
+                                            <th>@lang('attributes.created_at')</th>
                                             <th>@lang('attributes.action')</th>
                                         </tr>
                                     </thead>
@@ -102,6 +103,7 @@
                                                         @endswitch
                                                     </td>
 
+                                                    <td>{{ formatDate($order->created_at ?? '') }}</td>
 
                                                     <td>
 

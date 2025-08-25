@@ -19,6 +19,7 @@ return [
     'action' => 'Action',
     'mobile' => 'Mobile',
     'status' => 'Status',
+    'created_at' => 'Created At',
     'payment_status' => 'Payment Status',
     'payment_method' => 'Payment Method',
     'map' => 'Map',

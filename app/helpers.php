@@ -54,3 +54,8 @@ if (!function_exists('cartItemCount')) {
         return $cart->items()->sum('quantity');
     }
 }
+if (!function_exists('formatDate')) {
+    function formatDate($date, $format = 'Y-m-d H:i') {
+        return \Carbon\Carbon::parse($date)->format($format);
+    }
+}
