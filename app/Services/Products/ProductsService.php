@@ -8,7 +8,6 @@ use App\Interfaces\CRUDRepositoryInterface;
 use App\Jobs\UploadProductImages;
 use Illuminate\Support\Facades\Bus;
 use App\Models\Product;
-use WebPConvert\WebPConvert;
 
 class ProductsService
 {
@@ -44,21 +43,9 @@ class ProductsService
             $products = $this->itemRepository->createItem($this->model, $request);
 
             if (isset($request['image']) && $request['image']) {
-                $media = $products->addMediaFromRequest('image')->toMediaCollection('products');
-
-                $sourcePath = $media->getPath();
-
-                $webpPath = pathinfo($sourcePath, PATHINFO_DIRNAME) . '/' .
-                    pathinfo($sourcePath, PATHINFO_FILENAME) . '.webp';
-
-                WebPConvert::convert($sourcePath, $webpPath);
+                $products->addMediaFromRequest('image')->toMediaCollection('products');
             }
-            // if (isset($request['images']) && $request['images']) {
-            //     // $products->clearMediaCollection('product_collection');
-            //     foreach ((array) $request['images'] as $file) {
-            //         $products->addMedia($file)->toMediaCollection('product_collection');
-            //     }
-            // }
+
             if (isset($request['images']) && $request['images']) {
                 Bus::dispatch(new UploadProductImages($products, $request['images']));
             }
@@ -84,15 +71,7 @@ class ProductsService
 
             if (isset($request['image']) && $request['image']) {
                 $products->clearMediaCollection('products');
-                $media = $products->addMediaFromRequest('image')->toMediaCollection('products');
-
-
-                $sourcePath = $media->getPath();
-
-                $webpPath = pathinfo($sourcePath, PATHINFO_DIRNAME) . '/' .
-                    pathinfo($sourcePath, PATHINFO_FILENAME) . '.webp';
-
-                WebPConvert::convert($sourcePath, $webpPath);
+                $products->addMediaFromRequest('image')->toMediaCollection('products');
             }
 
             if (isset($request['images']) && $request['images']) {
