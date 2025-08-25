@@ -3,10 +3,7 @@
 namespace App\Services\Products;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Cache;
 use App\Interfaces\CRUDRepositoryInterface;
-use App\Jobs\UploadProductImages;
-use Illuminate\Support\Facades\Bus;
 use App\Models\Product;
 
 class ProductsService
@@ -47,7 +44,10 @@ class ProductsService
             }
 
             if (isset($request['images']) && $request['images']) {
-                Bus::dispatch(new UploadProductImages($products, $request['images']));
+                // $products->clearMediaCollection('product_collection');
+                foreach ((array) $request['images'] as $file) {
+                    $products->addMedia($file)->toMediaCollection('product_collection');
+                }
             }
 
             DB::commit();
@@ -75,10 +75,11 @@ class ProductsService
             }
 
             if (isset($request['images']) && $request['images']) {
-                Bus::dispatch(new UploadProductImages($products, $request['images']));
+                $products->clearMediaCollection('product_collection');
+                foreach ((array) $request['images'] as $file) {
+                    $products->addMedia($file)->toMediaCollection('product_collection');
+                }
             }
-
-            Cache::forget("product_{$id}");
 
             DB::commit();
         } catch (\Throwable $e) {
