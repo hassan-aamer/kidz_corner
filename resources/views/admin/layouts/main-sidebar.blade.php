@@ -43,6 +43,13 @@
                 </li>
 
                 <li>
+                    <a class="{{ request()->routeIs('admin.orders.*') ? 'active' : '' }}"
+                        href="{{ route('admin.orders.index') }}">
+                        <i data-feather="shopping-cart"></i>
+                        <span>{{ __('attributes.orders') }}</span>
+                    </a>
+                </li>
+                <li>
                     <a class="{{ request()->routeIs('admin.cities.*') ? 'active' : '' }}"
                         href="{{ route('admin.cities.index') }}">
                         <i data-feather="map-pin"></i>
