@@ -84,8 +84,11 @@
                                                             <span class="badge bg-secondary">Cash</span>
                                                         @elseif($order->payment_method == 'visa')
                                                             <span class="badge bg-primary">Visa</span>
+                                                        @elseif($order->payment_method == 'instapay')
+                                                            <span class="badge bg-success">InstaPay</span>
                                                         @endif
                                                     </td>
+
 
                                                     <td>
                                                         @switch($order->payment_status)
