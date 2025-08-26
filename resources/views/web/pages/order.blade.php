@@ -150,51 +150,55 @@
 
 @endsection
 @section('js')
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-    $('#citySelect').change(function() {
-        var cityId = $(this).val();
-        if(cityId) {
-            $.ajax({
-                url: '{{ route("getCityShipping") }}', // مسار الويب الذي يرجع السعر
-                type: 'GET',
-                data: { city_id: cityId },
-                success: function(response) {
-                    $('#shippingPrice').text('EGP ' + response.shipping_price);
-                },
-                error: function() {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var locale = "{{ app()->getLocale() }}";
+
+            $('#citySelect').on('change', function() {
+                var cityId = $(this).val();
+                if (cityId) {
+                    $.ajax({
+                        url: '/get-areas/' + cityId,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#areaSelect').empty();
+                            $('#areaSelect').append(
+                                '<option value="" disabled selected>Select Area</option>');
+                            $.each(data, function(key, value) {
+                                var areaTitle = value.title[locale] || value.title[
+                                'en'];
+                                $('#areaSelect').append('<option value="' + value.id +
+                                    '" data-shipping="' + value.shipping_price +
+                                    '">' + areaTitle + '</option>');
+                            });
+                        }
+                    });
+
+                    $.ajax({
+                        url: '{{ route('getCityShipping') }}',
+                        type: 'GET',
+                        data: {
+                            city_id: cityId
+                        },
+                        success: function(response) {
+                            $('#shippingPrice').text('EGP ' + response.shipping_price);
+                        },
+                        error: function() {
+                            $('#shippingPrice').text('EGP 0');
+                        }
+                    });
+                } else {
+                    $('#areaSelect').empty();
                     $('#shippingPrice').text('EGP 0');
                 }
             });
-        }
-    });
-});
-</script> --}}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        var locale = "{{ app()->getLocale() }}";
-        $('#citySelect').on('change', function() {
-            var cityId = $(this).val();
-            if (cityId) {
-                $.ajax({
-                    url: '/get-areas/' + cityId,
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(data) {
-                        $('#areaSelect').empty();
-                        $('#areaSelect').append(
-                            '<option value="" disabled selected>Select Area</option>');
-                        $.each(data, function(key, value) {
-                            var areaTitle = value.title[locale] || value.title['en'];
-                            $('#areaSelect').append('<option value="' + value.id + '">' +
-                                areaTitle + '</option>');
-                        });
-                    }
-                });
-            } else {
-                $('#areaSelect').empty();
-            }
+
+            $('#areaSelect').on('change', function() {
+                var shipping = $(this).find(':selected').data('shipping') || 0;
+                $('#shippingPrice').text('EGP ' + shipping);
+            });
         });
     </script>
 

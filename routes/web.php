@@ -18,7 +18,7 @@ Route::delete('/cart/remove/{item}',[App\Http\Controllers\Web\CartController::cl
 Route::post('/cart/clear',          [App\Http\Controllers\Web\CartController::class, 'clear'])->name('cart.clear');
 Route::get('/order',                [App\Http\Controllers\Web\OrderController::class, 'index'])->name('order');
 Route::post('/order/store',         [App\Http\Controllers\Web\OrderController::class, 'storeOrder'])->name('order.checkout');
-Route::get('/get-city-shipping',    [App\Http\Controllers\Web\OrderController::class, 'getCityShipping'])->name('getCityShipping');
+Route::get('/get-city-shipping',    [App\Http\Controllers\Web\OrderController::class, 'getShipping'])->name('getCityShipping');
 Route::get('/get-areas/{city}',     [App\Http\Controllers\Web\OrderController::class, 'getAreas']);
 
 

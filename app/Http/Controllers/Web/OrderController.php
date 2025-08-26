@@ -24,15 +24,23 @@ class OrderController extends Controller
         return response()->json($areas);
     }
 
-
-    public function getCityShipping(Request $request)
+    public function getShipping(Request $request)
     {
-        $city = City::find($request->city_id);
+        $cityId = $request->city_id;
+
+        $city = City::find($cityId);
+
+        if ($city) {
+            return response()->json([
+                'shipping_price' => $city->shipping_price ?? 0
+            ]);
+        }
 
         return response()->json([
-            'shipping_price' => $city ? $city->shipping_price : 0
+            'shipping_price' => 0
         ]);
     }
+
     private function getCart()
     {
         $sessionId = session()->getId();
