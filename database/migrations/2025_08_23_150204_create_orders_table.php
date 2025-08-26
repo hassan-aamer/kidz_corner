@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('payment_method', ['cash', 'visa','instapay'])->nullable();
             $table->enum('payment_status', ['pending', 'completed', 'failed'])->nullable();
             $table->foreignId('city_id')->nullable()->constrained('cities')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('area_id')->nullable()->constrained('cities')->cascadeOnDelete()->cascadeOnUpdate();
             $table->text('full_name')->nullable();
             $table->text('address')->nullable();
             $table->string('email')->nullable();

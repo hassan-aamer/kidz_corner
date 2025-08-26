@@ -18,6 +18,13 @@ class OrderController extends Controller
         $this->categoryService = $categoryService;
     }
 
+    public function getAreas($cityId)
+    {
+        $areas = City::where('parent_id', $cityId)->get();
+        return response()->json($areas);
+    }
+
+
     public function getCityShipping(Request $request)
     {
         $city = City::find($request->city_id);

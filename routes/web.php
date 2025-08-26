@@ -19,4 +19,6 @@ Route::post('/cart/clear',          [App\Http\Controllers\Web\CartController::cl
 Route::get('/order',                [App\Http\Controllers\Web\OrderController::class, 'index'])->name('order');
 Route::post('/order/store',         [App\Http\Controllers\Web\OrderController::class, 'storeOrder'])->name('order.checkout');
 Route::get('/get-city-shipping',    [App\Http\Controllers\Web\OrderController::class, 'getCityShipping'])->name('getCityShipping');
+Route::get('/get-areas/{city}',     [App\Http\Controllers\Web\OrderController::class, 'getAreas']);
+
 

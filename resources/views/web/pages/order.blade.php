@@ -60,11 +60,20 @@
                                 <label>City</label>
                                 <select class="custom-select" name="city_id" id="citySelect" required>
                                     <option value="" disabled selected>Select City</option>
-                                    @foreach ($cities as $city)
-                                        <option value="{{ $city->id ?? '' }}">{{ $city->title ?? '' }}</option>
+                                    @foreach ($cities->where('parent_id', null) as $city)
+                                        <!-- المدن فقط -->
+                                        <option value="{{ $city->id }}">{{ $city->title }}</option>
                                     @endforeach
                                 </select>
                             </div>
+
+                            <div class="col-md-6 form-group">
+                                <label>Area</label>
+                                <select class="custom-select" name="area_id" id="areaSelect" required>
+                                    <option value="" disabled selected>Select Area</option>
+                                </select>
+                            </div>
+
                             <div class="col-md-12 form-group">
                                 <label>Address</label>
                                 <textarea rows="4" class="form-control" type="text" name="address" placeholder="123 Street"></textarea>
@@ -114,8 +123,8 @@
                             </div>
                             <div class="">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment_method" value="instapay"
-                                        id="banktransfer">
+                                    <input type="radio" class="custom-control-input" name="payment_method"
+                                        value="instapay" id="banktransfer">
                                     <label class="custom-control-label" for="banktransfer">Insta Pay</label>
                                 </div>
                             </div>
@@ -128,7 +137,8 @@
                             </div> --}}
                         </div>
                         <div class="card-footer border-secondary bg-transparent">
-                            <button type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place
+                            <button type="submit"
+                                class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place
                                 Order</button>
                         </div>
                     </div>
@@ -140,7 +150,7 @@
 
 @endsection
 @section('js')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
     $('#citySelect').change(function() {
@@ -160,5 +170,32 @@ $(document).ready(function() {
         }
     });
 });
-</script>
+</script> --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var locale = "{{ app()->getLocale() }}";
+        $('#citySelect').on('change', function() {
+            var cityId = $(this).val();
+            if (cityId) {
+                $.ajax({
+                    url: '/get-areas/' + cityId,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#areaSelect').empty();
+                        $('#areaSelect').append(
+                            '<option value="" disabled selected>Select Area</option>');
+                        $.each(data, function(key, value) {
+                            var areaTitle = value.title[locale] || value.title['en'];
+                            $('#areaSelect').append('<option value="' + value.id + '">' +
+                                areaTitle + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#areaSelect').empty();
+            }
+        });
+    </script>
+
 @endsection
