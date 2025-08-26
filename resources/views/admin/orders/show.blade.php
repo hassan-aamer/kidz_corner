@@ -10,12 +10,46 @@
             <div class="container-fluid">
 
                 <!-- start page title -->
-                <div class="row">
+                {{-- <div class="container-fluid"> --}}
+                <div class="row justify-content-center" style="margin-top: 50px;">
                     <div class="col-12">
-                        <div class="page-title-box">
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">Customer Details</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-2">
+                                    <div class="col-md-3"><strong>Full Name :</strong> {{ $result->full_name ?? '-' }}</div>
+                                    <div class="col-md-3"><strong>Email :</strong> {{ $result->email ?? '-' }}</div>
+                                    <div class="col-md-3"><strong>Phone :</strong> {{ $result->phone ?? '-' }}</div>
+                                    <div class="col-md-3"><strong>City :</strong> {{ $result->city->title ?? '-' }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-3"><strong>Shipping Price :</strong>
+                                        {{ $result->shipping_price ?? '-' }}</div>
+                                    <div class="col-md-3"><strong>Status :</strong> {{ $result->status ?? '-' }}</div>
+                                    <div class="col-md-3"><strong>Payment Method :</strong>
+                                        {{ $result->payment_method ?? '-' }}</div>
+                                    <div class="col-md-3"><strong>Payment Status :</strong>
+                                        {{ $result->payment_status ?? '-' }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-3"><strong>Total :</strong>
+                                        {{ $result->total ?? '-' }}</div>
+                                    <div class="col-md-3"><strong>Product Count :</strong>
+                                        {{ $result->items->count() ?? '-' }}</div>
+                                    <div class="col-md-3"><strong>Created At :</strong>
+                                        {{ $result->created_at ?? '-' }}</div>
+                                </div>
+                                <div class="row mb-12">
+                                    <div class="col-md-3"><strong>Address :</strong> {{ $result->address ?? '-' }}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                {{-- </div> --}}
+
                 <!-- end page title -->
                 <div class="row">
                     <div class="col-12">

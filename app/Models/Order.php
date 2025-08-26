@@ -16,4 +16,8 @@ class Order extends Model implements HasMedia
     {
         return $this->hasMany(OrderItem::class);
     }
+        public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
 }
