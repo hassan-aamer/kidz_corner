@@ -20,60 +20,64 @@
                             <div class="card-body">
                                 <div class="row mb-2">
                                     <div class="col-md-3">
-                                        <strong class="text-primary fw-bold">Full Name:</strong>
+                                        <strong class="text-primary fw-bold">Full Name :</strong>
                                         <span class="text-dark">{{ $result->full_name ?? '-' }}</span>
                                     </div>
                                     <div class="col-md-3">
-                                        <strong class="text-primary fw-bold">Email:</strong>
+                                        <strong class="text-primary fw-bold">Email :</strong>
                                         <span class="text-dark">{{ $result->email ?? '-' }}</span>
                                     </div>
                                     <div class="col-md-3">
-                                        <strong class="text-primary fw-bold">Phone:</strong>
+                                        <strong class="text-primary fw-bold">Phone :</strong>
                                         <span class="text-dark">{{ $result->phone ?? '-' }}</span>
                                     </div>
                                     <div class="col-md-3">
-                                        <strong class="text-primary fw-bold">City:</strong>
+                                        <strong class="text-primary fw-bold">City :</strong>
                                         <span class="text-dark">{{ $result->city->title ?? '-' }}</span>
                                     </div>
                                 </div>
 
                                 <div class="row mb-2">
                                     <div class="col-md-3">
-                                        <strong class="text-primary fw-bold">Shipping Price:</strong>
+                                        <strong class="text-primary fw-bold">Shipping Price :</strong>
                                         <span class="text-dark">{{ $result->shipping_price ?? '-' }}</span>
                                     </div>
                                     <div class="col-md-3">
-                                        <strong class="text-primary fw-bold">Status:</strong>
+                                        <strong class="text-primary fw-bold">Status :</strong>
                                         <span class="text-dark">{{ $result->status ?? '-' }}</span>
                                     </div>
                                     <div class="col-md-3">
-                                        <strong class="text-primary fw-bold">Payment Method:</strong>
+                                        <strong class="text-primary fw-bold">Payment Method :</strong>
                                         <span class="text-dark">{{ $result->payment_method ?? '-' }}</span>
                                     </div>
                                     <div class="col-md-3">
-                                        <strong class="text-primary fw-bold">Payment Status:</strong>
+                                        <strong class="text-primary fw-bold">Payment Status :</strong>
                                         <span class="text-dark">{{ $result->payment_status ?? '-' }}</span>
                                     </div>
                                 </div>
 
                                 <div class="row mb-2">
                                     <div class="col-md-3">
-                                        <strong class="text-primary fw-bold">Total:</strong>
+                                        <strong class="text-primary fw-bold">Total :</strong>
                                         <span class="text-dark">{{ $result->total ?? '-' }}</span>
                                     </div>
                                     <div class="col-md-3">
-                                        <strong class="text-primary fw-bold">Product Count:</strong>
+                                        <strong class="text-primary fw-bold">Product Count :</strong>
                                         <span class="text-dark">{{ $result->items->count() ?? '-' }}</span>
                                     </div>
                                     <div class="col-md-3">
-                                        <strong class="text-primary fw-bold">Created At:</strong>
+                                        <strong class="text-primary fw-bold">Created At :</strong>
                                         <span class="text-dark">{{ formatDate($result->created_at ?? '') }}</span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong class="text-primary fw-bold">Area :</strong>
+                                        <span class="text-dark">{{ $result->area->title ?? '-' }}</span>
                                     </div>
                                 </div>
 
                                 <div class="row mb-2">
                                     <div class="col-md-12">
-                                        <strong class="text-primary fw-bold">Address:</strong>
+                                        <strong class="text-primary fw-bold">Address :</strong>
                                         <span class="text-dark">{{ $result->address ?? '-' }}</span>
                                     </div>
                                 </div>
