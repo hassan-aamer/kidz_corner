@@ -107,12 +107,12 @@
                         <div class="card-header bg-secondary border-0">
                             <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
                         </div>
-                        <div class="card-body">
+                        {{-- <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <h6 class="font-weight-medium">Shipping</h6>
                                 <h6 class="font-weight-medium">EGP 10</h6>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="card-footer border-secondary bg-transparent">
                             <div class="d-flex justify-content-between mt-2">
                                 <h5 class="font-weight-bold">Total</h5>

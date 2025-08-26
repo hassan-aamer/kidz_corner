@@ -33,7 +33,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th>@lang('attributes.position')</th>
-                                            <th>@lang('attributes.parent')</th>
+                                            <th>@lang('attributes.cities')</th>
                                             <th>@lang('attributes.title')</th>
                                             <th>@lang('attributes.shipping_price')</th>
                                             <th>@lang('attributes.active')</th>
