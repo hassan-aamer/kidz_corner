@@ -42,15 +42,15 @@ class OrderController extends Controller
         $result = $this->service->edit($id);
         return view($this->folderPath . 'create_and_edit', compact('result'));
     }
-    // public function update(Request $request, $id)
-    // {
-    //     try {
-    //         $this->service->update($request->validated(), $id);
-    //         return redirect()->route('admin.cities.index')->with('success', __('attributes.OperationCompletedSuccessfully'));
-    //     } catch (\Throwable $e) {
-    //         return redirect()->back()->with('error', 'Failed to update city: ' . $e->getMessage());
-    //     }
-    // }
+    public function update(Request $request, $id)
+    {
+        try {
+            $this->service->update($request->all(), $id);
+            return redirect()->route('admin.orders.index')->with('success', __('attributes.OperationCompletedSuccessfully'));
+        } catch (\Throwable $e) {
+            return redirect()->back()->with('error', 'Failed to update city: ' . $e->getMessage());
+        }
+    }
     public function destroy($id)
     {
         $this->service->destroy($id);

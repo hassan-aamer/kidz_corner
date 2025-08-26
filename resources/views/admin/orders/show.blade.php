@@ -19,35 +19,69 @@
                             </div>
                             <div class="card-body">
                                 <div class="row mb-2">
-                                    <div class="col-md-3"><strong>Full Name :</strong> {{ $result->full_name ?? '-' }}</div>
-                                    <div class="col-md-3"><strong>Email :</strong> {{ $result->email ?? '-' }}</div>
-                                    <div class="col-md-3"><strong>Phone :</strong> {{ $result->phone ?? '-' }}</div>
-                                    <div class="col-md-3"><strong>City :</strong> {{ $result->city->title ?? '-' }}</div>
+                                    <div class="col-md-3">
+                                        <strong class="text-primary fw-bold">Full Name:</strong>
+                                        <span class="text-dark">{{ $result->full_name ?? '-' }}</span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong class="text-primary fw-bold">Email:</strong>
+                                        <span class="text-dark">{{ $result->email ?? '-' }}</span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong class="text-primary fw-bold">Phone:</strong>
+                                        <span class="text-dark">{{ $result->phone ?? '-' }}</span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong class="text-primary fw-bold">City:</strong>
+                                        <span class="text-dark">{{ $result->city->title ?? '-' }}</span>
+                                    </div>
                                 </div>
+
                                 <div class="row mb-2">
-                                    <div class="col-md-3"><strong>Shipping Price :</strong>
-                                        {{ $result->shipping_price ?? '-' }}</div>
-                                    <div class="col-md-3"><strong>Status :</strong> {{ $result->status ?? '-' }}</div>
-                                    <div class="col-md-3"><strong>Payment Method :</strong>
-                                        {{ $result->payment_method ?? '-' }}</div>
-                                    <div class="col-md-3"><strong>Payment Status :</strong>
-                                        {{ $result->payment_status ?? '-' }}</div>
+                                    <div class="col-md-3">
+                                        <strong class="text-primary fw-bold">Shipping Price:</strong>
+                                        <span class="text-dark">{{ $result->shipping_price ?? '-' }}</span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong class="text-primary fw-bold">Status:</strong>
+                                        <span class="text-dark">{{ $result->status ?? '-' }}</span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong class="text-primary fw-bold">Payment Method:</strong>
+                                        <span class="text-dark">{{ $result->payment_method ?? '-' }}</span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong class="text-primary fw-bold">Payment Status:</strong>
+                                        <span class="text-dark">{{ $result->payment_status ?? '-' }}</span>
+                                    </div>
                                 </div>
+
                                 <div class="row mb-2">
-                                    <div class="col-md-3"><strong>Total :</strong>
-                                        {{ $result->total ?? '-' }}</div>
-                                    <div class="col-md-3"><strong>Product Count :</strong>
-                                        {{ $result->items->count() ?? '-' }}</div>
-                                    <div class="col-md-3"><strong>Created At :</strong>
-                                        {{ $result->created_at ?? '-' }}</div>
+                                    <div class="col-md-3">
+                                        <strong class="text-primary fw-bold">Total:</strong>
+                                        <span class="text-dark">{{ $result->total ?? '-' }}</span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong class="text-primary fw-bold">Product Count:</strong>
+                                        <span class="text-dark">{{ $result->items->count() ?? '-' }}</span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong class="text-primary fw-bold">Created At:</strong>
+                                        <span class="text-dark">{{ $result->created_at ?? '-' }}</span>
+                                    </div>
                                 </div>
-                                <div class="row mb-12">
-                                    <div class="col-md-3"><strong>Address :</strong> {{ $result->address ?? '-' }}</div>
+
+                                <div class="row mb-2">
+                                    <div class="col-md-12">
+                                        <strong class="text-primary fw-bold">Address:</strong>
+                                        <span class="text-dark">{{ $result->address ?? '-' }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 {{-- </div> --}}
 
                 <!-- end page title -->
