@@ -116,6 +116,15 @@ Route::middleware('checkAuth')->group(function () {
         Route::delete('/delete/{id}', 'destroy')->name('cities.delete');
         Route::post('/change-status', 'changeStatus')->name('cities.status');
     });
+    Route::prefix('areas')->controller(\App\Http\Controllers\Admin\Areas\AreaController::class)->group(function () {
+        Route::get('/', 'index')->name('areas.index');
+        Route::get('/create', 'create')->name('areas.create');
+        Route::post('/store', 'store')->name('areas.store');
+        Route::get('/{id}/edit', 'edit')->name('areas.edit');
+        Route::put('/update/{id}', 'update')->name('areas.update');
+        Route::delete('/delete/{id}', 'destroy')->name('areas.delete');
+        Route::post('/change-status', 'changeStatus')->name('areas.status');
+    });
     Route::prefix('orders')->controller(\App\Http\Controllers\Admin\Orders\OrderController::class)->group(function () {
         Route::get('/', 'index')->name('orders.index');
         Route::get('/show/{id}', 'show')->name('orders.show');

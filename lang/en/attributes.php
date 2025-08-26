@@ -118,6 +118,7 @@ return [
     'messageBot' => 'Sorry, I could not answer this question.',
     'question' => 'Question',
     'answer' => 'Answer',
+    'area' => 'Area',
     'TypeMessage' => 'Type your message here..',
     'subscriptions' => 'Subscriptions',
     'subscription' => 'Subscribe to our newsletter',

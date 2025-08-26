@@ -15,6 +15,7 @@ return [
     'orders_details' => 'تفاصيل الطلبات',
     'shipping_price' => 'سعر الشحن',
     'shop' => 'المتجر',
+    'area' => 'المنطقة',
     'total' => 'الإجمالي',
     'created_at' => 'تاريخ الإنشاء',
     'product_count' => 'عدد المنتجات',

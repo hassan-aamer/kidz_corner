@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->unsignedBigInteger('parent_id')->nullable();
-            $table->decimal('shipping_price', 10, 2)->default(0);
+            $table->decimal('shipping_price', 10, 2)->nullable();
             $table->boolean('active')->default(1);
             $table->integer('position')->nullable();
             $table->integer('created_by')->nullable();

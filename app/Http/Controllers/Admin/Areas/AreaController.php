@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Cities;
+namespace App\Http\Controllers\Admin\Areas;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\Cities\CityService;
 use App\Http\Requests\Cities\CityRequest;
 use App\Models\City;
-use App\Services\Cities\CityService;
 
-class CityController extends Controller
+class AreaController extends Controller
 {
-    private $folderPath = 'admin.cities.';
+    private $folderPath = 'admin.areas.';
     protected CityService $service;
     public function __construct(CityService $service)
     {
@@ -18,7 +18,7 @@ class CityController extends Controller
     }
     public function index(Request $request)
     {
-        $result = City::where('parent_id', null)->get();
+        $result = City::where('parent_id', '!=', null)->get();
         return view($this->folderPath . 'index', compact('result'));
     }
     public function show($id)
@@ -28,13 +28,14 @@ class CityController extends Controller
     }
     public function create()
     {
-        return view($this->folderPath . 'create_and_edit', ['result' => null]);
+        $cities = City::where('parent_id', null)->get();
+        return view($this->folderPath . 'create_and_edit', ['result' => null], compact('cities'));
     }
     public function store(CityRequest $request)
     {
         try {
             $this->service->store($request->validated());
-            return redirect()->route('admin.cities.index')->with('success', __('attributes.OperationCompletedSuccessfully'));
+            return redirect()->route('admin.areas.index')->with('success', __('attributes.OperationCompletedSuccessfully'));
         } catch (\Throwable $e) {
             return redirect()->back()->with('error', 'Failed to create city: ' . $e->getMessage());
         }
@@ -42,13 +43,14 @@ class CityController extends Controller
     public function edit($id)
     {
         $result = $this->service->edit($id);
-        return view($this->folderPath . 'create_and_edit', compact('result'));
+        $cities = City::where('parent_id', null)->get();
+        return view($this->folderPath . 'create_and_edit', compact('result', 'cities'));
     }
     public function update(CityRequest $request, $id)
     {
         try {
             $this->service->update($request->validated(), $id);
-            return redirect()->route('admin.cities.index')->with('success', __('attributes.OperationCompletedSuccessfully'));
+            return redirect()->route('admin.areas.index')->with('success', __('attributes.OperationCompletedSuccessfully'));
         } catch (\Throwable $e) {
             return redirect()->back()->with('error', 'Failed to update city: ' . $e->getMessage());
         }

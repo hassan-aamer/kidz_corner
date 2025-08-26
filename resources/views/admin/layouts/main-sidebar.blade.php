@@ -52,8 +52,15 @@
                 <li>
                     <a class="{{ request()->routeIs('admin.cities.*') ? 'active' : '' }}"
                         href="{{ route('admin.cities.index') }}">
-                        <i data-feather="map-pin"></i>
+                        <i data-feather="map"></i>
                         <span>{{ __('attributes.cities') }}</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="{{ request()->routeIs('admin.areas.*') ? 'active' : '' }}"
+                        href="{{ route('admin.areas.index') }}">
+                        <i data-feather="map-pin"></i>
+                        <span>{{ __('attributes.area') }}</span>
                     </a>
                 </li>
                 <li>

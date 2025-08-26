@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', __('attributes.cities'))
+@section('title', __('attributes.area'))
 
 @section('content')
 
@@ -15,7 +15,7 @@
                         <div class="page-title-box">
 
                             <a class="btn btn-success"
-                                href="{{ route('admin.cities.create') }}">{{ __('attributes.create') }}</a>
+                                href="{{ route('admin.areas.create') }}">{{ __('attributes.area') }}</a>
 
                         </div>
                     </div>
@@ -27,14 +27,15 @@
 
                             <div class="card-body">
 
-                                <h4 class="header-title mt-0 mb-1">{{ __('attributes.cities') }}</h4>
+                                <h4 class="header-title mt-0 mb-1">{{ __('attributes.area') }}</h4>
                                 <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                     <thead>
                                         <tr>
                                             <th>#</th>
                                             <th>@lang('attributes.position')</th>
+                                            <th>@lang('attributes.parent')</th>
                                             <th>@lang('attributes.title')</th>
-                                            {{-- <th>@lang('attributes.shipping_price')</th> --}}
+                                            <th>@lang('attributes.shipping_price')</th>
                                             <th>@lang('attributes.active')</th>
                                             <th>@lang('attributes.action')</th>
                                         </tr>
@@ -45,8 +46,9 @@
                                                 <tr id="row-{{ $cities->id ?? '' }}">
                                                     <td>{{ $loop->iteration ?? '' }}</td>
                                                     <td>{{ $cities->position ?? '' }}</td>
+                                                    <td>{{ $cities->parent->title ?? '' }}</td>
                                                     <td>{{ shortenText($cities->title ?? '', 10) }}</td>
-                                                    {{-- <td>{{ $cities->shipping_price ?? '' }}</td> --}}
+                                                    <td>{{ $cities->shipping_price ?? '' }}</td>
                                                     <td>
 
                                                         <div class="form-check form-switch">
@@ -61,7 +63,7 @@
                                                     </td>
                                                     <td>
 
-                                                        <a href="{{ route('admin.cities.edit', $cities->id) }}">
+                                                        <a href="{{ route('admin.areas.edit', $cities->id) }}">
                                                             <button type="button" class="btn btn-warning btn-block "><i
                                                                     class="fa uil-edit"></i> </button>
                                                         </a>
@@ -90,7 +92,7 @@
                                                                     data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <form id="deleteForm{{ $cities->id }}"
-                                                                action="{{ route('admin.cities.delete', $cities->id) }}"
+                                                                action="{{ route('admin.areas.delete', $cities->id) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('delete')
@@ -142,7 +144,7 @@
                 const Id = this.getAttribute('data-id');
                 const status = this.checked ? 1 : 0;
 
-                fetch("{{ route('admin.cities.status', app()->getLocale()) }}", {
+                fetch("{{ route('admin.areas.status', app()->getLocale()) }}", {
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}',
