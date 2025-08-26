@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <strong class="text-primary fw-bold">Created At:</strong>
-                                        <span class="text-dark">{{ $result->created_at ?? '-' }}</span>
+                                        <span class="text-dark">{{ formatDate($result->created_at ?? '') }}</span>
                                     </div>
                                 </div>
 
