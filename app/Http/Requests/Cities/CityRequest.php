@@ -22,6 +22,7 @@ class CityRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'parent_id'    => 'nullable',
             'title'    => 'nullable|array',
             'title.*'       => [
                 'required',

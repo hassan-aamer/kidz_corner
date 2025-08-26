@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->text('title')->nullable();
+            $table->string('title')->nullable();
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->decimal('shipping_price', 10, 2)->default(0);
             $table->boolean('active')->default(1);
             $table->integer('position')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();
+
+            $table->foreign('parent_id')->references('id')->on('cities')->onDelete('cascade');
         });
     }
 
