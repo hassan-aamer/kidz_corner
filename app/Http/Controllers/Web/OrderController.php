@@ -43,7 +43,7 @@ class OrderController extends Controller
             return $item->quantity * $item->product->price;
         });
 
-        $cities = City::Publish()->get()->sortBy('position');
+        $cities = City::where('parent_id', null)->Publish()->get()->sortBy('position');
         return view('web.pages.order', compact('cart', 'total', 'cities'));
     }
     public function storeOrder(Request $request)
