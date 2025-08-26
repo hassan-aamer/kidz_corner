@@ -72,7 +72,7 @@ class OrderController extends Controller
                 return redirect()->back()->with('error', 'The basket is empty');
             }
 
-            $city = City::find($request->city_id);
+            $area = City::find($request->area_id);
 
             $order = Order::create([
                 'session_id'          => session()->getId(),
@@ -84,8 +84,9 @@ class OrderController extends Controller
                 'phone'               => $request->phone,
                 'email'               => $request->email,
                 'city_id'             => $request->city_id,
+                'area_id'             => $request->area_id,
                 'full_name'           => $request->full_name,
-                'shipping_price'      => $city ? $city->shipping_price : 0,
+                'shipping_price'      => $area ? $area->shipping_price : 0,
             ]);
 
             foreach ($cart->items as $item) {
