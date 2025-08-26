@@ -12,6 +12,7 @@ return [
     'dashboard' => 'لوحه التحكم',
     'active' => 'نشط',
     'role' => 'الدور',
+    'orders_details' => 'تفاصيل الطلبات',
     'shipping_price' => 'سعر الشحن',
     'shop' => 'المتجر',
     'total' => 'الإجمالي',

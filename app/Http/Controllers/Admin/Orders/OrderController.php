@@ -22,7 +22,7 @@ class OrderController extends Controller
     public function show($id)
     {
         $result = $this->service->show($id);
-        return view($this->folderPath . 'index', compact('result'));
+        return view($this->folderPath . 'show', compact('result'));
     }
     public function create()
     {

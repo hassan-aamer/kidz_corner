@@ -118,6 +118,7 @@ Route::middleware('checkAuth')->group(function () {
     });
     Route::prefix('orders')->controller(\App\Http\Controllers\Admin\Orders\OrderController::class)->group(function () {
         Route::get('/', 'index')->name('orders.index');
+        Route::get('/show/{id}', 'show')->name('orders.show');
         Route::get('/create', 'create')->name('orders.create');
         Route::post('/store', 'store')->name('orders.store');
         Route::get('/{id}/edit', 'edit')->name('orders.edit');

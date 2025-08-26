@@ -112,6 +112,12 @@
 
                                                     <td>
 
+                                                        <a href="{{ route('admin.orders.show', $order->id) }}">
+                                                            <button type="button" class="btn btn-primary btn-block">
+                                                                <i class="fa uil-eye"></i>
+                                                            </button>
+                                                        </a>
+
                                                         <a href="{{ route('admin.orders.edit', $order->id) }}">
                                                             <button type="button" class="btn btn-warning btn-block "><i
                                                                     class="fa uil-edit"></i> </button>
