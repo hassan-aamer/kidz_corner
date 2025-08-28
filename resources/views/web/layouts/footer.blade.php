@@ -43,9 +43,9 @@
                     <a class="text-dark font-weight-semi-bold" href="https://viral-monkeys.com">Viral Monkeys</a><br>
                 </p>
             </div>
-            <div class="col-md-6 px-xl-0 text-center text-md-right">
+            {{-- <div class="col-md-6 px-xl-0 text-center text-md-right">
                 <img class="img-fluid" src="{{ asset('web/img/payments.png') }}" alt="">
-            </div>
+            </div> --}}
         </div>
     </div>
     <!-- Footer End -->
