@@ -67,7 +67,7 @@
                         @endforeach
                     </div>
 
-                    <div class="d-flex justify-content-between align-items-center mt-3"
+                    <div class="d-flex justify-content-between align-items-center mt-5"
                         style="max-width: 90%; margin: auto;">
                         <a href="#header-carousel" data-slide="prev" class="carousel-nav rounded-circle">
                             <span class="carousel-control-prev-icon"></span>
