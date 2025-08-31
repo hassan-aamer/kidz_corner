@@ -66,12 +66,29 @@
                         @endforeach
                     </div>
 
-                    <ol class="carousel-indicators custom-indicators mt-4 mb-5">
+                    <ol class="carousel-indicators custom-indicators mt-4">
                         @foreach ($result['banners'] as $key => $banner)
                             <li data-target="#header-carousel" data-slide-to="{{ $key }}"
                                 class="{{ $key == 0 ? 'active' : '' }}"></li>
                         @endforeach
                     </ol>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mb-5">
+        <div class="row px-xl-5">
+            <div class="col-lg-12">
+                <div id="header-carousel" class="carousel slide" data-ride="carousel">
+
+                    <div class="carousel-item active" style="height: 550px;">
+                        <video class="w-100 h-100" controls autoplay muted loop style="object-fit: cover;">
+                            <source src="{{ asset('v.mp4') }}" type="video/mp4">
+                            متصفحك لا يدعم تشغيل الفيديو.
+                        </video>
+                    </div>
+
 
                 </div>
             </div>
@@ -83,7 +100,7 @@
     @if ($result['categories']->count())
         <!-- Categories Start -->
         <div class="container-fluid pt-5">
-                        <div class="text-center mb-4">
+            <div class="text-center mb-4">
                 <h2 class="section-title px-5"><span class="px-2">{{ __('attributes.categories') }} </span></h2>
             </div>
             <div class="row px-xl-5 pb-3">
