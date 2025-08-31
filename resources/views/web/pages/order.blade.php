@@ -125,7 +125,7 @@
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" name="payment_method"
                                         value="instapay" id="banktransfer">
-                                    <label class="custom-control-label" for="banktransfer">Insta Pay</label>
+                                    <label class="custom-control-label" for="banktransfer">Insta Pay ( 0109 2476133 )</label>
                                 </div>
                             </div>
                             {{-- <div class="">
