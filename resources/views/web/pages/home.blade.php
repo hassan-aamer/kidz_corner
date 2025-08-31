@@ -145,7 +145,8 @@
 
 
     <!-- Subscribe Start -->
-    <div class="container-fluid bg-secondary my-5" style="background: url('{{ asset('public/web/img/Stay Updated section.jpg') }}') no-repeat center center/cover;">
+    <div class="container-fluid bg-secondary my-5"
+        style="background: url('{{ asset('public/web/img/Stay Updated section.jpg') }}') no-repeat center center/cover;">
         <div class="row justify-content-md-center py-5 px-xl-5">
             <div class="col-md-6 col-12 py-5">
                 <div class="text-center mb-2 pb-2">
@@ -160,7 +161,8 @@
                         <input type="text" name="email" class="form-control border-white p-4"
                             placeholder="Email Goes Here">
                         <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary px-4" style="background-color: #d72864;">Subscribe</button>
+                            <button type="submit" class="btn btn-primary px-4"
+                                style="background-color: #d72864;">Subscribe</button>
                         </div>
                     </div>
                 </form>
@@ -200,4 +202,28 @@
         <!-- Vendor End -->
     @endif
 
+@endsection
+@section('js')
+    <script>
+        $('.vendor-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: false,
+            autoplay: true,
+            autoplayTimeout: 2000, // سرعة الانتقال بين السلايدات (بالمللي ثانية)
+            autoplaySpeed: 800, // سرعة الأنيميشن نفسه
+            smartSpeed: 800, // سرعة الحركة عند السحب
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 4
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
+    </script>
 @endsection
