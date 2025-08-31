@@ -2,25 +2,23 @@
 @section('title', __('attributes.home'))
 @section('css')
     <style>
-        .carousel-nav {
+        .custom-indicators {
+            position: static;
+            margin-top: 20px;
             display: flex;
-            align-items: center;
             justify-content: center;
-            width: 45px;
-            height: 45px;
-            background: rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease-in-out;
         }
 
-        .carousel-nav span {
-            filter: invert(0%) brightness(0%);
-            width: 20px;
-            height: 20px;
+        .custom-indicators li {
+            background-color: gray;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin: 0 6px;
         }
 
-        .carousel-nav:hover {
-            background: rgba(0, 0, 0, 0.15);
-            transform: scale(1.1);
+        .custom-indicators .active {
+            background-color: #C73B65;
         }
     </style>
 @endsection
@@ -49,11 +47,12 @@
             <div class="col-lg-12">
                 @include('web.layouts.nav')
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
+
                     <div class="carousel-inner">
                         @foreach ($result['banners'] as $key => $banner)
-                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" style="height: 500px;">
-                                <img class="img-fluid" src="{{ App\Helpers\Image::getMediaUrl($banner, 'banners') }}"
-                                    alt="{{ $banner->title ?? 'Banner' }}" loading="lazy">
+                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" style="height: 550px;">
+                                <img class="img-fluid w-100" src="{{ App\Helpers\Image::getMediaUrl($banner, 'banners') }}"
+                                    alt="{{ $banner->title ?? 'Banner' }}" loading="lazy" style="object-fit: cover;">
 
                                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                     <div class="p-3" style="max-width: 700px;">
@@ -67,19 +66,14 @@
                         @endforeach
                     </div>
 
-                    <div class="d-flex justify-content-between align-items-center mt-5"
-                        style="max-width: 90%; margin: auto;">
-                        <a href="#header-carousel" data-slide="prev" class="carousel-nav rounded-circle">
-                            <span class="carousel-control-prev-icon"></span>
-                        </a>
-                        <a href="#header-carousel" data-slide="next" class="carousel-nav rounded-circle">
-                            <span class="carousel-control-next-icon"></span>
-                        </a>
-                    </div>
-
+                    <ol class="carousel-indicators custom-indicators mt-4 mb-5">
+                        @foreach ($result['banners'] as $key => $banner)
+                            <li data-target="#header-carousel" data-slide-to="{{ $key }}"
+                                class="{{ $key == 0 ? 'active' : '' }}"></li>
+                        @endforeach
+                    </ol>
 
                 </div>
-
             </div>
         </div>
     </div>
@@ -89,6 +83,9 @@
     @if ($result['categories']->count())
         <!-- Categories Start -->
         <div class="container-fluid pt-5">
+                        <div class="text-center mb-4">
+                <h2 class="section-title px-5"><span class="px-2">{{ __('attributes.categories') }} </span></h2>
+            </div>
             <div class="row px-xl-5 pb-3">
                 @foreach ($result['categories']->sortBy('position') as $categories)
                     @include('web.components.category-item')
