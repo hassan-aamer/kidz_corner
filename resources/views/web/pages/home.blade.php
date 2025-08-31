@@ -27,7 +27,7 @@
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         @foreach ($result['banners'] as $key => $banner)
-                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" style="height: 410px;">
+                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" style="height: 600px;">
                                 <img class="img-fluid" src="{{ App\Helpers\Image::getMediaUrl($banner, 'banners') }}"
                                     alt="{{ $banner->title ?? 'Banner' }}" loading="lazy">
 
@@ -43,7 +43,7 @@
                         @endforeach
                     </div>
 
-                    <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+                    {{-- <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
                         <div class="btn btn-dark" style="width: 45px; height: 45px;">
                             <span class="carousel-control-prev-icon mb-n2"></span>
                         </div>
@@ -52,25 +52,13 @@
                         <div class="btn btn-dark" style="width: 45px; height: 45px;">
                             <span class="carousel-control-next-icon mb-n2"></span>
                         </div>
-                    </a>
+                    </a> --}}
                 </div>
 
             </div>
         </div>
     </div>
     <!-- Navbar End -->
-
-        @if ($result['categories']->count())
-        <!-- Categories Start -->
-        <div class="container-fluid pt-5">
-            <div class="row px-xl-5 pb-3">
-                @foreach ($result['categories']->sortBy('position') as $categories)
-                    @include('web.components.category-item')
-                @endforeach
-            </div>
-        </div>
-        <!-- Categories End -->
-    @endif
 
     <!-- Featured Start -->
     <div class="container-fluid pt-5">
@@ -103,6 +91,17 @@
     </div>
     <!-- Featured End -->
 
+    @if ($result['categories']->count())
+        <!-- Categories Start -->
+        <div class="container-fluid pt-5">
+            <div class="row px-xl-5 pb-3">
+                @foreach ($result['categories']->sortBy('position') as $categories)
+                    @include('web.components.category-item')
+                @endforeach
+            </div>
+        </div>
+        <!-- Categories End -->
+    @endif
 
 
     <!-- Subscribe Start -->
