@@ -203,27 +203,3 @@
     @endif
 
 @endsection
-@section('js')
-    <script>
-        $('.vendor-carousel').owlCarousel({
-            loop: true,
-            margin: 10,
-            nav: false,
-            autoplay: true,
-            autoplayTimeout: 500, // سرعة الانتقال بين السلايدات (بالمللي ثانية)
-            autoplaySpeed: 800, // سرعة الأنيميشن نفسه
-            smartSpeed: 800, // سرعة الحركة عند السحب
-            responsive: {
-                0: {
-                    items: 2
-                },
-                600: {
-                    items: 4
-                },
-                1000: {
-                    items: 6
-                }
-            }
-        });
-    </script>
-@endsection
