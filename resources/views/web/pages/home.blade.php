@@ -51,7 +51,7 @@
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         @foreach ($result['banners'] as $key => $banner)
-                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" style="height: 550px;">
+                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" style="height: 500px;">
                                 <img class="img-fluid" src="{{ App\Helpers\Image::getMediaUrl($banner, 'banners') }}"
                                     alt="{{ $banner->title ?? 'Banner' }}" loading="lazy">
 
