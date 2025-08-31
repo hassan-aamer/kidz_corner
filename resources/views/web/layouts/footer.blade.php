@@ -1,6 +1,6 @@
     <!-- Footer Start -->
 <div class="container-fluid mt-5 pt-5"
-     style="background: url('{{ asset('web/img/fotter.jpg') }}') no-repeat center center/cover;">
+     style="background: url('{{ asset('public/web/img/fotter.jpg') }}') no-repeat center center/cover;">
     <div class="row px-xl-5 pt-5 text-white">
         <div class="col-lg-8 col-md-12 mb-5 pr-3 pr-xl-5">
             <a href="{{ route('home') }}" class="text-decoration-none">
