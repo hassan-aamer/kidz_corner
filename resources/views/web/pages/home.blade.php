@@ -79,6 +79,20 @@
     </div>
     <!-- Navbar End -->
 
+    @if ($result['categories']->count())
+        <!-- Categories Start -->
+        <div class="container-fluid pt-5">
+            <div class="text-center mb-4">
+                <h2 class="section-title px-5"><span class="px-2">{{ __('attributes.categories') }} </span></h2>
+            </div>
+            <div class="row px-xl-5 pb-3">
+                @foreach ($result['categories']->sortBy('position') as $categories)
+                    @include('web.components.category-item')
+                @endforeach
+            </div>
+        </div>
+        <!-- Categories End -->
+    @endif
 
     <div class="container-fluid mb-5">
         <div class="row px-xl-5">
@@ -97,22 +111,6 @@
             </div>
         </div>
     </div>
-
-
-    @if ($result['categories']->count())
-        <!-- Categories Start -->
-        <div class="container-fluid pt-5">
-            <div class="text-center mb-4">
-                <h2 class="section-title px-5"><span class="px-2">{{ __('attributes.categories') }} </span></h2>
-            </div>
-            <div class="row px-xl-5 pb-3">
-                @foreach ($result['categories']->sortBy('position') as $categories)
-                    @include('web.components.category-item')
-                @endforeach
-            </div>
-        </div>
-        <!-- Categories End -->
-    @endif
 
     <!-- Featured Start -->
     <div class="container-fluid pt-5">
