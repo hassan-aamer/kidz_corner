@@ -94,6 +94,22 @@
         <!-- Categories End -->
     @endif
 
+
+    @if ($result['products']->count())
+        <!-- Products Start -->
+        <div class="container-fluid pt-5">
+            <div class="text-center mb-4">
+                <h2 class="section-title px-5"><span class="px-2">Just Arrived</span></h2>
+            </div>
+            <div class="row px-xl-5 pb-3">
+                @foreach ($result['products']->sortBy('position') as $products)
+                    @include('web.components.product-item')
+                @endforeach
+            </div>
+        </div>
+        <!-- Products End -->
+    @endif
+
     <div class="container-fluid mb-5">
         <div class="row px-xl-5">
             <div class="col-lg-12">
@@ -111,6 +127,55 @@
             </div>
         </div>
     </div>
+
+
+
+
+    <!-- Subscribe Start -->
+    <div class="container-fluid bg-secondary my-5"
+        style="background: url('{{ asset('public/web/img/Stay Updated section.jpg') }}') no-repeat center center/cover;">
+        <div class="row justify-content-md-center py-5 px-xl-5">
+            <div class="col-md-6 col-12 py-5">
+                <div class="text-center mb-2 pb-2">
+                    {{-- <h2 class="section-title px-5 mb-3"><span class=" px-2">Stay Updated</span></h2> --}}
+                    <h2 style="color: whitesmoke;">Stay Updated</h2>
+                    {{-- <p>Amet lorem at rebum amet dolores. Elitr lorem dolor sed amet diam labore at justo ipsum eirmod duo
+                        labore labore.</p> --}}
+                </div>
+                <form action="{{ route('subscription') }}" method="POST">
+                    @csrf
+                    <div class="input-group">
+                        <input type="text" name="email" class="form-control border-white p-4"
+                            placeholder="Email Goes Here">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary px-4"
+                                style="background-color: #d72864;">Subscribe</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Subscribe End -->
+
+
+
+    @if ($result['sliders']->count())
+        <!-- Vendor Start -->
+        <div class="container-fluid py-5">
+            <div class="row px-xl-5">
+                <div class="col">
+                    <div class="owl-carousel vendor-carousel">
+                        @foreach ($result['sliders']->sortBy('position') as $sliders)
+                            @include('web.components.slider-item')
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Vendor End -->
+    @endif
+
 
     <!-- Featured Start -->
     <div class="container-fluid pt-5">
@@ -142,64 +207,5 @@
         </div>
     </div>
     <!-- Featured End -->
-
-
-    <!-- Subscribe Start -->
-    <div class="container-fluid bg-secondary my-5"
-        style="background: url('{{ asset('public/web/img/Stay Updated section.jpg') }}') no-repeat center center/cover;">
-        <div class="row justify-content-md-center py-5 px-xl-5">
-            <div class="col-md-6 col-12 py-5">
-                <div class="text-center mb-2 pb-2">
-                    {{-- <h2 class="section-title px-5 mb-3"><span class=" px-2">Stay Updated</span></h2> --}}
-                    <h2 style="color: whitesmoke;">Stay Updated</h2>
-                    {{-- <p>Amet lorem at rebum amet dolores. Elitr lorem dolor sed amet diam labore at justo ipsum eirmod duo
-                        labore labore.</p> --}}
-                </div>
-                <form action="{{ route('subscription') }}" method="POST">
-                    @csrf
-                    <div class="input-group">
-                        <input type="text" name="email" class="form-control border-white p-4"
-                            placeholder="Email Goes Here">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary px-4"
-                                style="background-color: #d72864;">Subscribe</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- Subscribe End -->
-
-    @if ($result['products']->count())
-        <!-- Products Start -->
-        <div class="container-fluid pt-5">
-            <div class="text-center mb-4">
-                <h2 class="section-title px-5"><span class="px-2">Just Arrived</span></h2>
-            </div>
-            <div class="row px-xl-5 pb-3">
-                @foreach ($result['products']->sortBy('position') as $products)
-                    @include('web.components.product-item')
-                @endforeach
-            </div>
-        </div>
-        <!-- Products End -->
-    @endif
-
-    @if ($result['sliders']->count())
-        <!-- Vendor Start -->
-        <div class="container-fluid py-5">
-            <div class="row px-xl-5">
-                <div class="col">
-                    <div class="owl-carousel vendor-carousel">
-                        @foreach ($result['sliders']->sortBy('position') as $sliders)
-                            @include('web.components.slider-item')
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Vendor End -->
-    @endif
 
 @endsection
