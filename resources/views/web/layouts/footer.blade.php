@@ -5,7 +5,7 @@
             <div class="col-lg-8 col-md-12 mb-5 pr-3 pr-xl-5">
                 <a href="{{ route('home') }}" class="text-decoration-none">
                     <img class="mb-4 display-5 font-weight-semi-bold"
-                        src="{{ App\Helpers\Image::getMediaUrl(App\Models\Setting::first(), 'logo') }}"
+                        src="{{ asset('public/web/img/logo-11.png') }}"
                         alt="{{ setting('name') ?? '' }}" height="70" width="170">
                 </a>
                 @if (setting('address'))
