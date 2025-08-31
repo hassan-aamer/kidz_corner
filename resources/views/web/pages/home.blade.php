@@ -77,6 +77,9 @@
             </div>
         </div>
     </div>
+    <!-- Navbar End -->
+
+
     <div class="container-fluid mb-5">
         <div class="row px-xl-5">
             <div class="col-lg-12">
@@ -84,7 +87,7 @@
 
                     <div class="carousel-item active" style="height: 550px;">
                         <video class="w-100 h-100" controls autoplay muted loop style="object-fit: cover;">
-                            <source src="{{ asset('v.mp4') }}" type="video/mp4">
+                            <source src="{{ asset('video.mp4') }}" type="video/mp4">
                             متصفحك لا يدعم تشغيل الفيديو.
                         </video>
                     </div>
@@ -94,7 +97,6 @@
             </div>
         </div>
     </div>
-    <!-- Navbar End -->
 
 
     @if ($result['categories']->count())
