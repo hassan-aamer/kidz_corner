@@ -67,7 +67,7 @@
                                             <div class="input-group quantity mx-auto" style="width: 120px;">
                                                 <div class="input-group-btn">
                                                     <button type="submit" name="action" value="decrement"
-                                                        class="btn btn-sm btn-primary">
+                                                        class="btn btn-sm btn-primary" style="background-color: #d72864;">
                                                         <i class="fa fa-minus"></i>
                                                     </button>
                                                 </div>
@@ -78,7 +78,7 @@
 
                                                 <div class="input-group-btn">
                                                     <button type="submit" name="action" value="increment"
-                                                        class="btn btn-sm btn-primary">
+                                                        class="btn btn-sm btn-primary" style="background-color: #d72864;">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
                                                 </div>
@@ -91,7 +91,7 @@
                                             style="display:inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-primary">
+                                            <button type="submit" class="btn btn-sm btn-primary" style="background-color: #d72864;">
                                                 <i class="fa fa-times"></i>
                                             </button>
                                         </form>

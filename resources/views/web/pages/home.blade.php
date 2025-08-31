@@ -160,7 +160,7 @@
                         <input type="text" name="email" class="form-control border-white p-4"
                             placeholder="Email Goes Here">
                         <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary px-4">Subscribe</button>
+                            <button type="submit" class="btn btn-primary px-4" style="background-color: #d72864;">Subscribe</button>
                         </div>
                     </div>
                 </form>

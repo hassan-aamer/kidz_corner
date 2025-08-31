@@ -137,7 +137,7 @@
                             </div> --}}
                         </div>
                         <div class="card-footer border-secondary bg-transparent">
-                            <button type="submit"
+                            <button type="submit" style="background-color: #d72864;"
                                 class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place
                                 Order</button>
                         </div>
