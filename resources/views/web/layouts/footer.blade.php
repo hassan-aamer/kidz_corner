@@ -51,4 +51,7 @@
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-primary back-to-top" style="background-color: #d72864;"><i class="fa fa-angle-double-up"></i></a>
+<a href="#" class="btn btn-primary back-to-top" style="background-color: #d72864; left: 25px; right: auto;">
+    <i class="fa fa-angle-double-up"></i>
+</a>
+
