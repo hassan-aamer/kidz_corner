@@ -56,7 +56,8 @@
                                     <td class="align-middle"><img
                                             src="{{ App\Helpers\Image::getMediaUrl($item->product, 'products') }}"
                                             alt="" style="width: 50px;" loading="lazy">
-                                        {{ $item->product->title ?? '' }}</td>
+                                        {{-- {{ $item->product->title ?? '' }} --}}
+                                    </td>
                                     <td class="align-middle">EGP {{ $item->product->price ?? '' }}</td>
                                     <td class="align-middle">
                                         <form action="{{ route('cart.update', $item->id) }}" method="POST"

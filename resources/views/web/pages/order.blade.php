@@ -91,7 +91,8 @@
                             <h5 class="font-weight-medium mb-3">Products</h5>
                             @foreach ($cart->items as $item)
                                 <div class="d-flex justify-content-between">
-                                    <p>{{ $item->product->title ?? '' }}</p>
+                                    <p><img src="{{ App\Helpers\Image::getMediaUrl($item->product, 'products') }}"
+                                            alt="" style="width: 50px;" loading="lazy"></p>
                                     <p>EGP {{ $item->product->price ?? '' }}</p>
                                 </div>
                             @endforeach
@@ -125,7 +126,8 @@
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" name="payment_method"
                                         value="instapay" id="banktransfer">
-                                    <label class="custom-control-label" for="banktransfer">Insta Pay ( 0109 2476133 )</label>
+                                    <label class="custom-control-label" for="banktransfer">Insta Pay ( 0109 2476133
+                                        )</label>
                                 </div>
                             </div>
                             {{-- <div class="">
@@ -168,7 +170,7 @@
                                 '<option value="" disabled selected>Select Area</option>');
                             $.each(data, function(key, value) {
                                 var areaTitle = value.title[locale] || value.title[
-                                'en'];
+                                    'en'];
                                 $('#areaSelect').append('<option value="' + value.id +
                                     '" data-shipping="' + value.shipping_price +
                                     '">' + areaTitle + '</option>');
