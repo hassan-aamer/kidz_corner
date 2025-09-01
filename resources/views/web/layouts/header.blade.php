@@ -58,15 +58,15 @@
                     </div>
                 </form>
             </div>
-<div class="col-lg-3 col-6 text-right cart-fixed">
-<a href="{{ route('cart.index') }}" class="cart-float-btn">
-    <i class="fas fa-shopping-cart"></i>
-    @if (cartItemCount())
-        <span class="cart-badge">{{ cartItemCount() }}</span>
-    @endif
-</a>
 
-</div>
+            <div class="col-lg-3 col-6 text-right cart-fixed">
+                <a href="{{ route('cart.index') }}" class="cart-float-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    @if (cartItemCount())
+                        <span class="cart-badge">{{ cartItemCount() }}</span>
+                    @endif
+                </a>
+            </div>
 
         </div>
     </div>

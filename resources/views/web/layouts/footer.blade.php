@@ -4,8 +4,7 @@
         <div class="row px-xl-5 pt-5 text-white">
             <div class="col-lg-8 col-md-12 mb-5 pr-3 pr-xl-5">
                 <a href="{{ route('home') }}" class="text-decoration-none">
-                    <img class="mb-4 display-5 font-weight-semi-bold"
-                        src="{{ asset('public/web/img/logo55.png') }}"
+                    <img class="mb-4 display-5 font-weight-semi-bold" src="{{ asset('public/web/img/logo55.png') }}"
                         alt="{{ setting('name') ?? '' }}" height="70" width="170">
                 </a>
                 @if (setting('address'))
@@ -51,7 +50,6 @@
 
 
     <!-- Back to Top -->
-<a href="#" class="btn btn-primary back-to-top" style="background-color: #d72864; left: 25px; right: auto;">
-    <i class="fa fa-angle-double-up"></i>
-</a>
-
+    <a href="#" class="btn btn-primary back-to-top" style="background-color: #d72864; left: 25px; right: auto;">
+        <i class="fa fa-angle-double-up"></i>
+    </a>
