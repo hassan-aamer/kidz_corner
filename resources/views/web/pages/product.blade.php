@@ -39,7 +39,7 @@
         <div class="row px-xl-5">
             @if ($result['product']->getMedia('product_collection')->count())
                 <div class="col-lg-5 pb-5">
-                    <div id="product-carousel" class="carousel slide" data-ride="carousel">
+                    <div id="product-carousel" class="carousel slide" data-ride="carousel" data-interval="2000">
 
                         {{-- Indicators --}}
                         <ol class="carousel-indicators">
@@ -92,23 +92,6 @@
                             Cart</button>
                     </form>
                 </div>
-                {{-- <div class="d-flex pt-2">
-                    <p class="text-dark font-weight-medium mb-0 mr-2">Share on:</p>
-                    <div class="d-inline-flex">
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-pinterest"></i>
-                        </a>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </div>
