@@ -53,7 +53,7 @@
                         <div class="carousel-inner border">
                             @foreach ($result['product']->getMedia('product_collection') as $key => $media)
                                 <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-                                    <img class="w-100 h-100" src="{{ $media->getUrl() }}" alt="Product Image" loading="lazy">
+                                    <img class="w-100 h-100" src="{{ $media->getUrl() }}" alt="Product Image" loading="lazy"  width="300" height="300">
                                 </div>
                             @endforeach
                         </div>
