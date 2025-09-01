@@ -129,8 +129,6 @@
     </div>
 
 
-
-
     <!-- Subscribe Start -->
     <div class="container-fluid bg-secondary my-5"
         style="background: url('{{ asset('public/web/img/Stay Updated section.jpg') }}') no-repeat center center/cover;">
@@ -157,7 +155,6 @@
         </div>
     </div>
     <!-- Subscribe End -->
-
 
 
     @if ($result['sliders']->count())
