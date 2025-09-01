@@ -17,6 +17,18 @@
                 @if (setting('phone'))
                     <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ setting('phone') ?? '' }}</p>
                 @endif
+                <div class="mt-3">
+                    {{-- Facebook --}}
+                    <a href="{{ setting('facebook') ?? '#' }}" target="_blank" class="text-primary mr-3">
+                        <i class="fab fa-facebook-f fa-lg"></i>
+                    </a>
+
+                    {{-- Instagram --}}
+                    <a href="{{ setting('instagram') ?? '#' }}" target="_blank" class="text-primary">
+                        <i class="fab fa-instagram fa-lg"></i>
+                    </a>
+                </div>
+
             </div>
             <div class="col-lg-4 col-md-12">
                 <div class="row">
