@@ -21,6 +21,10 @@
 <script src="{{ asset('assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}" defer></script>
 <script src="{{ asset('assets/libs/spectrum-colorpicker2/spectrum.min.js') }}" defer></script>
 <script src="{{ asset('assets/js/pages/form-advanced.init.js') }}" defer></script>
+{{-- hhhhhhhhh --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" async></script>
+{{-- hhhhhhh --}}
 @include('admin.layouts.sweetalert')
 @yield('js')
 

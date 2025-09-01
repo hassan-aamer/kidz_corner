@@ -12,6 +12,9 @@
     <!-- Libraries Stylesheet -->
     <link href="{{ asset('web/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('web/css/main.css') }}" rel="stylesheet">
     <style>
