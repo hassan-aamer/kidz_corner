@@ -39,7 +39,7 @@
         <div class="row px-xl-5">
             @if ($result['product']->getMedia('product_collection')->count())
                 <div class="col-lg-5 pb-5">
-                    <div id="product-carousel" class="carousel slide" data-ride="carousel" data-interval="2000">
+                    <div id="product-carousel" class="carousel slide" data-ride="carousel" data-interval="3000">
 
                         {{-- Indicators --}}
                         <ol class="carousel-indicators">

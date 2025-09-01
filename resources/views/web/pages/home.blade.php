@@ -46,7 +46,7 @@
             </div> --}}
             <div class="col-lg-12">
                 @include('web.layouts.nav')
-                <div id="header-carousel" class="carousel slide" data-ride="carousel" data-interval="1000">
+                <div id="header-carousel" class="carousel slide" data-ride="carousel" data-interval="2000">
 
                     <div class="carousel-inner">
                         @foreach ($result['banners'] as $key => $banner)
