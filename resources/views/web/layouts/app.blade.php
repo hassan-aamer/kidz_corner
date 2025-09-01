@@ -5,7 +5,7 @@
     @include('web.layouts.head')
 </head>
 
-<body>
+<body style="font-family: 'Cairo', sans-serif">
     @include('web.layouts.header')
     @yield('content')
     @include('web.layouts.footer')
