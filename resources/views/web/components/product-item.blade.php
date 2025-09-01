@@ -2,7 +2,7 @@
                             <div class="card product-item border-0 mb-4">
                                 <div
                                     class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                    <img class="img-fluid w-100"
+                                    <img class="img-fluid w-100 lazyload"
                                         src="{{ App\Helpers\Image::getMediaUrl($products, 'products') }}"
                                         alt="{{ $products->title ?? '' }}" loading="lazy"  width="300" height="300">
                                 </div>
