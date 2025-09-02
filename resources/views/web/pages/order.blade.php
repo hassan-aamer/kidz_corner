@@ -104,11 +104,20 @@
                         </div>
                         <div class="card-footer border-secondary bg-transparent">
                             <div class="d-flex justify-content-between mt-2">
-                                <h5 class="font-weight-bold">Total</h5>
-                                <h5 class="font-weight-bold">EGP {{ $total }}</h5>
-                                <input type="hidden" name="total" value="{{ $total }}">
+                                <h5 class="font-weight-bold">Subtotal</h5>
+                                <h5 class="font-weight-bold" id="subtotal">EGP {{ $total }}</h5>
+                                <input type="hidden" id="subtotalInput" value="{{ $total }}">
                             </div>
                         </div>
+
+                        <div class="card-footer border-secondary bg-transparent">
+                            <div class="d-flex justify-content-between mt-2">
+                                <h5 class="font-weight-bold">Total</h5>
+                                <h5 class="font-weight-bold" id="totalPrice">EGP {{ $total }}</h5>
+                                <input type="hidden" name="total" id="totalInput" value="{{ $total }}">
+                            </div>
+                        </div>
+
                     </div>
                     <div class="card border-secondary mb-5">
                         <div class="card-header bg-secondary border-0">
@@ -117,8 +126,8 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" value="cash" name="payment_method"
-                                        id="directcheck" required>
+                                    <input type="radio" class="custom-control-input" value="cash"
+                                        name="payment_method" id="directcheck" required>
                                     <label class="custom-control-label" for="directcheck">Cash on delivery</label>
                                 </div>
                             </div>
@@ -126,8 +135,16 @@
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" name="payment_method"
                                         value="instapay" id="banktransfer">
-                                    <label class="custom-control-label" for="banktransfer">Insta Pay ( 0109 2476133
-                                        )</label>
+                                    <label class="custom-control-label" for="banktransfer">Insta Pay</label>
+                                </div>
+                                <div class="ml-4 mt-3 p-3 border rounded bg-light"
+                                    style="border-color:#d72864 !important;">
+                                    <strong class="text-dark">Payment Instructions:</strong><br>
+                                    <span class="text-muted small" style="font-style: italic;">
+                                        • Please transfer the total order amount to: <b>0109 2476133</b><br>
+                                        • After completing the payment, kindly take a screenshot of the transaction
+                                        and send it via WhatsApp to the same number for verification.
+                                    </span>
                                 </div>
                             </div>
                             {{-- <div class="">
@@ -153,9 +170,20 @@
 @endsection
 @section('js')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
         $(document).ready(function() {
             var locale = "{{ app()->getLocale() }}";
+
+            function updateTotal() {
+                let subtotal = parseFloat($('#subtotalInput').val()) || 0;
+                let shippingText = $('#shippingPrice').text().replace('EGP', '').trim();
+                let shipping = parseFloat(shippingText) || 0;
+                let total = subtotal + shipping;
+
+                $('#totalPrice').text('EGP ' + total);
+                $('#totalInput').val(total);
+            }
 
             $('#citySelect').on('change', function() {
                 var cityId = $(this).val();
@@ -173,7 +201,8 @@
                                     'en'];
                                 $('#areaSelect').append('<option value="' + value.id +
                                     '" data-shipping="' + value.shipping_price +
-                                    '">' + areaTitle + '</option>');
+                                    '">' +
+                                    areaTitle + '</option>');
                             });
                         }
                     });
@@ -186,22 +215,27 @@
                         },
                         success: function(response) {
                             $('#shippingPrice').text('EGP ' + response.shipping_price);
+                            updateTotal();
                         },
                         error: function() {
                             $('#shippingPrice').text('EGP 0');
+                            updateTotal();
                         }
                     });
                 } else {
                     $('#areaSelect').empty();
                     $('#shippingPrice').text('EGP 0');
+                    updateTotal();
                 }
             });
 
             $('#areaSelect').on('change', function() {
                 var shipping = $(this).find(':selected').data('shipping') || 0;
                 $('#shippingPrice').text('EGP ' + shipping);
+                updateTotal();
             });
+
+            updateTotal();
         });
     </script>
-
 @endsection
