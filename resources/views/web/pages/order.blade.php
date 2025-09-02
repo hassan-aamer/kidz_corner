@@ -48,12 +48,17 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>E-mail</label>
-                                <input class="form-control" type="text" required name="email"
+                                <input class="form-control" type="text" name="email"
                                     placeholder="example@email.com">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Mobile No</label>
+                                <label>Phone</label>
                                 <input class="form-control" type="text" required name="phone"
+                                    placeholder="+123 456 789">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Another phone</label>
+                                <input class="form-control" type="text" name="another_phone"
                                     placeholder="+123 456 789">
                             </div>
                             <div class="col-md-6 form-group">
@@ -137,8 +142,8 @@
                                         value="instapay" id="banktransfer">
                                     <label class="custom-control-label" for="banktransfer">Insta Pay</label>
                                 </div>
-                                <div class="ml-4 mt-3 p-3 border rounded bg-light"
-                                    style="border-color:#d72864 !important;">
+                                <div id="instapayBox" class="ml-4 mt-3 p-3 border rounded bg-light"
+                                    style="border-color:#d72864 !important; display: none;">
                                     <strong class="text-dark">Payment Instructions:</strong><br>
                                     <span class="text-muted small" style="font-style: italic;">
                                         • Please transfer the total order amount to: <b>0109 2476133</b><br>
@@ -147,6 +152,7 @@
                                     </span>
                                 </div>
                             </div>
+
                             {{-- <div class="">
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" name="payment_method" value="visa"
@@ -238,4 +244,16 @@
             updateTotal();
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('input[name="payment_method"]').on('change', function() {
+                if ($(this).val() === 'instapay') {
+                    $('#instapayBox').show();
+                } else {
+                    $('#instapayBox').hide();
+                }
+            });
+        });
+    </script>
+
 @endsection
