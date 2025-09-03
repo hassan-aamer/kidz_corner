@@ -47,7 +47,7 @@
                                 <input class="form-control" type="text" required name="full_name" placeholder="John Doe">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>E-mail</label>
+                                <label>E-mail (potional)</label>
                                 <input class="form-control" type="text" name="email"
                                     placeholder="example@email.com">
                             </div>
@@ -57,7 +57,7 @@
                                     placeholder="+123 456 789">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Another phone</label>
+                                <label>Another phone (potional)</label>
                                 <input class="form-control" type="text" name="another_phone"
                                     placeholder="+123 456 789">
                             </div>
@@ -101,24 +101,30 @@
                                     <p>EGP {{ $item->product->price ?? '' }}</p>
                                 </div>
                             @endforeach
-                            <hr class="mt-0">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="font-weight-medium">Shipping</h6>
+                            {{-- <hr class="mt-0"> --}}
+                            {{-- <div class="d-flex justify-content-between">
+                                <h6 class="font-weight-medium">Shipping (Kidz Corner Delivery - Table Rate)</h6>
                                 <h6 class="font-weight-medium" id="shippingPrice">EGP 0</h6>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="card-footer border-secondary bg-transparent">
                             <div class="d-flex justify-content-between mt-2">
-                                <h5 class="font-weight-bold">Subtotal</h5>
-                                <h5 class="font-weight-bold" id="subtotal">EGP {{ $total }}</h5>
+                                <h6 class="font-weight-bold">Subtotal</h6>
+                                <h6 class="font-weight-bold" id="subtotal">EGP {{ $total }}</h6>
                                 <input type="hidden" id="subtotalInput" value="{{ $total }}">
+                            </div>
+                        </div>
+                        <div class="card-footer border-secondary bg-transparent">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="font-weight-bold">Shipping (Kidz Corner Delivery - Table Rate)</h6>
+                                <h6 class="font-weight-bold" id="shippingPrice">EGP 0</h6>
                             </div>
                         </div>
 
                         <div class="card-footer border-secondary bg-transparent">
                             <div class="d-flex justify-content-between mt-2">
-                                <h5 class="font-weight-bold">Total</h5>
-                                <h5 class="font-weight-bold" id="totalPrice">EGP {{ $total }}</h5>
+                                <h6 class="font-weight-bold">Grand Total</h6>
+                                <h6 class="font-weight-bold" id="totalPrice">EGP {{ $total }}</h6>
                                 <input type="hidden" name="total" id="totalInput" value="{{ $total }}">
                             </div>
                         </div>
