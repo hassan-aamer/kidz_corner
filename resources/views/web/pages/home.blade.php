@@ -157,23 +157,6 @@
     <!-- Subscribe End -->
 
 
-    @if ($result['sliders']->count())
-        <!-- Vendor Start -->
-        <div class="container-fluid py-5">
-            <div class="row px-xl-5">
-                <div class="col">
-                    <div class="owl-carousel vendor-carousel">
-                        @foreach ($result['sliders']->sortBy('position') as $sliders)
-                            @include('web.components.slider-item')
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Vendor End -->
-    @endif
-
-
     <!-- Featured Start -->
     <div class="container-fluid pt-5">
         <div class="row px-xl-5 pb-3">
@@ -204,5 +187,23 @@
         </div>
     </div>
     <!-- Featured End -->
+
+
+    @if ($result['sliders']->count())
+        <!-- Vendor Start -->
+        <div class="container-fluid py-5">
+            <div class="row px-xl-5">
+                <div class="col">
+                    <div class="owl-carousel vendor-carousel">
+                        @foreach ($result['sliders']->sortBy('position') as $sliders)
+                            @include('web.components.slider-item')
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Vendor End -->
+    @endif
+
 
 @endsection
