@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Web;
 
 use App\Models\Cart;
+use App\Models\City;
 use App\Models\Order;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\City;
-use App\Services\Categories\CategoryService;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Services\Categories\CategoryService;
 
 class OrderController extends Controller
 {
@@ -102,6 +103,12 @@ class OrderController extends Controller
             $cart->delete();
 
             DB::commit();
+
+            if ($order->email) {
+                Mail::send(new \App\Mail\OrderCreatedCustomer($order));
+            }
+
+            Mail::send(new \App\Mail\OrderCreatedAdmin($order));
 
             return redirect()->route('home', $order->id)
                 ->with('success', 'The order was created successfully 🎉');
