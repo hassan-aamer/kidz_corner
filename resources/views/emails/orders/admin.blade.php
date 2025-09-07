@@ -1,11 +1,11 @@
 @component('mail::message')
-    📦 New Order Notification
+    New Order Notification
 
-    Hello Admin 👋,
+    Hello Admin,
 
     A new order has been placed with the following details:
 
-    👤 Customer Information
+    Customer Information
     Name: {{ $order->full_name }}
     Phone: {{ $order->phone }}
     @if ($order->another_phone)
@@ -18,17 +18,17 @@
     City: {{ $order->city->title ?? '-' }}
     Area: {{ $order->area->title ?? '-' }}
 
-    🛒 Order Details
+    Order Details
     @foreach ($order->items as $item)
         Product: {{ $item->product->title ?? 'N/A' }}
         Quantity: {{ $item->quantity }} × {{ number_format($item->price, 2) }} EGP
     @endforeach
 
-    💰 Summary
+    Summary
     Shipping: {{ number_format($order->shipping_price, 2) }} EGP
     Total: {{ number_format($order->total, 2) }} EGP
 
-    ⚡️ Order Status
+    Order Status
     Payment Method: {{ ucfirst($order->payment_method) }}
     Payment Status: {{ ucfirst($order->payment_status) }}
     Status: {{ ucfirst($order->status) }}

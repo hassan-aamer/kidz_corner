@@ -20,9 +20,9 @@ class OrderCreatedCustomer extends Mailable
 
     public function build()
     {
-        return $this->from('info@kidzcorner.shop', 'KidzCorner 🧸')
+        return $this->from('info@kidzcorner.shop', 'KidzCorner')
                     ->to($this->order->email)
-                    ->subject('✅ Your Order #' . $this->order->id . ' has been received')
+                    ->subject('Your Order #' . $this->order->id . ' has been received')
                     ->markdown('emails.orders.customer');
     }
 }

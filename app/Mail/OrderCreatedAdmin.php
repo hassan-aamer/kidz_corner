@@ -20,9 +20,9 @@ class OrderCreatedAdmin extends Mailable
 
     public function build()
     {
-        return $this->from('info@kidzcorner.shop', 'KidzCorner 🧸')
+        return $this->from('info@kidzcorner.shop', 'KidzCorner')
                     ->to('info@kidzcorner.shop')
-                    ->subject('📦 New Order Created #' . $this->order->id)
+                    ->subject('New Order Created #' . $this->order->id)
                     ->markdown('emails.orders.admin');
     }
 }
