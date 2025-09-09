@@ -1,21 +1,2 @@
 User-agent: *
-Disallow: /admin/
-Disallow: /includes/
-Disallow: /config/
-Disallow: /backup/
-Disallow: /tmp/
-Disallow: /private/
-Disallow: /logs/
-Disallow: /cgi-bin/
-Disallow: /*.php$
-Disallow: /*.inc$
-Disallow: /*.sql$
-Disallow: /*.ini$
-Disallow: /*.env$
-Disallow: /?*
-
-Allow: /assets/css/
-Allow: /assets/js/
-Allow: /assets/images/
-
-Sitemap: https://kidzcorner.shop/public/sitemap.xml
+Disallow:
