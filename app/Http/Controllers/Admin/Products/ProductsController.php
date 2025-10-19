@@ -38,6 +38,7 @@ class ProductsController extends Controller
     {
         try {
             $this->service->store($request->validated());
+            Cache::flush();
             return redirect()->route('admin.products.index')->with('success', __('attributes.OperationCompletedSuccessfully'));
         } catch (\Throwable $e) {
             return redirect()->back()->with('error', 'Failed to create product: ' . $e->getMessage());
@@ -55,6 +56,7 @@ class ProductsController extends Controller
     {
         try {
             $this->service->update($request->validated(), $id);
+            Cache::flush();
             return redirect()->route('admin.products.index')->with('success', __('attributes.OperationCompletedSuccessfully'));
         } catch (\Throwable $e) {
             return redirect()->back()->with('error', 'Failed to update product: ' . $e->getMessage());
