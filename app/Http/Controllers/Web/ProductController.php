@@ -29,7 +29,7 @@ class ProductController extends Controller
         $cacheKey = "products_page_{$page}";
 
         $result = [
-            'products' => Cache::remember($cacheKey, now()->addHours(1), function () {
+            'products' => Cache::remember($cacheKey, now()->addHours(3), function () {
                 return Product::where('active', 1)->orderByDesc('id')->paginate(12);
             }),
         ];
@@ -46,7 +46,7 @@ class ProductController extends Controller
         $cacheKey = "products_category_{$categoryId}_page_{$page}";
 
         $result = [
-            'products' => Cache::remember($cacheKey, now()->addHours(1), function () use ($categoryId) {
+            'products' => Cache::remember($cacheKey, now()->addHours(3), function () use ($categoryId) {
                 return Product::where('active', 1)
                     ->where('category_id', $categoryId)
                     ->orderByDesc('id')
@@ -68,7 +68,7 @@ class ProductController extends Controller
         $cacheKey = "products_search_{$search}_page_{$page}";
 
         $result = [
-            'products' => Cache::remember($cacheKey, now()->addHours(1), function () use ($search) {
+            'products' => Cache::remember($cacheKey, now()->addHours(3), function () use ($search) {
                 return Product::where('active', 1)
                     ->where(function ($query) use ($search) {
                         $query->where('title', 'like', "%{$search}%")
