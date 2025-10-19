@@ -104,11 +104,11 @@ class OrderController extends Controller
 
             DB::commit();
 
-            if ($order->email) {
-                Mail::send(new \App\Mail\OrderCreatedCustomer($order));
-            }
+            // if ($order->email) {
+            //     Mail::send(new \App\Mail\OrderCreatedCustomer($order));
+            // }
 
-            Mail::send(new \App\Mail\OrderCreatedAdmin($order));
+            // Mail::send(new \App\Mail\OrderCreatedAdmin($order));
 
             return redirect()->route('home', $order->id)
                 ->with('success', 'The order was created successfully 🎉');
