@@ -110,7 +110,7 @@ class OrderController extends Controller
 
             // Mail::send(new \App\Mail\OrderCreatedAdmin($order));
 
-            return redirect()->route('home', $order->id)
+            return redirect()->route('thanks', $order->id)
                 ->with('success', 'The order was created successfully 🎉');
         } catch (\Throwable $e) {
             DB::rollBack();

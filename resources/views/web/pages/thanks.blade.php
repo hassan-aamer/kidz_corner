@@ -28,11 +28,10 @@
         <div class="thank-you-content"
             style="max-width: 800px; margin: 0 auto 60px; background: white; border-radius: 15px; padding: 40px;  text-align: center;">
             <div class="success-icon" style="font-size: 5rem; color: #28a745; margin-bottom: 20px;">✓</div>
-            <h2 style="color: #2c3e50; margin-bottom: 20px; font-size: 1.8rem;">تم تأكيد طلبك بنجاح!</h2>
-            <p style="color: #555; margin-bottom: 25px; font-size: 1.1rem;">نشكرك على ثقتك بنا. لقد تم استلام طلبك وسنقوم
-                بتحديثك على بريدك الإلكتروني برقم التتبع فور شحن الطلب.</p>
+            <h2 style="color: #2c3e50; margin-bottom: 20px; font-size: 1.8rem;">Your order has been successfully confirmed!</h2>
+            {{-- <p style="color: #555; margin-bottom: 25px; font-size: 1.1rem;">Thank you for your trust in us. Your order has been received and we will update you via email with the tracking number as soon as the order is shipped.</p> --}}
 
-            <div class="order-details"
+            {{-- <div class="order-details"
                 style="background: #f8f9fa; border-radius: 10px; padding: 25px; margin: 30px 0; text-align: right;">
                 <h3 style="color: #2c3e50; margin-bottom: 15px; border-bottom: 1px solid #eaeaea; padding-bottom: 10px;">
                     تفاصيل الطلب</h3>
@@ -58,7 +57,7 @@
                         <p style="margin: 0; font-weight: 600; color: #333;">بطاقة ائتمان</p>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             {{-- <p style="color: #555; margin-bottom: 25px; font-size: 1.1rem;">سيتم إرسال رسالة تأكيد إلى بريدك الإلكتروني
                 المسجل مع تفاصيل الطلب ورقم التتبع.</p> --}}
@@ -66,9 +65,8 @@
             <div class="action-buttons"
                 style="display: flex; justify-content: center; gap: 15px; margin-top: 30px; flex-wrap: wrap;">
 
-                <a href="{{ route('cart.index') }}" class="btn btn-outline"
-                    style="padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; display: inline-block; border: none; cursor: pointer; font-size: 1rem; background-color: transparent; color: #C73B65; border: 2px solid #C73B65;">مواصلة
-                    التسوق</a>
+                <a href="{{ route('products') }}" class="btn btn-outline"
+                    style="padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; display: inline-block; border: none; cursor: pointer; font-size: 1rem; background-color: transparent; color: #C73B65; border: 2px solid #C73B65;">Continue shopping</a>
             </div>
         </div>
     </div>
