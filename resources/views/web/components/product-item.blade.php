@@ -1,6 +1,6 @@
                         <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                             <div class="card product-item border-0 mb-4">
-                                <a href="{{ route('product.details', $products->id) }}">
+                                <a href="{{ route('product.details', ['id'=>$products->id,'title'=>Str::slug($products->title)]) }}">
                                     <div
                                         class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                         <img class="img-fluid w-100 lazyload"
@@ -16,7 +16,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer d-flex justify-content-between bg-light border">
-                                    <a href="{{ route('product.details', $products->id) }}"
+                                    <a href="{{ route('product.details', ['id'=>$products->id,'title'=>Str::slug($products->title)]) }}"
                                         class="btn btn-sm text-dark p-0"><i
                                             class="fas fa-eye text-primary mr-1"></i>View Detail</a>
                                     <form action="{{ route('cart.add', $products->id) }}" method="POST"
