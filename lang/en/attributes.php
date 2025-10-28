@@ -120,6 +120,7 @@ return [
     'question' => 'Question',
     'answer' => 'Answer',
     'area' => 'Area',
+    'thanks' => 'Thanks',
     'TypeMessage' => 'Type your message here..',
     'subscriptions' => 'Subscriptions',
     'subscription' => 'Subscribe to our newsletter',

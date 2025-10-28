@@ -21,4 +21,9 @@ Route::post('/order/store',         [App\Http\Controllers\Web\OrderController::c
 Route::get('/get-city-shipping',    [App\Http\Controllers\Web\OrderController::class, 'getShipping'])->name('getCityShipping');
 Route::get('/get-areas/{city}',     [App\Http\Controllers\Web\OrderController::class, 'getAreas']);
 
+Route::get('/thanks', function () {
+    return view('web.pages.thanks');
+})->name('thanks');
+
+
 
