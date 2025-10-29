@@ -11,6 +11,7 @@ return [
     'E-Commerce' => 'E-Commerce',
     'dashboard' => 'Dashboard',
     'total' => 'Total',
+    'order_details' => 'Order Details',
     'active' => 'Active',
     'marketing' => 'Marketing',
     'development' => 'Development',

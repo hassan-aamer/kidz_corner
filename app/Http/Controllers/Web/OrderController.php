@@ -117,4 +117,11 @@ class OrderController extends Controller
             throw $e;
         }
     }
+
+
+    public function thanks($orderId)
+    {
+        $order = Order::findOrFail($orderId);
+        return view('web.pages.thanks', compact('order'));
+    }
 }

@@ -29,35 +29,35 @@
             style="max-width: 800px; margin: 0 auto 60px; background: white; border-radius: 15px; padding: 40px;  text-align: center;">
             <div class="success-icon" style="font-size: 5rem; color: #28a745; margin-bottom: 20px;">✓</div>
             <h2 style="color: #2c3e50; margin-bottom: 20px; font-size: 1.8rem;">Your order has been successfully confirmed!</h2>
-            {{-- <p style="color: #555; margin-bottom: 25px; font-size: 1.1rem;">Thank you for your trust in us. Your order has been received and we will update you via email with the tracking number as soon as the order is shipped.</p> --}}
+            <p style="color: #555; margin-bottom: 25px; font-size: 1.1rem;">Thank you for your trust in us. Your order has been received </p>
 
-            {{-- <div class="order-details"
-                style="background: #f8f9fa; border-radius: 10px; padding: 25px; margin: 30px 0; text-align: right;">
+            <div class="order-details"
+                style="background: #f8f9fa; border-radius: 10px; padding: 25px; margin: 30px 0; text-align: left;">
                 <h3 style="color: #2c3e50; margin-bottom: 15px; border-bottom: 1px solid #eaeaea; padding-bottom: 10px;">
-                    تفاصيل الطلب</h3>
+                     {{ __('attributes.order_details') }}</h3>
                 <div class="order-info" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
                     <div
                         style="flex: 1; min-width: 200px; margin: 10px; padding: 15px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);">
-                        <h4 style="color: #C73B65; margin-bottom: 8px; font-size: 1rem;">رقم الطلب</h4>
-                        <p style="margin: 0; font-weight: 600; color: #333;">#ORD-2023-75842</p>
+                        <h4 style="color: #C73B65; margin-bottom: 8px; font-size: 1rem;"> Order number</h4>
+                        <p style="margin: 0; font-weight: 600; color: #333;">#{{ $order->id ?? '' }}</p>
                     </div>
                     <div
                         style="flex: 1; min-width: 200px; margin: 10px; padding: 15px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);">
-                        <h4 style="color: #C73B65; margin-bottom: 8px; font-size: 1rem;">تاريخ الطلب</h4>
-                        <p style="margin: 0; font-weight: 600; color: #333;">15 نوفمبر 2023</p>
+                        <h4 style="color: #C73B65; margin-bottom: 8px; font-size: 1rem;">Order date</h4>
+                        <p style="margin: 0; font-weight: 600; color: #333;">{{ $order->created_at->format('d F Y') ?? '' }}</p>
                     </div>
                     <div
                         style="flex: 1; min-width: 200px; margin: 10px; padding: 15px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);">
-                        <h4 style="color: #C73B65; margin-bottom: 8px; font-size: 1rem;">المبلغ الإجمالي</h4>
-                        <p style="margin: 0; font-weight: 600; color: #333;">245.50 ر.س</p>
+                        <h4 style="color: #C73B65; margin-bottom: 8px; font-size: 1rem;">Total amount</h4>
+                        <p style="margin: 0; font-weight: 600; color: #333;">EGP {{ $order->total ?? 0 }} <p>
                     </div>
                     <div
                         style="flex: 1; min-width: 200px; margin: 10px; padding: 15px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);">
-                        <h4 style="color: #C73B65; margin-bottom: 8px; font-size: 1rem;">طريقة الدفع</h4>
-                        <p style="margin: 0; font-weight: 600; color: #333;">بطاقة ائتمان</p>
+                        <h4 style="color: #C73B65; margin-bottom: 8px; font-size: 1rem;">Payment method</h4>
+                        <p style="margin: 0; font-weight: 600; color: #333;"> {{ $order->payment_method ?? '' }}</p>
                     </div>
                 </div>
-            </div> --}}
+            </div>
 
             {{-- <p style="color: #555; margin-bottom: 25px; font-size: 1.1rem;">سيتم إرسال رسالة تأكيد إلى بريدك الإلكتروني
                 المسجل مع تفاصيل الطلب ورقم التتبع.</p> --}}
