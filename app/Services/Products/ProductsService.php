@@ -100,4 +100,13 @@ class ProductsService
         }
         return response()->json(['success' => false]);
     }
+    function changeSoldOut($request)
+    {
+        if ($item = $this->itemRepository->getItemById($this->model, $request->id)) {
+            $sold_out = !$item->sold_out;
+            $this->itemRepository->updateItem($this->model, $item->id, ['sold_out' => $sold_out]);
+            return response()->json(['success' => true]);
+        }
+        return response()->json(['success' => false]);
+    }
 }

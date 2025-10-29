@@ -43,6 +43,7 @@ Route::middleware('checkAuth')->group(function () {
         Route::put('/update/{id}', 'update')->name('products.update');
         Route::delete('/delete/{id}', 'destroy')->name('products.delete');
         Route::post('/change-status', 'changeStatus')->name('products.status');
+        Route::post('/change-sold-out', 'changeSoldOut')->name('products.sold_out');
     });
     Route::prefix('contacts')->controller(\App\Http\Controllers\Admin\Contact\ContactController::class)->group(function () {
         Route::get('/', 'index')->name('contacts.index');

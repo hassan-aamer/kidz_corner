@@ -69,5 +69,11 @@ class ProductsController extends Controller
     public function changeStatus(Request $request)
     {
         $this->service->changeStatus($request);
+        Cache::flush();
+    }
+    public function changeSoldOut(Request $request)
+    {
+        $this->service->changeSoldOut($request);
+        Cache::flush();
     }
 }

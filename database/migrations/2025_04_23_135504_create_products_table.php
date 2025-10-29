@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('old_price', 10, 2)->nullable();
             $table->bigInteger('quantity')->nullable();
             $table->boolean('active')->default(1);
+            $table->boolean('sold_out')->default(0);
             $table->integer('position')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();

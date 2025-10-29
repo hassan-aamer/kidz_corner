@@ -37,6 +37,7 @@
                                             <th>@lang('attributes.position')</th>
                                             <th>@lang('attributes.title')</th>
                                             <th>@lang('attributes.description')</th>
+                                            <th>@lang('attributes.sold_out')</th>
                                             <th>@lang('attributes.active')</th>
                                             <th>@lang('attributes.action')</th>
                                         </tr>
@@ -52,18 +53,29 @@
                                                             onclick="openImage('{{ App\Helpers\Image::getMediaUrl($products, 'products') }}')"
                                                             style="width: 100px; height: auto; cursor: pointer; transition: transform 0.3s;"
                                                             onmouseover="this.style.transform='scale(1.1)'"
-                                                            onmouseout="this.style.transform='scale(1)'" loading="lazy"></td>
+                                                            onmouseout="this.style.transform='scale(1)'" loading="lazy">
+                                                    </td>
                                                     <td>{{ $products->position ?? '' }}</td>
                                                     <td>{{ shortenText($products->title ?? '', 10) }}</td>
                                                     <td>{{ shortenText($products->description ?? '', 10) }}</td>
                                                     <td>
-                                                        @can('active products')
-                                                        @endcan
                                                         <div class="form-check form-switch">
-                                                            <input class="form-check-input" type="checkbox" name="status"
-                                                                id="active-{{ $products->id }}"
+                                                            <input class="form-check-input sold-out-toggle" type="checkbox"
+                                                                name="sold_out" id="sold_out-{{ $products->id }}"
+                                                                @if ($products->sold_out == 1) checked @endif
+                                                                data-id="{{ $products->id }}">
+
+                                                            <label class="form-check-label"
+                                                                for="sold_out-{{ $products->id }}"></label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input status-toggle" type="checkbox"
+                                                                name="status" id="active-{{ $products->id }}"
                                                                 @if ($products->active == 1) checked @endif
                                                                 data-id="{{ $products->id }}">
+
                                                             <label class="form-check-label"
                                                                 for="active-{{ $products->id }}"></label>
                                                         </div>
@@ -147,7 +159,8 @@
 @section('js')
     @include('admin.components.delete-script')
     <script>
-        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        // لتحديث الحالة (Active)
+        document.querySelectorAll('.status-toggle').forEach(checkbox => {
             checkbox.addEventListener('change', function() {
                 const Id = this.getAttribute('data-id');
                 const status = this.checked ? 1 : 0;
@@ -162,8 +175,27 @@
                         id: Id,
                         status: status
                     })
-                })
+                });
+            });
+        });
 
+        // لتحديث Sold Out
+        document.querySelectorAll('.sold-out-toggle').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const Id = this.getAttribute('data-id');
+                const sold_out = this.checked ? 1 : 0;
+
+                fetch("{{ route('admin.products.sold_out', app()->getLocale()) }}", {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id: Id,
+                        sold_out: sold_out
+                    })
+                });
             });
         });
     </script>
