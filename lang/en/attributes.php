@@ -7,6 +7,7 @@ return [
     'title' => 'Title',
     'services' => 'Services',
     'create' => 'Create',
+    'sold_out' => 'Sold Out',
     'product_count' => 'Product Count',
     'E-Commerce' => 'E-Commerce',
     'dashboard' => 'Dashboard',

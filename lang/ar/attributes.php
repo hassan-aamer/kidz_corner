@@ -12,6 +12,7 @@ return [
     'users' => 'المستخدمين',
     'dashboard' => 'لوحه التحكم',
     'active' => 'نشط',
+    'sold_out' => 'نفذ',
     'order_details' => 'تفاصيل الطلب',
     'role' => 'الدور',
     'orders_details' => 'تفاصيل الطلبات',
