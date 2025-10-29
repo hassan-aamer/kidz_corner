@@ -2,6 +2,7 @@
 @section('title', __('attributes.thanks'))
 @section('css')
 
+
 @endsection
 @section('content')
 
@@ -108,4 +109,12 @@
     </style>
 
 
+@endsection
+@section('js')
+<script>
+  fbq('track', 'Purchase', {
+    value: {{ $order->total ?? 0 }},
+    currency: 'EGP'
+  });
+</script>
 @endsection
