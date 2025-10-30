@@ -110,14 +110,3 @@
 
 
 @endsection
-@section('js')
-<script>
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: 'purchase',
-    transaction_id: '{{ $order->id }}',
-    value: {{ $order->total }},
-    currency: 'EGP'
-  });
-</script>
-@endsection
