@@ -157,4 +157,78 @@
         });
     </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  // ====== safety checks & debug ======
+  console.log('Cart page: JS loaded. total =', {{ $total ?? 0 }});
+
+  // Prevent duplicate sends on refresh/navigation
+  var addToCartFlagKey = 'cc_add_to_cart_sent_{{ optional(auth()->user())->id ?: 'guest' }}';
+  if (sessionStorage.getItem(addToCartFlagKey)) {
+    console.log('AddToCart: already sent in this session — skipping.');
+    return;
+  }
+
+  // Make sure cart has items
+  var cartTotal = Number({{ $total ?? 0 }});
+  if (!cartTotal || cartTotal <= 0) {
+    console.warn('AddToCart: total is zero or undefined — skipping event.');
+    return;
+  }
+
+  // Make sure fbq exists
+  if (typeof fbq !== 'undefined') {
+    try {
+      fbq('track', 'AddToCart', {
+        value: cartTotal,
+        currency: 'EGP',
+        content_type: 'product',
+        contents: [
+          @foreach($cart->items as $item)
+          {
+            id: '{{ $item->product_id }}',
+            name: {!! json_encode($item->product->name ?? $item->product->title ?? '') !!},
+            quantity: {{ $item->quantity }},
+            item_price: {{ $item->product->price ?? 0 }}
+          },
+          @endforeach
+        ]
+      });
+      console.log('AddToCart: fbq track fired', cartTotal);
+    } catch (e) {
+      console.error('AddToCart: fbq error', e);
+    }
+  } else {
+    console.error('AddToCart: fbq is not defined. Make sure Pixel base code is in layout head.');
+  }
+
+  // Push to dataLayer for GTM
+  try {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'add_to_cart',
+      value: cartTotal,
+      currency: 'EGP',
+      items: [
+        @foreach($cart->items as $item)
+        {
+          item_id: '{{ $item->product_id }}',
+          item_name: {!! json_encode($item->product->name ?? $item->product->title ?? '') !!},
+          price: {{ $item->product->price ?? 0 }},
+          quantity: {{ $item->quantity }}
+        },
+        @endforeach
+      ]
+    });
+    console.log('AddToCart: dataLayer push fired');
+  } catch (e) {
+    console.error('AddToCart: dataLayer error', e);
+  }
+
+  // Mark as sent to avoid duplicates in same session
+  sessionStorage.setItem(addToCartFlagKey, '1');
+
+});
+</script>
 @endsection

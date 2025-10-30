@@ -262,7 +262,46 @@
         });
     </script>
 
+<script>
+$(document).ready(function() {
 
+  // 🔹 Facebook Pixel Event: InitiateCheckout
+  fbq('track', 'InitiateCheckout', {
+    value: {{ $total }},
+    currency: 'EGP',
+    content_type: 'product',
+    contents: [
+      @foreach($cart->items as $item)
+      {
+        id: '{{ $item->product_id }}',
+        name: '{{ $item->product->name }}',
+        quantity: {{ $item->quantity }},
+        item_price: {{ $item->product->price }}
+      },
+      @endforeach
+    ]
+  });
+
+  // 🔹 Google Tag Manager Event: initiate_checkout
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'initiate_checkout',
+    value: {{ $total }},
+    currency: 'EGP',
+    items: [
+      @foreach($cart->items as $item)
+      {
+        item_id: '{{ $item->product_id }}',
+        item_name: '{{ $item->product->name }}',
+        price: {{ $item->product->price }},
+        quantity: {{ $item->quantity }}
+      },
+      @endforeach
+    ]
+  });
+
+});
+</script>
 
 
 @endsection
