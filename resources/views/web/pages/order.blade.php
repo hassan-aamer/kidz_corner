@@ -263,14 +263,6 @@
     </script>
 
 
-{{-- <script>
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: 'purchase',
-    value: {{ $total }},
-    currency: 'EGP'
-  });
-</script> --}}
 
 
 @endsection

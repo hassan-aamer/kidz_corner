@@ -108,5 +108,44 @@
         }
     </style>
 
-
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'purchase',
+    value: {{ $order->total ?? 0 }},
+    currency: 'EGP',
+    order_id: '{{ $order->id }}',
+    items: [
+      @foreach($order->items as $item)
+      {
+        id: '{{ $item->product_id }}',
+        name: '{{ $item->product->name }}',
+        quantity: {{ $item->quantity }},
+        price: {{ $item->price }}
+      },
+      @endforeach
+    ]
+  });
+</script>
+@endsection
+@section('js')
+{{-- <script>
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'purchase',
+    value: {{ $order->total ?? 0 }},
+    currency: 'EGP',
+    order_id: '{{ $order->id }}',
+    items: [
+      @foreach($order->items as $item)
+      {
+        id: '{{ $item->product_id }}',
+        name: '{{ $item->product->name }}',
+        quantity: {{ $item->quantity }},
+        price: {{ $item->price }}
+      },
+      @endforeach
+    ]
+  });
+</script> --}}
 @endsection
