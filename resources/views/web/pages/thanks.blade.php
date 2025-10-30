@@ -111,7 +111,7 @@
 
 @endsection
 @section('js')
-{{-- <script>
+<script>
 // ✅ Facebook Pixel Purchase Event
 fbq('track', 'Purchase', {
   value: {{ $order->total ?? 0 }},
@@ -148,7 +148,7 @@ window.dataLayer.push({
     @endforeach
   ]
 });
-</script> --}}
+</script>
 
 @endsection
 
