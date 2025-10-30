@@ -104,7 +104,7 @@ class CRUDRepository implements CRUDRepositoryInterface
             });
         }
 
-        $items = $items->paginate(16);
+        $items = $items->get();
 
         return $items;
     }
