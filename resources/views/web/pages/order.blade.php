@@ -262,7 +262,7 @@
         });
     </script>
 
-<script>
+{{-- <script>
 $(document).ready(function() {
 
   // 🔹 Facebook Pixel Event: InitiateCheckout
@@ -301,8 +301,55 @@ $(document).ready(function() {
   });
 
 });
-</script>
+</script> --}}
 
+<script>
+function fireInitiateCheckout() {
+  if (typeof fbq === 'undefined') {
+    // لو الفنكشن fbq لسه متحملتش، نحاول بعد شوية
+    setTimeout(fireInitiateCheckout, 500);
+    return;
+  }
+
+  // ✅ Facebook Pixel Event: InitiateCheckout
+  fbq('track', 'InitiateCheckout', {
+    value: {{ $total }},
+    currency: 'EGP',
+    content_type: 'product',
+    contents: [
+      @foreach($cart->items as $item)
+      {
+        id: '{{ $item->product_id }}',
+        name: '{{ addslashes($item->product->name) }}',
+        quantity: {{ $item->quantity }},
+        item_price: {{ $item->product->price }}
+      },
+      @endforeach
+    ]
+  });
+
+  // ✅ Google Tag Manager dataLayer push
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'initiate_checkout',
+    value: {{ $total }},
+    currency: 'EGP',
+    items: [
+      @foreach($cart->items as $item)
+      {
+        item_id: '{{ $item->product_id }}',
+        item_name: '{{ addslashes($item->product->name) }}',
+        price: {{ $item->product->price }},
+        quantity: {{ $item->quantity }}
+      },
+      @endforeach
+    ]
+  });
+}
+
+// نشغل الفنكشن بعد تحميل الصفحة
+document.addEventListener('DOMContentLoaded', fireInitiateCheckout);
+</script>
 
 @endsection
 

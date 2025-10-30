@@ -111,7 +111,7 @@
 
 @endsection
 @section('js')
-<script>
+{{-- <script>
 // ✅ Facebook Pixel Purchase Event
 fbq('track', 'Purchase', {
   value: {{ $order->total ?? 0 }},
@@ -148,7 +148,86 @@ window.dataLayer.push({
     @endforeach
   ]
 });
+</script> --}}
+
+<script>
+window.addEventListener('load', function () {
+
+  // ===== Debug Info =====
+  console.log('💰 Purchase event loaded | order total =', {{ $order->total ?? 0 }}, '| order ID = {{ $order->id }}');
+
+  var orderTotal = Number({{ $order->total ?? 0 }});
+  var orderId = '{{ $order->id }}';
+  var purchaseFlagKey = 'cc_purchase_sent_' + orderId;
+
+  // ✅ منع التكرار (لتفادي إرسال الحدث مرتين)
+  if (sessionStorage.getItem(purchaseFlagKey)) {
+    console.log('⚠️ Purchase event already sent for order:', orderId);
+    return;
+  }
+
+  // ✅ تحقق من وجود قيمة
+  if (!orderTotal || orderTotal <= 0) {
+    console.warn('⚠️ Purchase event skipped — total is zero or undefined.');
+    return;
+  }
+
+  // ✅ Facebook Pixel
+  if (typeof fbq === 'function') {
+    try {
+      fbq('track', 'Purchase', {
+        value: orderTotal,
+        currency: 'EGP',
+        content_type: 'product',
+        contents: [
+          @foreach($order->items as $item)
+          {
+            id: '{{ $item->product_id }}',
+            name: {!! json_encode($item->product->name ?? $item->product->title ?? '') !!},
+            quantity: {{ $item->quantity }},
+            item_price: {{ $item->price ?? 0 }}
+          },
+          @endforeach
+        ],
+        order_id: orderId
+      });
+      console.log('✅ fbq Purchase event fired:', orderId, orderTotal);
+    } catch (e) {
+      console.error('❌ fbq Purchase error:', e);
+    }
+  } else {
+    console.error('❌ fbq is not defined — ensure Meta Pixel base code is loaded before this script.');
+  }
+
+  // ✅ Google Tag Manager
+  try {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'purchase',
+      value: orderTotal,
+      currency: 'EGP',
+      transaction_id: orderId,
+      items: [
+        @foreach($order->items as $item)
+        {
+          item_id: '{{ $item->product_id }}',
+          item_name: {!! json_encode($item->product->name ?? $item->product->title ?? '') !!},
+          price: {{ $item->price ?? 0 }},
+          quantity: {{ $item->quantity }}
+        },
+        @endforeach
+      ]
+    });
+    console.log('✅ GTM purchase event pushed to dataLayer:', orderId);
+  } catch (e) {
+    console.error('❌ dataLayer push error:', e);
+  }
+
+  // ✅ منع التكرار في نفس الجلسة
+  sessionStorage.setItem(purchaseFlagKey, '1');
+});
 </script>
+
 
 @endsection
 
