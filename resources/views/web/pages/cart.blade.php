@@ -157,7 +157,7 @@
         });
     </script>
 
-<script>
+{{-- <script>
 document.addEventListener('DOMContentLoaded', function () {
 
   // ====== safety checks & debug ======
@@ -230,5 +230,5 @@ document.addEventListener('DOMContentLoaded', function () {
   sessionStorage.setItem(addToCartFlagKey, '1');
 
 });
-</script>
+</script> --}}
 @endsection
