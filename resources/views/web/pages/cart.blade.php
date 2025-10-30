@@ -235,76 +235,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <script>
 window.addEventListener('load', function () {
-  // ====== Debug & Safety ======
   var cartTotal = Number({{ $total ?? 0 }});
   console.log('🛒 Cart page loaded | total =', cartTotal);
 
-  var addToCartFlagKey = 'cc_add_to_cart_sent_{{ optional(auth()->user())->id ?: 'guest' }}';
+  var addToCartFlagKey = 'cc_add_to_cart_sent_{{ optional(auth()->user())->id ?: "guest" }}';
 
-  // ✅ Avoid duplicate events in same session
+  // ✅ منع التكرار داخل نفس الجلسة
   if (sessionStorage.getItem(addToCartFlagKey)) {
-    console.log('⚠️ AddToCart event already sent in this session — skipping.');
+    console.log('⚠️ add_to_cart event already sent in this session — skipping.');
     return;
   }
 
-  // ✅ Validate total amount
   if (!cartTotal || cartTotal <= 0) {
-    console.warn('⚠️ AddToCart skipped: total is zero or undefined.');
+    console.warn('⚠️ add_to_cart skipped: total is zero or undefined.');
     return;
   }
 
-  // ✅ Facebook Pixel
-  if (typeof fbq === 'function') {
-    try {
-      fbq('track', 'AddToCart', {
-        value: cartTotal,
-        currency: 'EGP',
-        content_type: 'product',
-        contents: [
-          @foreach($cart->items as $item)
-          {
-            id: '{{ $item->product_id }}',
-            name: {!! json_encode($item->product->name ?? $item->product->title ?? '') !!},
-            quantity: {{ $item->quantity }},
-            item_price: {{ $item->product->price ?? 0 }}
-          },
-          @endforeach
-        ]
-      });
-      console.log('✅ fbq AddToCart fired successfully with value:', cartTotal);
-    } catch (e) {
-      console.error('❌ fbq AddToCart error:', e);
-    }
-  } else {
-    console.error('❌ fbq not defined. Ensure Meta Pixel base code is in <head>.');
-  }
-
-  // ✅ Google Tag Manager
+  // ✅ إرسال البيانات إلى Google Tag Manager فقط
   try {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: 'add_to_cart',
       value: cartTotal,
-      currency: 'EGP',
-      items: [
-        @foreach($cart->items as $item)
-        {
-          item_id: '{{ $item->product_id }}',
-          item_name: {!! json_encode($item->product->name ?? $item->product->title ?? '') !!},
-          price: {{ $item->product->price ?? 0 }},
-          quantity: {{ $item->quantity }}
-        },
-        @endforeach
-      ]
+      currency: 'EGP'
     });
-    console.log('✅ GTM add_to_cart pushed to dataLayer');
+    console.log('✅ add_to_cart pushed to dataLayer');
   } catch (e) {
     console.error('❌ dataLayer push error:', e);
   }
 
-  // ✅ Mark event as sent for current session
+  // ✅ تحديد أنه تم الإرسال لهذه الجلسة
   sessionStorage.setItem(addToCartFlagKey, '1');
 });
 </script>
+
 
 @endsection
