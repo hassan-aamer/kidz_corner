@@ -304,52 +304,48 @@ $(document).ready(function() {
 </script> --}}
 
 <script>
-function fireInitiateCheckout() {
-  if (typeof fbq === 'undefined') {
-    // لو الفنكشن fbq لسه متحملتش، نحاول بعد شوية
-    setTimeout(fireInitiateCheckout, 500);
+window.addEventListener('load', function () {
+
+  // ✅ القيم القادمة من Laravel Blade
+  var checkoutTotal = Number({{ $total ?? 0 }});
+  var userId = '{{ optional(auth()->user())->id ?? "guest" }}';
+  var checkoutFlagKey = 'cc_initiate_checkout_' + userId;
+
+  // ✅ Debug Console
+  console.log('🛍 InitiateCheckout event | total =', checkoutTotal, '| user =', userId);
+
+  // ✅ منع التكرار في نفس الجلسة
+  if (sessionStorage.getItem(checkoutFlagKey)) {
+    console.log('⚠️ initiate_checkout event already sent for this user — skipping.');
     return;
   }
 
-  // ✅ Facebook Pixel Event: InitiateCheckout
-  fbq('track', 'InitiateCheckout', {
-    value: {{ $total }},
-    currency: 'EGP',
-    content_type: 'product',
-    contents: [
-      @foreach($cart->items as $item)
-      {
-        id: '{{ $item->product_id }}',
-        name: '{{ addslashes($item->product->name) }}',
-        quantity: {{ $item->quantity }},
-        item_price: {{ $item->product->price }}
-      },
-      @endforeach
-    ]
-  });
+  // ✅ التحقق من وجود قيمة منطقية
+  if (!checkoutTotal || checkoutTotal <= 0) {
+    console.warn('⚠️ initiate_checkout skipped — total is zero or undefined.');
+    return;
+  }
 
-  // ✅ Google Tag Manager dataLayer push
+  // ✅ تأكد أن dataLayer جاهز
   window.dataLayer = window.dataLayer || [];
+
+  // ✅ إرسال الحدث إلى Google Tag Manager
   window.dataLayer.push({
     event: 'initiate_checkout',
-    value: {{ $total }},
-    currency: 'EGP',
-    items: [
-      @foreach($cart->items as $item)
-      {
-        item_id: '{{ $item->product_id }}',
-        item_name: '{{ addslashes($item->product->name) }}',
-        price: {{ $item->product->price }},
-        quantity: {{ $item->quantity }}
-      },
-      @endforeach
-    ]
+    value: checkoutTotal,
+    currency: 'EGP'
   });
-}
 
-// نشغل الفنكشن بعد تحميل الصفحة
-document.addEventListener('DOMContentLoaded', fireInitiateCheckout);
+  console.log('✅ GTM initiate_checkout event pushed:', {
+    value: checkoutTotal,
+    currency: 'EGP'
+  });
+
+  // ✅ حفظ الحالة لتفادي التكرار
+  sessionStorage.setItem(checkoutFlagKey, '1');
+});
 </script>
+
 
 @endsection
 
