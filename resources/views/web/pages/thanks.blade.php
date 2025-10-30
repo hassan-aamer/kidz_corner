@@ -112,8 +112,11 @@
 @endsection
 @section('js')
 <script>
-  fbq('track', 'Purchase', {
-    value: {{ $order->total ?? 0 }},
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'purchase',
+    transaction_id: '{{ $order->id }}',
+    value: {{ $order->total }},
     currency: 'EGP'
   });
 </script>
