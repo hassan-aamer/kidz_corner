@@ -262,7 +262,7 @@
         });
     </script>
 
-{{-- <script>
+<script>
 $(document).ready(function() {
 
   // 🔹 Facebook Pixel Event: InitiateCheckout
@@ -301,7 +301,7 @@ $(document).ready(function() {
   });
 
 });
-</script> --}}
+</script>
 
 
 @endsection
