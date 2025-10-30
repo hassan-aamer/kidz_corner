@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'facebook_pixel' => [
+    'id' => env('FACEBOOK_PIXEL_ID', null),
+],
+    'google_tag_manager' => [
+    'id' => env('GOOGLE_TAG_MANAGER_ID', null),
+],
+
 ];
