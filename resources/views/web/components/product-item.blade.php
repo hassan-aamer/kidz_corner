@@ -1,4 +1,4 @@
-<div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+<div class="col-lg-3 col-md-6 col-sm-12 pb-1" style="border-radius:16px; overflow:hidden; box-shadow:0 6px 20px rgba(0,0,0,0.08); transition:0.3s ease;>
     <div class="card product-item border-0 mb-4">
         <a href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title)]) }}">
             <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
