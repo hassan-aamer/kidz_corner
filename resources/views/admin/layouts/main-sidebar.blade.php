@@ -46,6 +46,9 @@
                     <a class="{{ request()->routeIs('admin.orders.*') ? 'active' : '' }}"
                         href="{{ route('admin.orders.index') }}">
                         <i data-feather="shopping-cart"></i>
+                        @if (App\Models\Order::where('status', 'pending')->count())
+                            <span class="badge bg-success float-end">{{ App\Models\Order::where('status', 'pending')->count() ?? 0 }}</span>
+                        @endif
                         <span>{{ __('attributes.orders') }}</span>
                     </a>
                 </li>
