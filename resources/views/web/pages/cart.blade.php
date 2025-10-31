@@ -235,17 +235,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <script>
 window.addEventListener('load', function () {
+
   var cartTotal = Number({{ $total ?? 0 }});
 
   window.dataLayer = window.dataLayer || [];
+
   window.dataLayer.push({
     event: 'add_to_cart',
     value: cartTotal,
     currency: 'EGP'
   });
+
+  console.log('✅ GTM add_to_cart event pushed:', {
+    value: cartTotal,
+    currency: 'EGP'
+  });
+
 });
 </script>
-
 
 
 
