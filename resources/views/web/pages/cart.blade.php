@@ -162,7 +162,7 @@
             window.dataLayer = window.dataLayer || [];
 
             window.dataLayer.push({
-                event: 'AddToCart',
+                event: 'add_to_cart',
                 value: cartTotal,
                 currency: 'EGP'
             });

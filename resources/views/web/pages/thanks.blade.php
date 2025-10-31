@@ -120,14 +120,11 @@
     <script>
         window.addEventListener('load', function() {
 
-            // ✅ متغيرات الطلب (من Laravel Blade)
             var orderId = '{{ $order->id }}';
             var orderTotal = Number({{ $order->total ?? 0 }});
 
-            // ✅ تأكد أن الـ GTM مُحمّل
             window.dataLayer = window.dataLayer || [];
 
-            // ✅ إرسال الحدث
             window.dataLayer.push({
                 event: 'purchase',
                 transaction_id: orderId,
@@ -135,11 +132,11 @@
                 currency: 'EGP'
             });
 
-            console.log('✅ GTM purchase event pushed:', {
-                transaction_id: orderId,
-                value: orderTotal,
-                currency: 'EGP'
-            });
+            // console.log('✅ GTM purchase event pushed:', {
+            //     transaction_id: orderId,
+            //     value: orderTotal,
+            //     currency: 'EGP'
+            // });
 
         });
     </script>

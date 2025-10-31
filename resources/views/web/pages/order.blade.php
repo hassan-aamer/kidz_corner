@@ -276,10 +276,10 @@
                 currency: 'EGP'
             });
 
-            console.log('✅ GTM initiate_checkout event pushed:', {
-                value: checkoutTotal,
-                currency: 'EGP'
-            });
+            // console.log('✅ GTM initiate_checkout event pushed:', {
+            //     value: checkoutTotal,
+            //     currency: 'EGP'
+            // });
 
         });
     </script>
