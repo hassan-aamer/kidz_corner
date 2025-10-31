@@ -235,39 +235,45 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <script>
 window.addEventListener('load', function () {
+  // ✅ المجموع من Laravel Blade
   var cartTotal = Number({{ $total ?? 0 }});
-  console.log('🛒 Cart page loaded | total =', cartTotal);
 
+  // ✅ مفتاح خاص بكل مستخدم لتجنّب التكرار
   var addToCartFlagKey = 'cc_add_to_cart_sent_{{ optional(auth()->user())->id ?: "guest" }}';
 
-  // ✅ منع التكرار داخل نفس الجلسة
+  console.log('🛒 Cart page fully loaded | total =', cartTotal);
+
+  // ✅ تحقق من التكرار
   if (sessionStorage.getItem(addToCartFlagKey)) {
     console.log('⚠️ add_to_cart event already sent in this session — skipping.');
     return;
   }
 
+  // ✅ تحقق من القيمة
   if (!cartTotal || cartTotal <= 0) {
     console.warn('⚠️ add_to_cart skipped: total is zero or undefined.');
     return;
   }
 
-  // ✅ إرسال البيانات إلى Google Tag Manager فقط
-  try {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'add_to_cart',
-      value: cartTotal,
-      currency: 'EGP'
-    });
-    console.log('✅ add_to_cart pushed to dataLayer');
-  } catch (e) {
-    console.error('❌ dataLayer push error:', e);
-  }
+  // ✅ تأكد من وجود dataLayer ثم أرسل الحدث
+  window.dataLayer = window.dataLayer || [];
 
-  // ✅ تحديد أنه تم الإرسال لهذه الجلسة
+  window.dataLayer.push({
+    event: 'add_to_cart',
+    value: cartTotal,
+    currency: 'EGP'
+  });
+
+  console.log('✅ GTM add_to_cart event pushed:', {
+    value: cartTotal,
+    currency: 'EGP'
+  });
+
+  // ✅ منع الإرسال المكرر
   sessionStorage.setItem(addToCartFlagKey, '1');
 });
 </script>
+
 
 
 @endsection
