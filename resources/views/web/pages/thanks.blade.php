@@ -111,44 +111,6 @@
 
 @endsection
 @section('js')
-{{-- <script>
-// ✅ Facebook Pixel Purchase Event
-fbq('track', 'Purchase', {
-  value: {{ $order->total ?? 0 }},
-  currency: 'EGP',
-  content_type: 'product',
-  contents: [
-    @foreach($order->items as $item)
-    {
-      id: '{{ $item->product_id }}',
-      name: '{{ $item->product->name }}',
-      quantity: {{ $item->quantity }},
-      item_price: {{ $item->price }}
-    },
-    @endforeach
-  ],
-  order_id: '{{ $order->id }}'
-});
-
-// ✅ Google Tag Manager Purchase Event
-window.dataLayer = window.dataLayer || [];
-window.dataLayer.push({
-  event: 'purchase',
-  value: {{ $order->total ?? 0 }},
-  currency: 'EGP',
-  order_id: '{{ $order->id }}',
-  items: [
-    @foreach($order->items as $item)
-    {
-      item_id: '{{ $item->product_id }}',
-      item_name: '{{ $item->product->name }}',
-      price: {{ $item->price }},
-      quantity: {{ $item->quantity }}
-    },
-    @endforeach
-  ]
-});
-</script> --}}
 
 <script>
 window.addEventListener('load', function () {

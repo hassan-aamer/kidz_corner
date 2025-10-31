@@ -54,8 +54,8 @@
                             @foreach ($cart->items as $item)
                                 <tr>
                                     <td class="align-middle"><img
-                                            src="{{ App\Helpers\Image::getMediaUrl($item->product, 'products') }}"
-                                            alt="" style="width: 50px;" loading="lazy">
+                                            src="{{ App\Helpers\Image::getMediaUrl($item->product, 'products') }}" alt=""
+                                            style="width: 50px;" loading="lazy">
                                         {{-- {{ $item->product->title ?? '' }} --}}
                                     </td>
                                     <td class="align-middle">EGP {{ $item->product->price ?? '' }}</td>
@@ -73,8 +73,7 @@
                                                     </button>
                                                 </div>
 
-                                                <input type="text"
-                                                    class="form-control form-control-sm bg-secondary text-center"
+                                                <input type="text" class="form-control form-control-sm bg-secondary text-center"
                                                     value="{{ $item->quantity }}" readonly>
 
                                                 <div class="input-group-btn">
@@ -88,8 +87,7 @@
                                     </td>
                                     <td class="align-middle">EGP {{ $item->product->price * $item->quantity ?? '' }}</td>
                                     <td class="align-middle">
-                                        <form action="{{ route('cart.remove', $item->id) }}" method="POST"
-                                            style="display:inline;">
+                                        <form action="{{ route('cart.remove', $item->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-primary" style="background-color: #d72864;">
@@ -126,8 +124,7 @@
                 </div>
             @else
                 <div class="col-12 d-flex justify-content-center align-items-center">
-                    <img src="{{ asset('empty-folder.png') }}" alt="not found" width="300" height="300"
-                        loading="lazy">
+                    <img src="{{ asset('empty-folder.png') }}" alt="not found" width="300" height="300" loading="lazy">
                 </div>
             @endif
 
@@ -139,7 +136,7 @@
 @section('js')
     <script>
         document.querySelectorAll('.btn-plus').forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function () {
                 let input = this.closest('.input-group').querySelector('input[name="quantity"]');
                 input.value = parseInt(input.value) + 1;
                 this.closest('form').submit();
@@ -147,7 +144,7 @@
         });
 
         document.querySelectorAll('.btn-minus').forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function () {
                 let input = this.closest('.input-group').querySelector('input[name="quantity"]');
                 if (parseInt(input.value) > 1) {
                     input.value = parseInt(input.value) - 1;
@@ -157,102 +154,26 @@
         });
     </script>
 
-{{-- <script>
-document.addEventListener('DOMContentLoaded', function () {
+    <script>
+        window.addEventListener('load', function () {
 
-  // ====== safety checks & debug ======
-  console.log('Cart page: JS loaded. total =', {{ $total ?? 0 }});
+            var cartTotal = Number({{ $total ?? 0 }});
 
-  // Prevent duplicate sends on refresh/navigation
-  var addToCartFlagKey = 'cc_add_to_cart_sent_{{ optional(auth()->user())->id ?: 'guest' }}';
-  if (sessionStorage.getItem(addToCartFlagKey)) {
-    console.log('AddToCart: already sent in this session — skipping.');
-    return;
-  }
+            window.dataLayer = window.dataLayer || [];
 
-  // Make sure cart has items
-  var cartTotal = Number({{ $total ?? 0 }});
-  if (!cartTotal || cartTotal <= 0) {
-    console.warn('AddToCart: total is zero or undefined — skipping event.');
-    return;
-  }
+            window.dataLayer.push({
+                event: 'add_to_cart',
+                value: cartTotal,
+                currency: 'EGP'
+            });
 
-  // Make sure fbq exists
-  if (typeof fbq !== 'undefined') {
-    try {
-      fbq('track', 'AddToCart', {
-        value: cartTotal,
-        currency: 'EGP',
-        content_type: 'product',
-        contents: [
-          @foreach($cart->items as $item)
-          {
-            id: '{{ $item->product_id }}',
-            name: {!! json_encode($item->product->name ?? $item->product->title ?? '') !!},
-            quantity: {{ $item->quantity }},
-            item_price: {{ $item->product->price ?? 0 }}
-          },
-          @endforeach
-        ]
-      });
-      console.log('AddToCart: fbq track fired', cartTotal);
-    } catch (e) {
-      console.error('AddToCart: fbq error', e);
-    }
-  } else {
-    console.error('AddToCart: fbq is not defined. Make sure Pixel base code is in layout head.');
-  }
+            console.log('✅ GTM add_to_cart event pushed:', {
+                value: cartTotal,
+                currency: 'EGP'
+            });
 
-  // Push to dataLayer for GTM
-  try {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'add_to_cart',
-      value: cartTotal,
-      currency: 'EGP',
-      items: [
-        @foreach($cart->items as $item)
-        {
-          item_id: '{{ $item->product_id }}',
-          item_name: {!! json_encode($item->product->name ?? $item->product->title ?? '') !!},
-          price: {{ $item->product->price ?? 0 }},
-          quantity: {{ $item->quantity }}
-        },
-        @endforeach
-      ]
-    });
-    console.log('AddToCart: dataLayer push fired');
-  } catch (e) {
-    console.error('AddToCart: dataLayer error', e);
-  }
-
-  // Mark as sent to avoid duplicates in same session
-  sessionStorage.setItem(addToCartFlagKey, '1');
-
-});
-</script> --}}
-
-
-<script>
-window.addEventListener('load', function () {
-
-  var cartTotal = Number({{ $total ?? 0 }});
-
-  window.dataLayer = window.dataLayer || [];
-
-  window.dataLayer.push({
-    event: 'add_to_cart',
-    value: cartTotal,
-    currency: 'EGP'
-  });
-
-  console.log('✅ GTM add_to_cart event pushed:', {
-    value: cartTotal,
-    currency: 'EGP'
-  });
-
-});
-</script>
+        });
+    </script>
 
 
 
