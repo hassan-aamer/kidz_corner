@@ -154,7 +154,7 @@
         });
     </script>
 
-    <script>
+    {{-- <script>
         window.addEventListener('load', function () {
 
             var cartTotal = Number({{ $total ?? 0 }});
@@ -173,7 +173,34 @@
             });
 
         });
-    </script>
+    </script> --}}
+<script>
+window.addEventListener('load', function () {
+  var cartTotal = Number({{ $total ?? 0 }});
+
+  console.log('🛒 Cart page fully loaded | total =', cartTotal);
+
+  if (!cartTotal || cartTotal <= 0) {
+    console.warn('⚠️ AddToCart skipped: invalid total.');
+    return;
+  }
+
+  // ✅ تأكد من وجود dataLayer
+  window.dataLayer = window.dataLayer || [];
+
+  // ✅ إرسال الحدث إلى GTM
+  window.dataLayer.push({
+    event: 'add_to_cart',
+    value: cartTotal,
+    currency: 'EGP'
+  });
+
+  console.log('✅ add_to_cart event pushed to dataLayer:', {
+    value: cartTotal,
+    currency: 'EGP'
+  });
+});
+</script>
 
 
 
