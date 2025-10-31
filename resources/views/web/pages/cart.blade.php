@@ -166,10 +166,8 @@
                 return;
             }
 
-            // ✅ تأكد من وجود dataLayer
             window.dataLayer = window.dataLayer || [];
 
-            // ✅ إرسال الحدث إلى GTM
             window.dataLayer.push({
                 event: 'add_to_cart',
                 value: cartTotal,
