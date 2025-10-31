@@ -244,16 +244,16 @@ window.addEventListener('load', function () {
   console.log('🛒 Cart page fully loaded | total =', cartTotal);
 
   // ✅ تحقق من التكرار
-  if (sessionStorage.getItem(addToCartFlagKey)) {
-    console.log('⚠️ add_to_cart event already sent in this session — skipping.');
-    return;
-  }
+//   if (sessionStorage.getItem(addToCartFlagKey)) {
+//     console.log('⚠️ add_to_cart event already sent in this session — skipping.');
+//     return;
+//   }
 
   // ✅ تحقق من القيمة
-  if (!cartTotal || cartTotal <= 0) {
-    console.warn('⚠️ add_to_cart skipped: total is zero or undefined.');
-    return;
-  }
+//   if (!cartTotal || cartTotal <= 0) {
+//     console.warn('⚠️ add_to_cart skipped: total is zero or undefined.');
+//     return;
+//   }
 
   // ✅ تأكد من وجود dataLayer ثم أرسل الحدث
   window.dataLayer = window.dataLayer || [];
