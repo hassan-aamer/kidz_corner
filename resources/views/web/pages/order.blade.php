@@ -308,23 +308,23 @@ window.addEventListener('load', function () {
 
   // ✅ القيم القادمة من Laravel Blade
   var checkoutTotal = Number({{ $total ?? 0 }});
-  var userId = '{{ optional(auth()->user())->id ?? "guest" }}';
-  var checkoutFlagKey = 'cc_initiate_checkout_' + userId;
+//   var userId = '{{ optional(auth()->user())->id ?? "guest" }}';
+//   var checkoutFlagKey = 'cc_initiate_checkout_' + userId;
 
   // ✅ Debug Console
-  console.log('🛍 InitiateCheckout event | total =', checkoutTotal, '| user =', userId);
+//   console.log('🛍 InitiateCheckout event | total =', checkoutTotal, '| user =', userId);
 
   // ✅ منع التكرار في نفس الجلسة
-  if (sessionStorage.getItem(checkoutFlagKey)) {
-    console.log('⚠️ initiate_checkout event already sent for this user — skipping.');
-    return;
-  }
+//   if (sessionStorage.getItem(checkoutFlagKey)) {
+//     console.log('⚠️ initiate_checkout event already sent for this user — skipping.');
+//     return;
+//   }
 
   // ✅ التحقق من وجود قيمة منطقية
-  if (!checkoutTotal || checkoutTotal <= 0) {
-    console.warn('⚠️ initiate_checkout skipped — total is zero or undefined.');
-    return;
-  }
+//   if (!checkoutTotal || checkoutTotal <= 0) {
+//     console.warn('⚠️ initiate_checkout skipped — total is zero or undefined.');
+//     return;
+//   }
 
   // ✅ تأكد أن dataLayer جاهز
   window.dataLayer = window.dataLayer || [];
@@ -342,7 +342,7 @@ window.addEventListener('load', function () {
   });
 
   // ✅ حفظ الحالة لتفادي التكرار
-  sessionStorage.setItem(checkoutFlagKey, '1');
+//   sessionStorage.setItem(checkoutFlagKey, '1');
 });
 </script>
 
