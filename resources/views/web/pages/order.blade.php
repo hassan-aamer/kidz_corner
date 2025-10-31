@@ -48,18 +48,15 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>E-mail (potional)</label>
-                                <input class="form-control" type="text" name="email"
-                                    placeholder="example@email.com">
+                                <input class="form-control" type="text" name="email" placeholder="example@email.com">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Phone</label>
-                                <input class="form-control" type="text" required name="phone"
-                                    placeholder="+123 456 789">
+                                <input class="form-control" type="text" required name="phone" placeholder="+123 456 789">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Another phone (potional)</label>
-                                <input class="form-control" type="text" name="another_phone"
-                                    placeholder="+123 456 789">
+                                <input class="form-control" type="text" name="another_phone" placeholder="+123 456 789">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>City</label>
@@ -81,7 +78,8 @@
 
                             <div class="col-md-12 form-group">
                                 <label>Address</label>
-                                <textarea rows="4" class="form-control" type="text" name="address" placeholder="123 Street"></textarea>
+                                <textarea rows="4" class="form-control" type="text" name="address"
+                                    placeholder="123 Street"></textarea>
                             </div>
                         </div>
                     </div>
@@ -96,12 +94,13 @@
                             <h5 class="font-weight-medium mb-3">Products</h5>
                             @foreach ($cart->items as $item)
                                 <div class="d-flex justify-content-between">
-                                    <p><img src="{{ App\Helpers\Image::getMediaUrl($item->product, 'products') }}"
-                                            alt="" style="width: 50px;" loading="lazy"></p>
+                                    <p><img src="{{ App\Helpers\Image::getMediaUrl($item->product, 'products') }}" alt=""
+                                            style="width: 50px;" loading="lazy"></p>
                                     <p>EGP {{ $item->product->price ?? '' }}</p>
                                 </div>
                             @endforeach
-                            {{-- <hr class="mt-0"> --}}
+                            {{--
+                            <hr class="mt-0"> --}}
                             {{-- <div class="d-flex justify-content-between">
                                 <h6 class="font-weight-medium">Shipping (Kidz Corner Delivery - Table Rate)</h6>
                                 <h6 class="font-weight-medium" id="shippingPrice">EGP 0</h6>
@@ -137,15 +136,15 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" value="cash"
-                                        name="payment_method" id="directcheck" required>
+                                    <input type="radio" class="custom-control-input" value="cash" name="payment_method"
+                                        id="directcheck" required>
                                     <label class="custom-control-label" for="directcheck">Cash on delivery</label>
                                 </div>
                             </div>
                             <div class="">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment_method"
-                                        value="instapay" id="banktransfer">
+                                    <input type="radio" class="custom-control-input" name="payment_method" value="instapay"
+                                        id="banktransfer">
                                     <label class="custom-control-label" for="banktransfer">Insta Pay</label>
                                 </div>
                                 <div id="instapayBox" class="ml-4 mt-3 p-3 border rounded bg-light"
@@ -184,7 +183,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             var locale = "{{ app()->getLocale() }}";
 
             function updateTotal() {
@@ -197,18 +196,18 @@
                 $('#totalInput').val(total);
             }
 
-            $('#citySelect').on('change', function() {
+            $('#citySelect').on('change', function () {
                 var cityId = $(this).val();
                 if (cityId) {
                     $.ajax({
                         url: '/get-areas/' + cityId,
                         type: 'GET',
                         dataType: 'json',
-                        success: function(data) {
+                        success: function (data) {
                             $('#areaSelect').empty();
                             $('#areaSelect').append(
                                 '<option value="" disabled selected>Select Area</option>');
-                            $.each(data, function(key, value) {
+                            $.each(data, function (key, value) {
                                 var areaTitle = value.title[locale] || value.title[
                                     'en'];
                                 $('#areaSelect').append('<option value="' + value.id +
@@ -225,11 +224,11 @@
                         data: {
                             city_id: cityId
                         },
-                        success: function(response) {
+                        success: function (response) {
                             $('#shippingPrice').text('EGP ' + response.shipping_price);
                             updateTotal();
                         },
-                        error: function() {
+                        error: function () {
                             $('#shippingPrice').text('EGP 0');
                             updateTotal();
                         }
@@ -241,7 +240,7 @@
                 }
             });
 
-            $('#areaSelect').on('change', function() {
+            $('#areaSelect').on('change', function () {
                 var shipping = $(this).find(':selected').data('shipping') || 0;
                 $('#shippingPrice').text('EGP ' + shipping);
                 updateTotal();
@@ -251,8 +250,8 @@
         });
     </script>
     <script>
-        $(document).ready(function() {
-            $('input[name="payment_method"]').on('change', function() {
+        $(document).ready(function () {
+            $('input[name="payment_method"]').on('change', function () {
                 if ($(this).val() === 'instapay') {
                     $('#instapayBox').show();
                 } else {
@@ -264,50 +263,26 @@
 
 
 
-<script>
-window.addEventListener('load', function () {
+    <script>
+        window.addEventListener('load', function () {
 
-  // ✅ القيم القادمة من Laravel Blade
-  var checkoutTotal = Number({{ $total ?? 0 }});
-//   var userId = '{{ optional(auth()->user())->id ?? "guest" }}';
-//   var checkoutFlagKey = 'cc_initiate_checkout_' + userId;
+            var checkoutTotal = Number({{ $total ?? 0 }});
 
-  // ✅ Debug Console
-//   console.log('🛍 InitiateCheckout event | total =', checkoutTotal, '| user =', userId);
+            window.dataLayer = window.dataLayer || [];
 
-  // ✅ منع التكرار في نفس الجلسة
-//   if (sessionStorage.getItem(checkoutFlagKey)) {
-//     console.log('⚠️ initiate_checkout event already sent for this user — skipping.');
-//     return;
-//   }
+            window.dataLayer.push({
+                event: 'initiate_checkout',
+                value: checkoutTotal,
+                currency: 'EGP'
+            });
 
-  // ✅ التحقق من وجود قيمة منطقية
-//   if (!checkoutTotal || checkoutTotal <= 0) {
-//     console.warn('⚠️ initiate_checkout skipped — total is zero or undefined.');
-//     return;
-//   }
+            console.log('✅ GTM initiate_checkout event pushed:', {
+                value: checkoutTotal,
+                currency: 'EGP'
+            });
 
-  window.dataLayer = window.dataLayer || [];
-
-  window.dataLayer.push({
-    event: 'initiate_checkout',
-    value: checkoutTotal,
-    currency: 'EGP'
-  });
-
-  console.log('✅ GTM initiate_checkout event pushed:', {
-    value: checkoutTotal,
-    currency: 'EGP'
-  });
-
-  // ✅ حفظ الحالة لتفادي التكرار
-//   sessionStorage.setItem(checkoutFlagKey, '1');
-});
-</script>
+        });
+    </script>
 
 
 @endsection
-
-
-
-
