@@ -1,7 +1,7 @@
 @extends('web.layouts.app')
 @section('title', __('attributes.home'))
 @section('css')
-<meta name="facebook-domain-verification" content="f1ij5g3bqbw4fddgrwruk5yyubex56" />
+
     <style>
         .custom-indicators {
             position: static;

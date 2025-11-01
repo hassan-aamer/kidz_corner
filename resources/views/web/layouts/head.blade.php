@@ -3,6 +3,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="Free HTML Templates" name="keywords">
 <meta content="Free HTML Templates" name="description">
+<meta name="facebook-domain-verification" content="f1ij5g3bqbw4fddgrwruk5yyubex56" />
 <link rel="canonical" href="{{ url()->current() }}">
 {{-- <script type="application/ld+json">
         {
