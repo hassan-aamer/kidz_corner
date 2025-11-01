@@ -6,7 +6,7 @@
     src="{{ App\Helpers\Image::getMediaUrl($products, 'products') }}"
     alt="{{ $products->title ?? '' }}"
     loading="lazy"
-    style="width: 300px; height: 300px; object-fit: cover; display: block; margin: 0 auto;">
+    style="width: 300px; height: 500px; object-fit: cover; display: block; margin: 0 auto;">
 
                     @if ($products->sold_out == 1)
                         <span class="badge badge-danger position-absolute"
