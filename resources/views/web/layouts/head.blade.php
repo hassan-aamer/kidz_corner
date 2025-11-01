@@ -74,7 +74,7 @@
     </noscript> --}}
     <!-- End Facebook Pixel Code -->
 
-    <!-- Meta Pixel Code -->
+<!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
