@@ -1,7 +1,7 @@
 <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-    <div class="card product-item border-0 mb-4" style="height: 650px;">
+    <div class="card product-item border-0 mb-4" style="height: 520px;">
         <a href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title)]) }}">
-            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0" style="height: 250px;">
+            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0" style="height: 320px;">
                 <img class="img-fluid lazyload"
                     src="{{ App\Helpers\Image::getMediaUrl($products, 'products') }}"
                     alt="{{ $products->title ?? '' }}"
