@@ -2,8 +2,11 @@
     <div class="card product-item border-0 mb-4">
         <a href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title)]) }}">
             <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                <img class="img-fluid w-100 lazyload" src="{{ App\Helpers\Image::getMediaUrl($products, 'products') }}"
-                    alt="{{ $products->title ?? '' }}" loading="lazy" width="300" height="300">
+<img class="img-fluid lazyload"
+    src="{{ App\Helpers\Image::getMediaUrl($products, 'products') }}"
+    alt="{{ $products->title ?? '' }}"
+    loading="lazy"
+    style="width: 300px; height: 300px; object-fit: cover; display: block; margin: 0 auto;">
 
                     @if ($products->sold_out == 1)
                         <span class="badge badge-danger position-absolute"
