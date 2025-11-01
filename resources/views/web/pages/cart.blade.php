@@ -181,6 +181,14 @@
         });
     </script> --}}
 
+    <script>
+  fbq('track', 'AddToCart', {
+    value: {{ $total ?? 0 }},
+    currency: 'EGP'
+  });
+</script>
+
+
 
 
 @endsection
