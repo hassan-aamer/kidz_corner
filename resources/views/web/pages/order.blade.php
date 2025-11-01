@@ -263,7 +263,7 @@
 
 
 
-    <script>
+    {{-- <script>
         window.addEventListener('load', function () {
 
             var checkoutTotal = Number({{ $total ?? 0 }});
@@ -276,13 +276,13 @@
                 currency: 'EGP'
             });
 
-            // console.log('✅ GTM initiate_checkout event pushed:', {
-            //     value: checkoutTotal,
-            //     currency: 'EGP'
-            // });
+            console.log('✅ GTM initiate_checkout event pushed:', {
+                value: checkoutTotal,
+                currency: 'EGP'
+            });
 
         });
-    </script>
+    </script> --}}
 
 
 @endsection

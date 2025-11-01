@@ -117,7 +117,7 @@
 @endsection
 @section('js')
 
-    <script>
+    {{-- <script>
         window.addEventListener('load', function() {
 
             var orderId = '{{ $order->id }}';
@@ -132,14 +132,14 @@
                 currency: 'EGP'
             });
 
-            // console.log('✅ GTM purchase event pushed:', {
-            //     transaction_id: orderId,
-            //     value: orderTotal,
-            //     currency: 'EGP'
-            // });
+            console.log('✅ GTM purchase event pushed:', {
+                transaction_id: orderId,
+                value: orderTotal,
+                currency: 'EGP'
+            });
 
         });
-    </script>
+    </script> --}}
 
 
 

@@ -155,7 +155,7 @@
     </script>
 
 
-    <script>
+    {{-- <script>
         window.addEventListener('load', function () {
             var cartTotal = Number({{ $total ?? 0 }});
 
@@ -179,7 +179,7 @@
                 currency: 'EGP'
             });
         });
-    </script>
+    </script> --}}
 
 
 
