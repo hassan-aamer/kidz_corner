@@ -191,7 +191,10 @@
                 <div class="col">
                     <div class="owl-carousel vendor-carousel">
                         @foreach ($result['sliders']->sortBy('position') as $sliders)
-                            @include('web.components.slider-item')
+                                                        <div class="vendor-item p-4">
+                                <img src="{{ App\Helpers\Image::getMediaUrl($sliders, 'sliders') }}"
+                                    alt="{{ $sliders->title ?? '' }}"  loading="lazy">
+                            </div>
                         @endforeach
                     </div>
                 </div>
