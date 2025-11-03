@@ -45,7 +45,7 @@ class HomeController extends Controller
         $result = [
             'services'          => $this->servicesService->index()->where('active', 1),
             'reviews'           => $this->reviewService->index()->where('active', 1),
-            'products'          => $this->productsService->index($request)->where('active', 1)->take(8),
+            'products'          => $this->productsService->index($request)->where('active', 1)->take(24),
             'sliders'           => $this->slidersService->index($request),
             'banners'           => $this->bannersService->index($request),
             'features'          => $this->featureService->index($request)->where('active', 1),
