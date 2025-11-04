@@ -82,7 +82,7 @@
         <div class="container-fluid pt-5">
             <div class="mb-4">
                 <div class="mb-4">
-                    <h2 class="px-lg-5 px-3" style="font-weight: bold; text-align: left; margin-bottom: 0;">
+                    <h2 class="px-lg-5 px-3" style="font-weight: bold; text-align: left; margin-bottom: 0;color:#C73B65;">
                         {{ $category->title ?? '' }}
                     </h2>
                 </div>

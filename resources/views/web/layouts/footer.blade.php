@@ -36,25 +36,25 @@
         </div> --}}
         <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
             @if (setting('address'))
-                <p class="mb-2" style="font-weight: bold;"><i class="fa fa-map-marker-alt text-primary mr-3"></i>{{ setting('address') ?? '' }}</p>
+                <p class="mb-2" style="font-weight: bold;color:#C73B65;"><i class="fa fa-map-marker-alt text-primary mr-3"></i>{{ setting('address') ?? '' }}</p>
             @endif
             @if (setting('email'))
-                <p class="mb-2" style="font-weight: bold;"><i class="fa fa-envelope text-primary mr-3"></i>{{ setting('email') ?? '' }}</p>
+                <p class="mb-2" style="font-weight: bold;color:#C73B65;"><i class="fa fa-envelope text-primary mr-3"></i>{{ setting('email') ?? '' }}</p>
             @endif
             @if (setting('phone'))
-                <p class="mb-0" style="font-weight: bold;"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ setting('phone') ?? '' }}</p>
+                <p class="mb-0" style="font-weight: bold;color:#C73B65;"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ setting('phone') ?? '' }}</p>
             @endif
         </div>
         <div class="col-lg-4 col-md-12">
             <div class="row">
                 <div class="col-md-4 mb-5">
-                    <h5 class="font-weight-bold text-dark mb-4">Quick links</h5>
+                    <h5 class="font-weight-bold mb-4" style="color:#C73B65;">Quick links</h5>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="text-dark mb-2" href="{{ route('home') }}"><i
+                        <a class=" mb-2" style="color:#C73B65;" href="{{ route('home') }}"><i
                                 class="fa fa-angle-right mr-2"></i>{{__('attributes.home')}}</a>
-                        <a class="text-dark mb-2" href="{{ route('products') }}"><i
+                        <a class=" mb-2" style="color:#C73B65;" href="{{ route('products') }}"><i
                                 class="fa fa-angle-right mr-2"></i>{{__('attributes.shop')}}</a>
-                        <a class="text-dark" href="{{ route('contact') }}"><i
+                        <a class=" mb-2" style="color:#C73B65;" href="{{ route('contact') }}"><i
                                 class="fa fa-angle-right mr-2"></i>{{__('attributes.contuct')}}</a>
                     </div>
                 </div>
@@ -64,35 +64,35 @@
         <div class="col-lg-4 col-md-12">
             <div class="row">
                 <div class="col-md-4 mb-5">
-                    <h5 class="font-weight-bold text-dark mb-4">{{__('attributes.social_links')}}</h5>
+                    <h5 class="font-weight-bold mb-4" style="color:#C73B65;">{{__('attributes.social_links')}}</h5>
                     <div class="mt-3">
                         @if (setting('facebook'))
-                            <a class="text-dark px-2" href="{{ setting('facebook') ?? '' }}">
+                            <a class="px-2" href="{{ setting('facebook') ?? '' }}" style="color:#C73B65;">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
                         @endif
                         @if (setting('twitter'))
-                        <a class="text-dark px-2" href="{{ setting('twitter') ?? '' }}">
+                        <a class=" px-2" href="{{ setting('twitter') ?? '' }}" style="color:#C73B65;">
                             <i class="fab fa-twitter"></i>
                         </a>
                         @endif
                         @if (setting('linkedIn'))
-                        <a class="text-dark px-2" href="{{ setting('linkedIn') ?? '' }}">
+                        <a class=" px-2" href="{{ setting('linkedIn') ?? '' }}" style="color:#C73B65;">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                         @endif
                         @if (setting('instagram'))
-                            <a class="text-dark px-2" href="{{ setting('instagram') ?? '' }}">
+                            <a class=" px-2" href="{{ setting('instagram') ?? '' }}" style="color:#C73B65;">
                                 <i class="fab fa-instagram"></i>
                             </a>
                         @endif
                         @if (setting('youtube'))
-                        <a class="text-dark pl-2" href="{{ setting('youtube') ?? '' }}">
+                        <a class=" pl-2" href="{{ setting('youtube') ?? '' }}" style="color:#C73B65;">
                             <i class="fab fa-youtube"></i>
                         </a>
                         @endif
                         @if (setting('tiktok'))
-                            <a class="text-dark pl-2" href="{{ setting('tiktok') ?? '' }}">
+                            <a class=" pl-2" href="{{ setting('tiktok') ?? '' }}" style="color:#C73B65;">
                                 <i class="fa-brands fa-tiktok"></i>
                             </a>
                         @endif
