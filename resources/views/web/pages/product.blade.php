@@ -21,7 +21,7 @@
     <!-- Navbar End -->
 
     <!-- Page Header Start -->
-    <div class="container-fluid bg-secondary mb-5">
+    {{-- <div class="container-fluid bg-secondary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
             <h1 class="font-weight-semi-bold text-uppercase mb-3">Product Detail</h1>
             <div class="d-inline-flex">
@@ -30,121 +30,84 @@
                 <p class="m-0">Product Detail</p>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Page Header End -->
 
 
     <!-- Shop Detail Start -->
     <div class="container-fluid py-5">
         <div class="row px-xl-5">
-            @if ($result['product']->getMedia('product_collection')->count())
-                <div class="col-lg-5 pb-5">
-                    <div id="product-carousel" class="carousel slide" data-ride="carousel" data-interval="3000">
 
-                        {{-- Indicators --}}
-                        <ol class="carousel-indicators">
+            <!-- صور المنتج -->
+            <div class="col-lg-5 pb-5">
+                <div id="product-carousel" class="carousel slide shadow-sm rounded" data-ride="carousel"
+                    data-interval="3000" style="border-radius:16px; overflow:hidden;">
+
+                    <!-- Indicators -->
+                    @if ($result['product']->getMedia('product_collection')->count())
+                        <ol class="carousel-indicators" style="bottom:-40px;">
                             @foreach ($result['product']->getMedia('product_collection') as $key => $media)
                                 <li data-target="#product-carousel" data-slide-to="{{ $key }}"
-                                    class="{{ $key === 0 ? 'active' : '' }}"></li>
+                                    class="{{ $key === 0 ? 'active' : '' }}"
+                                    style="width:10px; height:10px; border-radius:50%; background:#C73B65;"></li>
                             @endforeach
                         </ol>
 
-                        {{-- Images --}}
-                        <div class="carousel-inner border">
+                        <div class="carousel-inner">
                             @foreach ($result['product']->getMedia('product_collection') as $key => $media)
                                 <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-                                    <img class="w-100 h-100" src="{{ $media->getUrl() }}" alt="Product Image" loading="lazy"  width="300" height="300">
+                                    <img class="d-block w-100" src="{{ $media->getUrl() }}" alt="Product Image" loading="lazy"
+                                        style="height:400px; object-fit:cover;">
                                 </div>
                             @endforeach
                         </div>
-
-                        {{-- Controls --}}
-                        <a class="carousel-control-prev" href="#product-carousel" role="button" data-slide="prev">
-                            <i class="fa fa-2x fa-angle-left text-dark"></i>
-                        </a>
-                        <a class="carousel-control-next" href="#product-carousel" role="button" data-slide="next">
-                            <i class="fa fa-2x fa-angle-right text-dark"></i>
-                        </a>
-                    </div>
-                </div>
-            @else
-                <div class="col-lg-5 pb-5">
-                    <div id="product-carousel" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner border">
+                    @else
+                        <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img class="w-100 h-100" src="{{ App\Helpers\Image::getMediaUrl($result['product'], 'products') }}" alt="Image"  loading="lazy">
+                                <img class="d-block w-100"
+                                    src="{{ App\Helpers\Image::getMediaUrl($result['product'], 'products') }}" alt="Image"
+                                    loading="lazy" style="height:400px; object-fit:cover;">
                             </div>
                         </div>
-                    </div>
+                    @endif
+
+                    <!-- Controls -->
+                    <a class="carousel-control-prev" href="#product-carousel" role="button" data-slide="prev">
+                        <i class="fa fa-angle-left" style="font-size:28px; color:#C73B65;"></i>
+                    </a>
+                    <a class="carousel-control-next" href="#product-carousel" role="button" data-slide="next">
+                        <i class="fa fa-angle-right" style="font-size:28px; color:#C73B65;"></i>
+                    </a>
                 </div>
-            @endif
+            </div>
 
+            <!-- تفاصيل المنتج -->
             <div class="col-lg-7 pb-5">
-                <h3 class="font-weight-semi-bold">{{ $result['product']->title ?? '' }}</h3>
-                <h3 class="font-weight-semi-bold mb-4">EGP {{ $result['product']->price ?? '' }}</h3>
-                <p class="mb-4">{{ $result['product']->description ?? '' }}</p>
+                <h2 style="font-weight:700; color:#333; margin-bottom:15px;">
+                    {{ $result['product']->title ?? '' }}
+                </h2>
+                <h3 style="font-weight:700; color:#C73B65; margin-bottom:20px;">
+                    EGP {{ $result['product']->price ?? '' }}
+                </h3>
+                <p style="color:#555; line-height:1.6; margin-bottom:25px;">
+                    {{ $result['product']->description ?? '' }}
+                </p>
 
+                <!-- زر الإضافة للسلة -->
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <form action="{{ route('cart.add', $result['product']->id) }}" method="POST" class="d-inline">
                         @csrf
                         <input type="hidden" name="quantity" value="1">
-                        <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
-                            Cart</button>
+                        <button type="submit"
+                            style="background:#C73B65; color:#fff; border:none; padding:12px 24px; border-radius:8px; font-weight:600; transition:0.3s;">
+                            <i class="fa fa-shopping-cart mr-2"></i> Add To Cart
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
     <!-- Shop Detail End -->
-
-    @if ($result['relatedProducts']->count())
-        <!-- Products Start -->
-        <div class="container-fluid py-5">
-            {{-- <div class="text-center mb-4">
-                <h2 class="section-title px-5"><span class="px-2">You May Also Like</span></h2>
-            </div> --}}
-            <div class="row px-xl-5">
-                <div class="col">
-                    <div class="owl-carousel related-carousel">
-                        @foreach ($result['relatedProducts'] as $products)
-                            <div class="card product-item border-0">
-                                <div
-                                    class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                    <img class="img-fluid w-100"
-                                        src="{{ App\Helpers\Image::getMediaUrl($products, 'products') }}"
-                                        alt="{{ $products->title ?? '' }}"  loading="lazy">
-                                </div>
-                                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                    <h6 class="text-truncate mb-3">{{ $products->title ?? '' }}</h6>
-                                    <div class="d-flex justify-content-center">
-                                        <h6>EGP {{ $products->price ?? '0.00' }}</h6>
-                                        <h6 class="text-muted ml-2"><del>EGP {{ $products->old_price ?? '0.00' }}</del>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div class="card-footer d-flex justify-content-between bg-light border">
-                                    <a href="{{ route('product.details', ['id'=>$products->id,'title'=>Str::slug($products->title)]) }}"
-                                        class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View
-                                        Detail</a>
-                                    <form action="{{ route('cart.add', $products->id) }}" method="POST"
-                                        class="d-inline">
-                                        @csrf
-                                        <input type="hidden" name="quantity" value="1">
-                                        <button type="submit" class="btn btn-sm text-dark p-0">
-                                            <i class="fas fa-shopping-cart text-primary mr-1"></i>
-                                            Add To Cart
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Products End -->
-    @endif
-
 
 
 @endsection

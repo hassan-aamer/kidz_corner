@@ -62,7 +62,7 @@ return [
         'media' => [
             'driver' => 'local',
             'root'   => public_path('media'),
-            'url'    => env('APP_URL') . '/public/media',
+            'url'    => rtrim(env('APP_URL'), '/') . (env('MEDIA_PREFIX') ? '/' . env('MEDIA_PREFIX') : '') . '/media',
             'visibility' => 'public',
             'throw' => false,
         ],

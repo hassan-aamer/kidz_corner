@@ -1,204 +1,293 @@
 @extends('web.layouts.app')
 @section('title', __('attributes.home'))
 @section('css')
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
-    <style>
-        .custom-indicators {
-            position: static;
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-        }
 
-        .custom-indicators li {
-            background-color: gray;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin: 0 6px;
-        }
-
-        .custom-indicators .active {
-            background-color: #C73B65;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
 @endsection
 @section('content')
 
     <!-- Navbar Start -->
     <div class="container-fluid mb-5">
-        <div class="row border-top px-xl-5">
-            {{-- <div class="col-lg-3 d-none d-lg-block">
-                <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100"
-                    data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
-                    <h6 class="m-0">Categories</h6>
-                    <i class="fa fa-angle-down text-dark"></i>
-                </a>
-                <nav class="collapse position-absolute show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light"
-                    id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
-                    <div class="navbar-nav w-100">
-                        @foreach (App\Models\Category::where('active', 1)->get()->sortBy('position')->take(10) as $categories_search)
-                            <a href="{{ route('products.category', $categories_search->id) }}" class="nav-item nav-link">
-                                {{ $categories_search->title ?? '' }}
-                            </a>
-                        @endforeach
-                    </div>
-                </nav>
-            </div> --}}
+        <div class="row  px-xl-5">
             <div class="col-lg-12">
                 @include('web.layouts.nav')
-                <div id="header-carousel" class="carousel slide" data-ride="carousel" data-interval="2000">
-
-                    <div class="carousel-inner">
+                <div id="header-carousel" class="carousel slide" data-ride="carousel" data-interval="1500">
+                    <div class="carousel-inner"
+                        style="border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.08); transition: 0.3s ease;">
                         @foreach ($result['banners'] as $key => $banner)
-                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" style="height: 550px;">
+                            <div class="carousel-item  {{ $key == 0 ? 'active' : '' }}" style="height: 410px;">
                                 <img class="img-fluid w-100" src="{{ App\Helpers\Image::getMediaUrl($banner, 'banners') }}"
                                     alt="{{ $banner->title ?? 'Banner' }}" loading="lazy" style="object-fit: cover;">
-
                                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                     <div class="p-3" style="max-width: 700px;">
-                                        <h3 class="display-4 text-white font-weight-semi-bold mb-4">
+                                        <h3 class="display-5 text-white font-weight-semi-bold mb-4">
                                             {{ $banner->title ?? '' }}
                                         </h3>
-                                        <a href="{{ route('products') }}" class="btn btn-light py-2 px-3">Shop Now</a>
+                                        <a href="" class="btn btn-light py-2 px-3" style="border-radius: 16px;">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
                     </div>
-
-                    <ol class="carousel-indicators custom-indicators mt-4">
-                        @foreach ($result['banners'] as $key => $banner)
-                            <li data-target="#header-carousel" data-slide-to="{{ $key }}"
-                                class="{{ $key == 0 ? 'active' : '' }}"></li>
-                        @endforeach
-                    </ol>
-
+                    <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+                        <div class="btn btn-dark" style="width: 45px; height: 45px;border-radius: 50%;">
+                            <span class="carousel-control-prev-icon mb-n2"></span>
+                        </div>
+                    </a>
+                    <a class="carousel-control-next" href="#header-carousel" data-slide="next">
+                        <div class="btn btn-dark" style="width: 45px; height: 45px;border-radius: 50%;">
+                            <span class="carousel-control-next-icon mb-n2"></span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
     <!-- Navbar End -->
 
-    {{-- @if ($result['categories']->count())
-        <!-- Categories Start -->
-        <div class="container-fluid pt-5">
-            <div class="text-center mb-4">
-                <h2 class="section-title px-5"><span class="px-2">{{ __('attributes.categories') }} </span></h2>
-            </div>
-            <div class="row px-xl-5 pb-3">
-                @foreach ($result['categories']->sortBy('position') as $categories)
-                    @include('web.components.category-item')
+
+
+
+
+    {{-- <div class="container-fluid pt-5">
+        <div class="mb-4">
+
+            <div class="owl-carousel owl-theme px-xl-5">
+                @foreach ($result['categories']->sortBy('position') as $category)
+                    <div class="item text-center">
+                        <a href="">
+                            <img class="img-fluid lazyload"
+                                src="{{ App\Helpers\Image::getMediaUrl($category, 'repositories') }}"
+                                alt="{{ $category->title ?? '' }}" loading="lazy"
+                                style="width:200px; height:200px; object-fit:cover; border-radius:50%; box-shadow:0 6px 18px rgba(0,0,0,0.08);">
+                        </a>
+                    </div>
                 @endforeach
             </div>
         </div>
-        <!-- Categories End -->
-    @endif --}}
+    </div> --}}
 
 
-    @if ($result['products']->count())
-        <!-- Products Start -->
+
+
+
+
+
+
+
+
+
+
+
+
+    @foreach ($result['categories']->sortBy('position') as $category)
         <div class="container-fluid pt-5">
+            <div class="mb-4">
+                <div class="text-center mb-4">
+                    <h2 class="section-title px-5"><span class="px-2">{{ $category->title ?? '' }}</span></h2>
+                </div>
+
+                <!-- سلايدر المنتجات -->
+                <div id="carousel-{{ $category->id }}" class="owl-carousel owl-theme px-xl-5">
+                    @foreach ($category->products->sortBy('position') as $products)
+                        <div class="item">
+                            <div class="card border-0 mb-4"
+                                style="border-radius:16px; overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,0.08); transition:transform 0.3s ease;">
+
+                                <!-- صورة المنتج -->
+                                <a
+                                    href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title)]) }}">
+                                    <div class="position-relative" style="height:300px; overflow:hidden;">
+                                        <img class="img-fluid lazyload"
+                                            src="{{ App\Helpers\Image::getMediaUrl($products, 'products') }}"
+                                            alt="{{ $products->title ?? '' }}" loading="lazy"
+                                            style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease;">
+                                        @if ($products->sold_out == 1)
+                                            <span
+                                                style="position:absolute; top:12px; left:12px; background:#dc3545; color:#fff; font-size:13px; padding:4px 10px; border-radius:12px; font-weight:600;">
+                                                Sold Out
+                                            </span>
+                                        @endif
+                                    </div>
+                                </a>
+
+                                <!-- تفاصيل المنتج -->
+                                <div class="card-body text-center" style="padding:16px;">
+                                    <h6
+                                        style="font-size:16px; font-weight:600; color:#333; margin-bottom:10px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                                        {{ strtoupper($products->title ?? '') }}
+                                    </h6>
+                                    <div style="display:flex; justify-content:center; align-items:center; gap:8px;">
+                                        <h6 style="color:#C73B65; font-weight:700; margin:0;">EGP {{ $products->price ?? '' }}</h6>
+                                        @if($products->old_price)
+                                            <h6 style="color:#999; font-size:14px; margin:0; text-decoration:line-through;">
+                                                EGP {{ $products->old_price ?? '' }}
+                                            </h6>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <!-- الأزرار -->
+                                <div class="card-footer d-flex justify-content-between align-items-center"
+                                    style="background:#f9f9f9; border-top:1px solid #eee; padding:12px 16px;">
+                                    <a href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title)]) }}"
+                                        style="font-size:14px; font-weight:600; color:#333; text-decoration:none; display:flex; align-items:center; transition:color 0.3s ease;">
+                                        <i class="fas fa-eye" style="color:#C73B65; margin-right:6px;"></i> Details
+                                    </a>
+                                    <form action="{{ route('cart.add', $products->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        <input type="hidden" name="quantity" value="1">
+                                        <button type="submit"
+                                            style="background:#C73B65; color:#fff; border:none; padding:6px 14px; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; transition:background 0.3s ease;">
+                                            <i class="fas fa-shopping-cart" style="margin-right:6px;"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    @endforeach
+
+
+
+
+    {{-- <div class="container-fluid pt-5">
+        <div class="mb-4">
             <div class="text-center mb-4">
                 <h2 class="section-title px-5"><span class="px-2">Products</span></h2>
             </div>
-            <div class="row px-xl-5 pb-3">
+
+            <!-- سلايدر المنتجات -->
+            <div class="owl-carousel owl-theme px-xl-5">
                 @foreach ($result['products']->sortBy('position') as $products)
-                    @include('web.components.product-item')
+                <div class="item">
+                    <div class="card border-0 mb-4"
+                        style="border-radius:16px; overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,0.08); transition:transform 0.3s ease;">
+
+                        <!-- صورة المنتج -->
+                        <a
+                            href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title)]) }}">
+                            <div class="position-relative" style="height:300px; overflow:hidden;">
+                                <img class="img-fluid lazyload"
+                                    src="{{ App\Helpers\Image::getMediaUrl($products, 'products') }}"
+                                    alt="{{ $products->title ?? '' }}" loading="lazy"
+                                    style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease;">
+                                @if ($products->sold_out == 1)
+                                <span
+                                    style="position:absolute; top:12px; left:12px; background:#dc3545; color:#fff; font-size:13px; padding:4px 10px; border-radius:12px; font-weight:600;">
+                                    Sold Out
+                                </span>
+                                @endif
+                            </div>
+                        </a>
+
+                        <!-- تفاصيل المنتج -->
+                        <div class="card-body text-center" style="padding:16px;">
+                            <h6
+                                style="font-size:16px; font-weight:600; color:#333; margin-bottom:10px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                                {{ strtoupper($products->title ?? '') }}
+                            </h6>
+                            <div style="display:flex; justify-content:center; align-items:center; gap:8px;">
+                                <h6 style="color:#C73B65; font-weight:700; margin:0;">EGP {{ $products->price ?? '' }}</h6>
+                                @if($products->old_price)
+                                <h6 style="color:#999; font-size:14px; margin:0; text-decoration:line-through;">
+                                    EGP {{ $products->old_price ?? '' }}
+                                </h6>
+                                @endif
+                            </div>
+                        </div>
+
+                        <!-- الأزرار -->
+                        <div class="card-footer d-flex justify-content-between align-items-center"
+                            style="background:#f9f9f9; border-top:1px solid #eee; padding:12px 16px;">
+                            <a href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title)]) }}"
+                                style="font-size:14px; font-weight:600; color:#333; text-decoration:none; display:flex; align-items:center; transition:color 0.3s ease;">
+                                <i class="fas fa-eye" style="color:#C73B65; margin-right:6px;"></i> Details
+                            </a>
+                            <form action="{{ route('cart.add', $products->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit"
+                                    style="background:#C73B65; color:#fff; border:none; padding:6px 14px; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; transition:background 0.3s ease;">
+                                    <i class="fas fa-shopping-cart" style="margin-right:6px;"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 @endforeach
             </div>
         </div>
-        <!-- Products End -->
-    @endif
-
-    <div class="container-fluid mb-5">
-        <div class="row px-xl-5">
-            <div class="col-lg-12">
-                <div id="header-carousel" class="carousel slide" data-ride="carousel">
-
-                    <div class="carousel-item active" style="height: 550px;">
-                        <video class="w-100 h-100" controls autoplay muted loop style="object-fit: cover;">
-                            <source src="{{ asset('video.mp4') }}" type="video/mp4">
-                            متصفحك لا يدعم تشغيل الفيديو.
-                        </video>
-                    </div>
+    </div> --}}
 
 
-                </div>
-            </div>
-        </div>
-    </div>
 
+@endsection
 
-    <!-- Subscribe Start -->
-    <div class="container-fluid bg-secondary my-5"
-        style="background: url('{{ asset('public/web/img/Stay Updated section.jpg') }}') no-repeat center center/cover;">
-        <div class="row justify-content-md-center py-5 px-xl-5">
-            <div class="col-md-6 col-12 py-5">
-                <div class="text-center mb-2 pb-2">
-                    {{-- <h2 class="section-title px-5 mb-3"><span class=" px-2">Stay Updated</span></h2> --}}
-                    <h2 style="color: whitesmoke;">Stay Updated</h2>
-                    {{-- <p>Amet lorem at rebum amet dolores. Elitr lorem dolor sed amet diam labore at justo ipsum eirmod duo
-                        labore labore.</p> --}}
-                </div>
-                <form action="{{ route('subscription') }}" method="POST">
-                    @csrf
-                    <div class="input-group">
-                        <input type="text" name="email" class="form-control border-white p-4"
-                            placeholder="Email Goes Here">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary px-4"
-                                style="background-color: #d72864;">Subscribe</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- Subscribe End -->
+@section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // مثال: سلايدر أول كاتيجوري
+            $("#carousel-1").owlCarousel({
+                loop: true,
+                margin: 20,
+                nav: true,
+                dots: false,
+                autoplay: true,
+                autoplayTimeout: 2000,
+                responsive: { 0: { items: 2 }, 576: { items: 2 }, 992: { items: 3 }, 1200: { items: 4 } }
+            });
 
+            // مثال: سلايدر ثاني كاتيجوري
+            $("#carousel-2").owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: false,
+                dots: true,
+                autoplay: true,
+                autoplayTimeout: 4000,
+                responsive: { 0: { items: 1 }, 576: { items: 2 }, 992: { items: 3 }, 1200: { items: 5 } }
+            });
 
-    <!-- Featured Start -->
-    <div class="container-fluid pt-5">
-        <div class="row px-xl-5 pb-3">
-            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
-                    <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
-                    <h5 class="font-weight-semi-bold m-0">Quality Product</h5>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
-                    <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
-                    <h5 class="font-weight-semi-bold m-0">14-Day Return</h5>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
-                    <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
-                    <h5 class="font-weight-semi-bold m-0">24/7 Support</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Featured End -->
-
-
-    @if ($result['sliders']->count())
-        <!-- Vendor Start -->
-        <div class="container-fluid py-5">
-            <div class="row px-xl-5">
-                <div class="col">
-                    <div class="owl-carousel vendor-carousel">
-                        @foreach ($result['sliders']->sortBy('position') as $sliders)
-                            @include('web.components.slider-item')
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Vendor End -->
-    @endif
-
-
+            // مثال: سلايدر ثالث كاتيجوري
+            $("#carousel-3").owlCarousel({
+                loop: false,
+                margin: 30,
+                nav: true,
+                dots: true,
+                autoplay: false,
+                responsive: { 0: { items: 2 }, 576: { items: 3 }, 992: { items: 4 }, 1200: { items: 6 } }
+            });
+        });
+    </script>
+    {{-- <script>
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                dots: false,
+                autoplay: true,
+                autoplayTimeout: 3000,
+                responsive: {
+                    0: { items: 2 },
+                    576: { items: 3 },
+                    992: { items: 4 },
+                    1200: { items: 6 }
+                }
+            });
+        });
+    </script> --}}
 @endsection

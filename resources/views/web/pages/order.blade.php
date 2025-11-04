@@ -2,294 +2,247 @@
 @section('title', __('attributes.order'))
 @section('content')
 
-    <!-- Navbar Start -->
-    <div class="container-fluid">
-        <div class="row border-top px-xl-5">
-            <div class="col-lg-3 d-none d-lg-block">
-                <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100"
-                    data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
-                    <h6 class="m-0">Categories</h6>
-                    <i class="fa fa-angle-down text-dark"></i>
-                </a>
-                @include('web.components.category-dropdown')
-            </div>
-            <div class="col-lg-9">
-                @include('web.layouts.nav')
-            </div>
+<!-- Navbar Start -->
+<div class="container-fluid">
+    <div class="row border-top px-xl-5">
+        <div class="col-lg-3 d-none d-lg-block">
+            <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100"
+                data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                <h6 class="m-0">Categories</h6>
+                <i class="fa fa-angle-down text-dark"></i>
+            </a>
+            @include('web.components.category-dropdown')
+        </div>
+        <div class="col-lg-9">
+            @include('web.layouts.nav')
         </div>
     </div>
-    <!-- Navbar End -->
+</div>
+<!-- Navbar End -->
 
-    <!-- Page Header Start -->
-    <div class="container-fluid bg-secondary mb-5">
-        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-            <h1 class="font-weight-semi-bold text-uppercase mb-3">Checkout</h1>
-            <div class="d-inline-flex">
-                <p class="m-0"><a href="{{ route('home') }}">Home</a></p>
-                <p class="m-0 px-2">-</p>
-                <p class="m-0">Checkout</p>
-            </div>
-        </div>
-    </div>
-    <!-- Page Header End -->
+<!-- Checkout Start -->
+<div class="container-fluid pt-5">
+    <form action="{{ route('order.checkout') }}" method="post">
+        @csrf
+        <div class="row px-xl-5">
 
-    <!-- Checkout Start -->
-    <div class="container-fluid pt-5">
-        <form action="{{ route('order.checkout') }}" method="post">
-            @csrf
-            <div class="row px-xl-5">
-                <div class="col-lg-8">
-                    <div class="mb-4">
-                        <h4 class="font-weight-semi-bold mb-4">Shipping Address</h4>
-                        <div class="row">
-                            <div class="col-md-6 form-group">
-                                <label>Full Name</label>
-                                <input class="form-control" type="text" required name="full_name" placeholder="John Doe">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>E-mail (potional)</label>
-                                <input class="form-control" type="text" name="email" placeholder="example@email.com">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Phone</label>
-                                <input class="form-control" type="text" required name="phone" placeholder="+123 456 789">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Another phone (potional)</label>
-                                <input class="form-control" type="text" name="another_phone" placeholder="+123 456 789">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>City</label>
-                                <select class="custom-select" name="city_id" id="citySelect" required>
-                                    <option value="" disabled selected>Select City</option>
-                                    @foreach ($cities->where('parent_id', null) as $city)
-                                        <!-- المدن فقط -->
-                                        <option value="{{ $city->id }}">{{ $city->title }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+            <!-- بيانات الشحن -->
+            <div class="col-lg-8">
+                <div class="mb-4 p-4"
+                    style="background:#fff; border-radius:16px; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+                    <h4 style="font-weight:700; margin-bottom:20px; color:#333;">🚚 Shipping Address</h4>
+                    <div class="row">
 
-                            <div class="col-md-6 form-group">
-                                <label>Area</label>
-                                <select class="custom-select" name="area_id" id="areaSelect" required>
-                                    <option value="" disabled selected>Select Area</option>
-                                </select>
-                            </div>
-
-                            <div class="col-md-12 form-group">
-                                <label>Address</label>
-                                <textarea rows="4" class="form-control" type="text" name="address"
-                                    placeholder="123 Street"></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-4">
-                    <div class="card border-secondary mb-5">
-                        <div class="card-header bg-secondary border-0">
-                            <h4 class="font-weight-semi-bold m-0">Order Total</h4>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="font-weight-medium mb-3">Products</h5>
-                            @foreach ($cart->items as $item)
-                                <div class="d-flex justify-content-between">
-                                    <p><img src="{{ App\Helpers\Image::getMediaUrl($item->product, 'products') }}" alt=""
-                                            style="width: 50px;" loading="lazy"></p>
-                                    <p>EGP {{ $item->product->price ?? '' }}</p>
-                                </div>
-                            @endforeach
-                            {{--
-                            <hr class="mt-0"> --}}
-                            {{-- <div class="d-flex justify-content-between">
-                                <h6 class="font-weight-medium">Shipping (Kidz Corner Delivery - Table Rate)</h6>
-                                <h6 class="font-weight-medium" id="shippingPrice">EGP 0</h6>
-                            </div> --}}
-                        </div>
-                        <div class="card-footer border-secondary bg-transparent">
-                            <div class="d-flex justify-content-between mt-2">
-                                <h6 class="font-weight-bold">Subtotal</h6>
-                                <h6 class="font-weight-bold" id="subtotal">EGP {{ $total }}</h6>
-                                <input type="hidden" id="subtotalInput" value="{{ $total }}">
-                            </div>
-                        </div>
-                        <div class="card-footer border-secondary bg-transparent">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="font-weight-bold">Shipping (Kidz Corner Delivery - Table Rate)</h6>
-                                <h6 class="font-weight-bold" id="shippingPrice">EGP 0</h6>
-                            </div>
+                        <div class="col-md-6 form-group">
+                            <label style="font-weight:600;">Full Name</label>
+                            <input class="form-control" type="text" required name="full_name" placeholder="John Doe"
+                                style="border-radius:8px; border:1px solid #ddd; padding:12px;">
                         </div>
 
-                        <div class="card-footer border-secondary bg-transparent">
-                            <div class="d-flex justify-content-between mt-2">
-                                <h6 class="font-weight-bold">Grand Total</h6>
-                                <h6 class="font-weight-bold" id="totalPrice">EGP {{ $total }}</h6>
-                                <input type="hidden" name="total" id="totalInput" value="{{ $total }}">
-                            </div>
+                        <div class="col-md-6 form-group">
+                            <label style="font-weight:600;">E-mail (optional)</label>
+                            <input class="form-control" type="email" name="email" placeholder="example@email.com"
+                                style="border-radius:8px; border:1px solid #ddd; padding:12px;">
                         </div>
 
-                    </div>
-                    <div class="card border-secondary mb-5">
-                        <div class="card-header bg-secondary border-0">
-                            <h4 class="font-weight-semi-bold m-0">Payment</h4>
+                        <div class="col-md-6 form-group">
+                            <label style="font-weight:600;">Phone</label>
+                            <input class="form-control" type="text" required name="phone" placeholder="+123 456 789"
+                                style="border-radius:8px; border:1px solid #ddd; padding:12px;">
                         </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" value="cash" name="payment_method"
-                                        id="directcheck" required>
-                                    <label class="custom-control-label" for="directcheck">Cash on delivery</label>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment_method" value="instapay"
-                                        id="banktransfer">
-                                    <label class="custom-control-label" for="banktransfer">Insta Pay</label>
-                                </div>
-                                <div id="instapayBox" class="ml-4 mt-3 p-3 border rounded bg-light"
-                                    style="border-color:#d72864 !important; display: none;">
-                                    <strong class="text-dark">Payment Instructions:</strong><br>
-                                    <span class="text-muted small" style="font-style: italic;">
-                                        • Please transfer the total order amount to: <b>0109 2476133</b><br>
-                                        • After completing the payment, kindly take a screenshot of the transaction
-                                        and send it via WhatsApp to the same number for verification.
-                                    </span>
-                                </div>
-                            </div>
 
-                            {{-- <div class="">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment_method" value="visa"
-                                        id="banktransfer">
-                                    <label class="custom-control-label" for="banktransfer">Visa</label>
-                                </div>
-                            </div> --}}
+                        <div class="col-md-6 form-group">
+                            <label style="font-weight:600;">Another phone (optional)</label>
+                            <input class="form-control" type="text" name="another_phone" placeholder="+123 456 789"
+                                style="border-radius:8px; border:1px solid #ddd; padding:12px;">
                         </div>
-                        <div class="card-footer border-secondary bg-transparent">
-                            <button type="submit" style="background-color: #d72864;"
-                                class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place
-                                Order</button>
+
+                        <div class="col-md-6 form-group">
+                            <label style="font-weight:600;">City</label>
+                            <select class="custom-select" name="city_id" id="citySelect" required
+                                style="border-radius:8px; border:1px solid #ddd; padding:12px;">
+                                <option value="" disabled selected>Select City</option>
+                                @foreach ($cities->where('parent_id', null) as $city)
+                                    <option value="{{ $city->id }}">{{ $city->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label style="font-weight:600;">Area</label>
+                            <select class="custom-select" name="area_id" id="areaSelect" required
+                                style="border-radius:8px; border:1px solid #ddd; padding:12px;">
+                                <option value="" disabled selected>Select Area</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <label style="font-weight:600;">Address</label>
+                            <textarea rows="4" class="form-control" name="address" placeholder="123 Street"
+                                style="border-radius:8px; border:1px solid #ddd; padding:12px;"></textarea>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
-    </div>
-    <!-- Checkout End -->
+
+            <!-- ملخص الطلب والدفع -->
+            <div class="col-lg-4">
+
+                <!-- ملخص الطلب -->
+                <div class="card mb-4" style="border:none; border-radius:16px; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+                    <div class="card-header"
+                        style="background:#C73B65; color:#fff; border-radius:16px 16px 0 0; text-align:center;">
+                        <h4 style="margin:0; font-weight:700;">Order Total</h4>
+                    </div>
+                    <div class="card-body">
+                        <h5 style="font-weight:600; margin-bottom:15px;">Products</h5>
+                        @foreach ($cart->items as $item)
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <img src="{{ App\Helpers\Image::getMediaUrl($item->product, 'products') }}" alt=""
+                                    style="width:50px; border-radius:8px;" loading="lazy">
+                                <p style="margin:0; font-weight:600; color:#333;">EGP {{ $item->product->price ?? '' }}</p>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="card-footer bg-white">
+                        <div class="d-flex justify-content-between">
+                            <h6 style="font-weight:600;">Subtotal</h6>
+                            <h6 id="subtotalInput" style="font-weight:700; color:#C73B65;">EGP {{ $total }}</h6>
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <h6 style="font-weight:600;">Shipping</h6>
+                            <h6 id="shippingPrice" style="font-weight:700; color:#C73B65;">EGP 0</h6>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <h5 style="font-weight:700;">Grand Total</h5>
+                            <h5 id="totalPrice" style="font-weight:700; color:#C73B65;">EGP {{ $total }}</h5>
+                        </div>
+                        <!-- input hidden يرسل القيمة إلى قاعدة البيانات -->
+                        <input type="hidden" id="totalInput" name="total" value="{{ $total }}">
+                    </div>
+                </div>
+
+                <!-- الدفع -->
+                <div class="card mb-4" style="border:none; border-radius:16px; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+                    <div class="card-header"
+                        style="background:#C73B65; color:#fff; border-radius:16px 16px 0 0; text-align:center;">
+                        <h4 style="margin:0; font-weight:700;">Payment</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="custom-control custom-radio mb-2">
+                            <input type="radio" class="custom-control-input" value="cash" name="payment_method"
+                                id="cash" required>
+                            <label class="custom-control-label" for="cash">Cash on delivery</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" name="payment_method" value="instapay"
+                                id="instapay">
+                            <label class="custom-control-label" for="instapay">Insta Pay</label>
+                        </div>
+                        <div id="instapayBox" class="mt-3 p-3 border rounded bg-light"
+                            style="border-color:#d72864 !important; display:none;">
+                            <strong class="text-dark">Payment Instructions:</strong><br>
+                            <span class="text-muted small" style="font-style:italic;">
+                                • Transfer the total order amount to: <b>0109 2476133</b><br>
+                                • After payment, send a screenshot via WhatsApp to the same number.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white">
+                        <button type="submit"
+                            style="background:#C73B65; color:#fff; border:none; border-radius:8px; padding:14px; font-weight:700; width:100%; transition:0.3s;">
+                            Place Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- Checkout End -->
 
 @endsection
+
 @section('js')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script>
-        $(document).ready(function () {
-            var locale = "{{ app()->getLocale() }}";
+<script>
+    $(document).ready(function () {
+        var locale = "{{ app()->getLocale() }}";
 
-            function updateTotal() {
-                let subtotal = parseFloat($('#subtotalInput').val()) || 0;
-                let shippingText = $('#shippingPrice').text().replace('EGP', '').trim();
-                let shipping = parseFloat(shippingText) || 0;
-                let total = subtotal + shipping;
+        function updateTotal() {
+            let subtotalText = $('#subtotalInput').text().replace('EGP', '').trim();
+            let subtotal = parseFloat(subtotalText) || 0;
+            let shippingText = $('#shippingPrice').text().replace('EGP', '').trim();
+            let shipping = parseFloat(shippingText) || 0;
+            let total = subtotal + shipping;
 
-                $('#totalPrice').text('EGP ' + total);
-                $('#totalInput').val(total);
-            }
+            $('#totalPrice').text('EGP ' + total);
+            $('#totalInput').val(total);
+        }
 
-            $('#citySelect').on('change', function () {
-                var cityId = $(this).val();
-                if (cityId) {
-                    $.ajax({
-                        url: '/get-areas/' + cityId,
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function (data) {
-                            $('#areaSelect').empty();
-                            $('#areaSelect').append(
-                                '<option value="" disabled selected>Select Area</option>');
-                            $.each(data, function (key, value) {
-                                var areaTitle = value.title[locale] || value.title[
-                                    'en'];
-                                $('#areaSelect').append('<option value="' + value.id +
-                                    '" data-shipping="' + value.shipping_price +
-                                    '">' +
-                                    areaTitle + '</option>');
-                            });
-                        }
-                    });
+        $('#citySelect').on('change', function () {
+            var cityId = $(this).val();
+            if (cityId) {
+                $.ajax({
+                    url: '/get-areas/' + cityId,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#areaSelect').empty();
+                        $('#areaSelect').append('<option value="" disabled selected>Select Area</option>');
+                        $.each(data, function (key, value) {
+                            var areaTitle = value.title[locale] || value.title['en'];
+                            $('#areaSelect').append('<option value="' + value.id +
+                                '" data-shipping="' + value.shipping_price + '">' +
+                                areaTitle + '</option>');
+                        });
+                    }
+                });
 
-                    $.ajax({
-                        url: '{{ route('getCityShipping') }}',
-                        type: 'GET',
-                        data: {
-                            city_id: cityId
-                        },
-                        success: function (response) {
-                            $('#shippingPrice').text('EGP ' + response.shipping_price);
-                            updateTotal();
-                        },
-                        error: function () {
-                            $('#shippingPrice').text('EGP 0');
-                            updateTotal();
-                        }
-                    });
-                } else {
-                    $('#areaSelect').empty();
-                    $('#shippingPrice').text('EGP 0');
-                    updateTotal();
-                }
-            });
-
-            $('#areaSelect').on('change', function () {
-                var shipping = $(this).find(':selected').data('shipping') || 0;
-                $('#shippingPrice').text('EGP ' + shipping);
+                $.ajax({
+                    url: '{{ route('getCityShipping') }}',
+                    type: 'GET',
+                    data: { city_id: cityId },
+                    success: function (response) {
+                        $('#shippingPrice').text('EGP ' + response.shipping_price);
+                        updateTotal();
+                    },
+                    error: function () {
+                        $('#shippingPrice').text('EGP 0');
+                        updateTotal();
+                    }
+                });
+            } else {
+                $('#areaSelect').empty();
+                $('#shippingPrice').text('EGP 0');
                 updateTotal();
-            });
+            }
+        });
 
+        $('#areaSelect').on('change', function () {
+            var shipping = $(this).find(':selected').data('shipping') || 0;
+            $('#shippingPrice').text('EGP ' + shipping);
             updateTotal();
         });
-    </script>
-    <script>
-        $(document).ready(function () {
-            $('input[name="payment_method"]').on('change', function () {
-                if ($(this).val() === 'instapay') {
-                    $('#instapayBox').show();
-                } else {
-                    $('#instapayBox').hide();
-                }
-            });
+
+        $('input[name="payment_method"]').on('change', function () {
+            if ($(this).val() === 'instapay') {
+                $('#instapayBox').show();
+            } else {
+                $('#instapayBox').hide();
+            }
         });
-    </script>
 
-
-
-    {{-- <script>
-        window.addEventListener('load', function () {
-
-            var checkoutTotal = Number({{ $total ?? 0 }});
-
-            window.dataLayer = window.dataLayer || [];
-
-            window.dataLayer.push({
-                event: 'initiate_checkout',
-                value: checkoutTotal,
-                currency: 'EGP'
-            });
-
-            console.log('✅ GTM initiate_checkout event pushed:', {
-                value: checkoutTotal,
-                currency: 'EGP'
-            });
-
-        });
-    </script> --}}
-
-        <script>
-  fbq('track', 'Checkout', {
-    value: {{ $total ?? 0 }},
-    currency: 'EGP'
-  });
+        updateTotal();
+    });
 </script>
 
-
+<script>
+    fbq('track', 'Checkout', {
+        value: {{ $total ?? 0 }},
+        currency: 'EGP'
+    });
+</script>
 @endsection

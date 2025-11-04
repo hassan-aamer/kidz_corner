@@ -22,7 +22,7 @@
 
 
     <!-- Page Header Start -->
-    <div class="container-fluid bg-secondary mb-5">
+    {{-- <div class="container-fluid bg-secondary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
             <h1 class="font-weight-semi-bold text-uppercase mb-3">Contact</h1>
             <div class="d-inline-flex">
@@ -31,14 +31,14 @@
                 <p class="m-0">Contact</p>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Page Header End -->
 
 
     <!-- Contact Start -->
     <div class="container-fluid pt-5">
         <div class="text-center mb-4">
-            <h2 class="section-title px-5"><span class="px-2">Contact For Any Queries</span></h2>
+            <h2 class="section-title px-5"><span class="px-2">{{__('attributes.contuct')}}</span></h2>
         </div>
         <div class="row px-xl-5">
             <div class="col-lg-7 mb-5">
@@ -47,43 +47,44 @@
                     <form action="{{ route('contact.store') }}" method="post">
                         @csrf
                         <div class="control-group">
-                            <input type="text" class="form-control  @error('name') is-invalid @enderror" id="name"
-                                name="name" placeholder="Your Name" required="required"
-                                data-validation-required-message="Please enter your name" />
+                            <input type="text" class="form-control shadow-sm @error('name') is-invalid @enderror" id="name"
+                                name="name" placeholder="{{__('attributes.name')}}" required="required"
+                                data-validation-required-message="Please enter your name" style="border-radius: 10px;"/>
                             <p class="help-block text-danger"></p>
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="control-group">
-                            <input type="email" class="form-control  @error('email') is-invalid @enderror" id="email"
-                                name="email" placeholder="Your Email" required="required"
-                                data-validation-required-message="Please enter your email" />
+                            <input type="email" class="form-control shadow-sm @error('email') is-invalid @enderror" id="email"
+                                name="email" placeholder="{{__('attributes.email')}}" required="required"
+                                data-validation-required-message="Please enter your email"  style="border-radius: 10px;"/>
                             <p class="help-block text-danger"></p>
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="control-group">
-                            <input type="text" class="form-control  @error('phone') is-invalid @enderror"
-                                id="phone" name="phone" placeholder="phone" required="required"
-                                data-validation-required-message="Please enter a phone number" />
+                            <input type="text" class="form-control shadow-sm @error('phone') is-invalid @enderror" id="phone"
+                                name="phone" placeholder="{{__('attributes.phone')}}" required="required"
+                                data-validation-required-message="Please enter a phone number"  style="border-radius: 10px;"/>
                             <p class="help-block text-danger"></p>
                             @error('phone')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="control-group">
-                            <textarea class="form-control  @error('message') is-invalid @enderror" rows="6" id="message" name="message"
-                                placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
+                            <textarea class="form-control shadow-sm @error('message') is-invalid @enderror" rows="6" id="message" name="message"
+                                placeholder="{{__('attributes.message')}}" required="required" data-validation-required-message="Please enter your message"  style="border-radius: 10px;"></textarea>
                             <p class="help-block text-danger"></p>
                             @error('message')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div>
-                            <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton" style="background-color: #d72864;">Send
-                                Message</button>
+                        <div class="text-end">
+                            <button class="btn btn-primary btn-lg px-5  shadow-sm " type="submit"  style="border-radius: 10px;">
+                                {{ __('attributes.submit') }} <i class="fa fa-paper-plane ml-2"></i>
+                            </button>
                         </div>
                     </form>
                 </div>
