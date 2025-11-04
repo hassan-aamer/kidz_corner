@@ -16,35 +16,47 @@
 
     <!-- Navbar Start -->
     <div class="container-fluid mb-5">
-        <div class="row  px-xl-5">
+        <div class="row px-xl-5">
             <div class="col-lg-12">
                 @include('web.layouts.nav')
+
                 <div id="header-carousel" class="carousel slide" data-ride="carousel" data-interval="1500">
                     <div class="carousel-inner"
-                        style="border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.08); transition: 0.3s ease;">
+                        style="border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.08);transition:0.3s ease;">
                         @foreach ($result['banners'] as $key => $banner)
-                            <div class="carousel-item  {{ $key == 0 ? 'active' : '' }}" style="height: 410px;">
+                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" style="width:100%;height:410px;">
                                 <img class="img-fluid w-100" src="{{ App\Helpers\Image::getMediaUrl($banner, 'banners') }}"
-                                    alt="{{ $banner->title ?? 'Banner' }}" loading="lazy" style="object-fit: cover;">
-                                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                                    <div class="p-3" style="max-width: 700px;">
-                                        <h3 class="display-5  font-weight-semi-bold mb-4" style="color: #C73B65;">
+                                    alt="{{ $banner->title ?? 'Banner' }}" loading="lazy"
+                                    style="width:100%;height:100%;object-fit:cover;border-radius:16px;object-position:center;">
+
+                                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center"
+                                    style="top:0;bottom:0;left:0;right:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+                                    <div class="p-3" style="max-width:700px;text-align:center;">
+                                        <h3 class="display-5 font-weight-semi-bold mb-4" style="color:#C73B65;">
                                             {{ $banner->title ?? '' }}
                                         </h3>
-                                        <a href="{{ route('products') }}" class="btn btn-light py-2 px-3" style="border-radius: 16px;color: #C73B65;">Shop
-                                            Now</a>
+                                        <a href="{{ route('products') }}" class="btn btn-light py-2 px-3"
+                                            style="border-radius:16px;color:#C73B65;font-weight:600;">
+                                            Shop Now
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
                     </div>
-                    <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
-                        <div class="btn btn-dark" style="width: 45px; height: 45px;border-radius: 50%;">
+
+                    <a class="carousel-control-prev" href="#header-carousel" data-slide="prev"
+                        style="width:auto;height:auto;display:flex;align-items:center;">
+                        <div class="btn btn-dark"
+                            style="width:45px;height:45px;border-radius:50%;display:flex;align-items:center;justify-content:center;">
                             <span class="carousel-control-prev-icon mb-n2"></span>
                         </div>
                     </a>
-                    <a class="carousel-control-next" href="#header-carousel" data-slide="next">
-                        <div class="btn btn-dark" style="width: 45px; height: 45px;border-radius: 50%;">
+
+                    <a class="carousel-control-next" href="#header-carousel" data-slide="next"
+                        style="width:auto;height:auto;display:flex;align-items:center;">
+                        <div class="btn btn-dark"
+                            style="width:45px;height:45px;border-radius:50%;display:flex;align-items:center;justify-content:center;">
                             <span class="carousel-control-next-icon mb-n2"></span>
                         </div>
                     </a>
@@ -52,6 +64,17 @@
             </div>
         </div>
     </div>
+
+    <!-- كود CSS صغير لجعلها مستطيلة في الهاتف أيضًا -->
+    <style>
+        @media (max-width: 768px) {
+            #header-carousel .carousel-item {
+                height: 280px !important;
+                /* مستطيل في الهاتف */
+            }
+        }
+    </style>
+
     <!-- Navbar End -->
 
 
@@ -112,7 +135,7 @@
                                     style="background:#f9f9f9; border-top:1px solid #eee; padding:12px 16px;">
                                     <a href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title)]) }}"
                                         style="font-size:14px; font-weight:600; color:#333; text-decoration:none; display:flex; align-items:center; transition:color 0.3s ease;">
-                                        <i class="fas fa-eye" style="color:#C73B65; margin-right:6px;"></i> 
+                                        <i class="fas fa-eye" style="color:#C73B65; margin-right:6px;"></i>
                                     </a>
                                     <form action="{{ route('cart.add', $products->id) }}" method="POST" class="d-inline">
                                         @csrf
