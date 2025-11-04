@@ -295,7 +295,6 @@
                         break;
 
                     default:
-                        // أي سلايدر بعد الثالث ياخذ إعدادات افتراضية
                         options = {
                             loop: true,
                             margin: 15,
