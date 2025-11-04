@@ -275,7 +275,7 @@
                         options = {
                             loop: true,
                             margin: 30,
-                            nav: true,
+                            nav: false,
                             dots: true,
                             autoplay: true,
                             autoplayTimeout: 1500,
@@ -301,7 +301,7 @@
                         options = {
                             loop: true,
                             margin: 15,
-                            nav: true,
+                            nav: false,
                             dots: true,
                             autoplay: true,
                             autoplayTimeout: 2500,
