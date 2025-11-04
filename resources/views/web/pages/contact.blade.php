@@ -96,10 +96,10 @@
             </div>
             <div class="col-lg-5 mb-5">
                 <div class="d-flex flex-column mb-3">
-                    <h5 class="font-weight-semi-bold mb-3">{{ setting('name') }}</h5>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>{{ setting('address') }}</p>
-                    <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>{{ setting('email') }}</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ setting('phone') }}</p>
+                    <h4 class="font-weight-bold mb-3">{{ setting('name') }}</h4>
+                    <p class="mb-2" style="font-weight: bold;"><i class="fa fa-map-marker-alt text-primary mr-3"></i>{{ setting('address') }}</p>
+                    <p class="mb-2" style="font-weight: bold;"><i class="fa fa-envelope text-primary mr-3"></i>{{ setting('email') }}</p>
+                    <p class="mb-2" style="font-weight: bold;"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ setting('phone') }}</p>
                 </div>
             </div>
         </div>

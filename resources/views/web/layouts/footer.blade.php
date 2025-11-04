@@ -36,13 +36,13 @@
         </div> --}}
         <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
             @if (setting('address'))
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>{{ setting('address') ?? '' }}</p>
+                <p class="mb-2" style="font-weight: bold;"><i class="fa fa-map-marker-alt text-primary mr-3"></i>{{ setting('address') ?? '' }}</p>
             @endif
             @if (setting('email'))
-                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>{{ setting('email') ?? '' }}</p>
+                <p class="mb-2" style="font-weight: bold;"><i class="fa fa-envelope text-primary mr-3"></i>{{ setting('email') ?? '' }}</p>
             @endif
             @if (setting('phone'))
-                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ setting('phone') ?? '' }}</p>
+                <p class="mb-0" style="font-weight: bold;"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ setting('phone') ?? '' }}</p>
             @endif
         </div>
         <div class="col-lg-4 col-md-12">
@@ -71,26 +71,26 @@
                                 <i class="fab fa-facebook-f"></i>
                             </a>
                         @endif
-                        {{-- @if (setting('twitter'))
+                        @if (setting('twitter'))
                         <a class="text-dark px-2" href="{{ setting('twitter') ?? '' }}">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        @endif --}}
-                        {{-- @if (setting('linkedIn'))
+                        @endif
+                        @if (setting('linkedIn'))
                         <a class="text-dark px-2" href="{{ setting('linkedIn') ?? '' }}">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        @endif --}}
+                        @endif
                         @if (setting('instagram'))
                             <a class="text-dark px-2" href="{{ setting('instagram') ?? '' }}">
                                 <i class="fab fa-instagram"></i>
                             </a>
                         @endif
-                        {{-- @if (setting('youtube'))
+                        @if (setting('youtube'))
                         <a class="text-dark pl-2" href="{{ setting('youtube') ?? '' }}">
                             <i class="fab fa-youtube"></i>
                         </a>
-                        @endif --}}
+                        @endif
                         @if (setting('tiktok'))
                             <a class="text-dark pl-2" href="{{ setting('tiktok') ?? '' }}">
                                 <i class="fa-brands fa-tiktok"></i>

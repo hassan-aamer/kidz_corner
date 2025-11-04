@@ -31,7 +31,7 @@
                                         <h3 class="display-5  font-weight-semi-bold mb-4" style="color: #C73B65;">
                                             {{ $banner->title ?? '' }}
                                         </h3>
-                                        <a href="" class="btn btn-light py-2 px-3" style="border-radius: 16px;">Shop
+                                        <a href="{{ route('products') }}" class="btn btn-light py-2 px-3" style="border-radius: 16px;color: #C73B65;">Shop
                                             Now</a>
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@
                                     style="background:#f9f9f9; border-top:1px solid #eee; padding:12px 16px;">
                                     <a href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title)]) }}"
                                         style="font-size:14px; font-weight:600; color:#333; text-decoration:none; display:flex; align-items:center; transition:color 0.3s ease;">
-                                        <i class="fas fa-eye" style="color:#C73B65; margin-right:6px;"></i> Details
+                                        <i class="fas fa-eye" style="color:#C73B65; margin-right:6px;"></i> 
                                     </a>
                                     <form action="{{ route('cart.add', $products->id) }}" method="POST" class="d-inline">
                                         @csrf

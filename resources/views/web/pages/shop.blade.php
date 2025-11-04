@@ -79,7 +79,7 @@
                                         style="background:#f9f9f9; border-top:1px solid #eee; padding:12px 16px;">
                                         <a href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title)]) }}"
                                             style="font-size:14px; font-weight:600; color:#333; text-decoration:none; display:flex; align-items:center; transition:color 0.3s ease;">
-                                            <i class="fas fa-eye" style="color:#C73B65; margin-right:6px;"></i> Details
+                                            <i class="fas fa-eye" style="color:#C73B65; margin-right:6px;"></i> 
                                         </a>
                                         <form action="{{ route('cart.add', $products->id) }}" method="POST" class="d-inline">
                                             @csrf

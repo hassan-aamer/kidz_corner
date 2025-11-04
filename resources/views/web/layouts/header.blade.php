@@ -3,7 +3,7 @@
     <div class="row py-2 px-xl-5" style="background-color:#C73B65;">
         <div class="col-lg-6 d-none d-lg-block">
             <div class="d-inline-flex align-items-center">
-                <a class="text-dark" href="{{ route('contact') }}">Support</a>
+                <a class="text-dark" href="{{ route('contact') }}" style="font-weight: bold;">Support</a>
             </div>
         </div>
         <div class="col-lg-6 text-center text-lg-right">
