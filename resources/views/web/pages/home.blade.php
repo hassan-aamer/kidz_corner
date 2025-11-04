@@ -11,13 +11,6 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
 
-
-
-        <link rel="stylesheet" href="/assets/owlcarousel/owl.carousel.min.css">
-<link rel="stylesheet" href="/assets/owlcarousel/owl.theme.default.min.css">
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/assets/owlcarousel/owl.carousel.min.js"></script>
 @endsection
 @section('content')
 
