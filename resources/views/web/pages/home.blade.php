@@ -202,41 +202,52 @@
 
 @section('js')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // مثال: سلايدر أول كاتيجوري
-            $("#carousel-1").owlCarousel({
-                loop: true,
-                margin: 20,
-                nav: true,
-                dots: false,
-                autoplay: true,
-                autoplayTimeout: 2000,
-                responsive: { 0: { items: 2 }, 576: { items: 2 }, 992: { items: 3 }, 1200: { items: 4 } }
-            });
+<script src="{{ asset('assets/owl/owl.carousel.min.js') }}"></script>
 
-            // مثال: سلايدر ثاني كاتيجوري
-            $("#carousel-2").owlCarousel({
-                loop: true,
-                margin: 10,
-                nav: false,
-                dots: true,
-                autoplay: true,
-                autoplayTimeout: 4000,
-                responsive: { 0: { items: 1 }, 576: { items: 2 }, 992: { items: 3 }, 1200: { items: 5 } }
-            });
+<script>
+$(document).ready(function () {
+    // نبحث عن كل سلايدر يبدأ بـ carousel-
+    $("[id^='carousel-']").each(function () {
+        let id = $(this).attr('id');
+        let slider = $(this);
+        
+        // استخرج رقم السلايدر من الـ ID
+        let num = id.replace('carousel-', '');
+        
+        // الإعدادات الافتراضية
+        let options = {
+            loop: true,
+            margin: 20,
+            nav: true,
+            dots: true,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            responsive: {
+                0: { items: 2 },
+                576: { items: 3 },
+                992: { items: 4 },
+                1200: { items: 5 }
+            }
+        };
 
-            // مثال: سلايدر ثالث كاتيجوري
-            $("#carousel-3").owlCarousel({
-                loop: false,
-                margin: 30,
-                nav: true,
-                dots: true,
-                autoplay: false,
-                responsive: { 0: { items: 2 }, 576: { items: 3 }, 992: { items: 4 }, 1200: { items: 6 } }
-            });
-        });
-    </script>
+        // 👇 إعدادات مخصصة بناءً على رقم الكاتيجوري
+        if (num == 1) {
+            options.margin = 20;
+            options.dots = false;
+            options.autoplayTimeout = 2000;
+        } else if (num == 2) {
+            options.margin = 10;
+            options.nav = false;
+            options.autoplayTimeout = 4000;
+        } else if (num == 3) {
+            options.loop = false;
+            options.autoplay = false;
+            options.margin = 30;
+        }
 
+        // 🦾 تشغيل السلايدر
+        slider.owlCarousel(options);
+    });
+});
+</script>
 @endsection
