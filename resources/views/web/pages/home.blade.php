@@ -212,12 +212,10 @@
     <script>
         $(document).ready(function () {
 
-            // نجلب كل العناصر اللي ID بتاعها بيبدأ بـ carousel-
             $("[id^='carousel-']").each(function (index) {
                 let slider = $(this);
-                let sliderIndex = index + 1; // يبدأ من 1 بدل 0
+                let sliderIndex = index + 1;
 
-                // إعدادات مختلفة لكل سلايدر
                 let options = {};
 
                 switch (sliderIndex) {
@@ -225,8 +223,8 @@
                         options = {
                             loop: true,
                             margin: 20,
-                            nav: true,
-                            dots: false,
+                            nav: false,
+                            dots: true,
                             autoplay: true,
                             autoplayTimeout: 2000,
                             responsive: {
