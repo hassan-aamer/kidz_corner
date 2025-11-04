@@ -268,7 +268,7 @@
 
                     case 3:
                         options = {
-                            loop: false,
+                            loop: true,
                             margin: 30,
                             nav: true,
                             dots: true,
