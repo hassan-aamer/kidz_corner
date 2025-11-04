@@ -1,19 +1,18 @@
-<!-- ✅ أولاً: jQuery -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- ✅ 1. jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- ✅ ثانياً: Bootstrap -->
+<!-- ✅ 2. Bootstrap JS -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 
-<!-- ✅ ثالثاً: مكتبات أخرى تعتمد على jQuery -->
-<script src="{{ asset('web/lib/easing/easing.min.js') }}"></script>
-<script src="{{ asset('web/lib/owlcarousel/owl.carousel.min.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"></script>
-
-<!-- ✅ Contact & Validation -->
+<!-- ✅ 3. jqBootstrapValidation (قبل contact.js) -->
 <script src="{{ asset('web/mail/jqBootstrapValidation.min.js') }}"></script>
+
+<!-- ✅ 4. contact.js (بعدها مباشرة) -->
 <script src="{{ asset('web/mail/contact.js') }}"></script>
 
-<!-- ✅ سكربتات المشروع -->
+<!-- ✅ 5. باقي مكتباتك -->
+<script src="{{ asset('web/lib/easing/easing.min.js') }}"></script>
+<script src="{{ asset('web/lib/owlcarousel/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('web/js/main.js') }}"></script>
 
 @include('admin.layouts.sweetalert')
