@@ -23,10 +23,9 @@
 
     <!-- Shop Start -->
     <div class="container-fluid pt-5">
-        <div class="text-center mb-4">
-            <h2 class="section-title px-5">
-                <span class="px-2">{{ __('attributes.products') }}</span>
-            </h2>
+
+        <div class="mb-4">
+            <h2 class="px-5" style="font-weight: bold;">{{ __('attributes.products') }}</h2>
         </div>
 
         <div class="row px-xl-5">
@@ -61,7 +60,7 @@
                                     <!-- تفاصيل المنتج -->
                                     <div class="card-body text-center" style="padding:16px;">
                                         <h6
-                                            style="font-size:16px; font-weight:600; color:#333; margin-bottom:10px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                                            style="font-size:16px; font-weight:bold; color:#333; margin-bottom:10px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
                                             {{ strtoupper($products->title ?? '') }}
                                         </h6>
                                         <div style="display:flex; justify-content:center; align-items:center; gap:8px;">
@@ -80,14 +79,14 @@
                                         style="background:#f9f9f9; border-top:1px solid #eee; padding:12px 16px;">
                                         <a href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title)]) }}"
                                             style="font-size:14px; font-weight:600; color:#333; text-decoration:none; display:flex; align-items:center; transition:color 0.3s ease;">
-                                            <i class="fas fa-eye" style="color:#C73B65; margin-right:6px;"></i> تفاصيل
+                                            <i class="fas fa-eye" style="color:#C73B65; margin-right:6px;"></i> Details
                                         </a>
                                         <form action="{{ route('cart.add', $products->id) }}" method="POST" class="d-inline">
                                             @csrf
                                             <input type="hidden" name="quantity" value="1">
                                             <button type="submit"
                                                 style="background:#C73B65; color:#fff; border:none; padding:6px 14px; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; transition:background 0.3s ease;">
-                                                <i class="fas fa-shopping-cart" style="margin-right:6px;"></i> أضف للسلة
+                                                <i class="fas fa-shopping-cart" style="margin-right:6px;"></i>
                                             </button>
                                         </form>
                                     </div>

@@ -57,8 +57,8 @@
     @foreach ($result['categories']->sortBy('position') as $category)
         <div class="container-fluid pt-5">
             <div class="mb-4">
-                <div class="text-center mb-4">
-                    <h2 class="section-title px-5"><span class="px-2">{{ $category->title ?? '' }}</span></h2>
+                <div class="mb-4">
+                    <h2 class="px-5" style="font-weight: bold;">{{ $category->title ?? '' }}</h2>
                 </div>
 
                 <!-- سلايدر المنتجات -->
@@ -88,7 +88,7 @@
                                 <!-- تفاصيل المنتج -->
                                 <div class="card-body text-center" style="padding:16px;">
                                     <h6
-                                        style="font-size:16px; font-weight:600; color:#333; margin-bottom:10px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                                        style="font-size:16px; font-weight:bold; color:#333; margin-bottom:10px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
                                         {{ strtoupper($products->title ?? '') }}
                                     </h6>
                                     <div style="display:flex; justify-content:center; align-items:center; gap:8px;">
