@@ -199,55 +199,95 @@
 
 
 @endsection
-
 @section('js')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{{ asset('assets/owl/owl.carousel.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
 <script>
 $(document).ready(function () {
-    // نبحث عن كل سلايدر يبدأ بـ carousel-
-    $("[id^='carousel-']").each(function () {
-        let id = $(this).attr('id');
-        let slider = $(this);
-        
-        // استخرج رقم السلايدر من الـ ID
-        let num = id.replace('carousel-', '');
-        
-        // الإعدادات الافتراضية
-        let options = {
-            loop: true,
-            margin: 20,
-            nav: true,
-            dots: true,
-            autoplay: true,
-            autoplayTimeout: 3000,
-            responsive: {
-                0: { items: 2 },
-                576: { items: 3 },
-                992: { items: 4 },
-                1200: { items: 5 }
-            }
-        };
 
-        // 👇 إعدادات مخصصة بناءً على رقم الكاتيجوري
-        if (num == 1) {
-            options.margin = 20;
-            options.dots = false;
-            options.autoplayTimeout = 2000;
-        } else if (num == 2) {
-            options.margin = 10;
-            options.nav = false;
-            options.autoplayTimeout = 4000;
-        } else if (num == 3) {
-            options.loop = false;
-            options.autoplay = false;
-            options.margin = 30;
+    // نجلب كل العناصر اللي ID بتاعها بيبدأ بـ carousel-
+    $("[id^='carousel-']").each(function (index) {
+        let slider = $(this);
+        let sliderIndex = index + 1; // يبدأ من 1 بدل 0
+
+        // إعدادات مختلفة لكل سلايدر
+        let options = {};
+
+        switch (sliderIndex) {
+            case 1:
+                options = {
+                    loop: true,
+                    margin: 20,
+                    nav: true,
+                    dots: false,
+                    autoplay: true,
+                    autoplayTimeout: 2000,
+                    responsive: {
+                        0: { items: 2 },
+                        576: { items: 2 },
+                        992: { items: 3 },
+                        1200: { items: 4 }
+                    }
+                };
+                break;
+
+            case 2:
+                options = {
+                    loop: true,
+                    margin: 10,
+                    nav: false,
+                    dots: true,
+                    autoplay: true,
+                    autoplayTimeout: 4000,
+                    responsive: {
+                        0: { items: 1 },
+                        576: { items: 2 },
+                        992: { items: 3 },
+                        1200: { items: 5 }
+                    }
+                };
+                break;
+
+            case 3:
+                options = {
+                    loop: false,
+                    margin: 30,
+                    nav: true,
+                    dots: true,
+                    autoplay: false,
+                    responsive: {
+                        0: { items: 2 },
+                        576: { items: 3 },
+                        992: { items: 4 },
+                        1200: { items: 6 }
+                    }
+                };
+                break;
+
+            default:
+                // أي سلايدر بعد الثالث ياخذ إعدادات افتراضية
+                options = {
+                    loop: true,
+                    margin: 15,
+                    nav: true,
+                    dots: true,
+                    autoplay: true,
+                    autoplayTimeout: 2500,
+                    responsive: {
+                        0: { items: 2 },
+                        576: { items: 3 },
+                        992: { items: 4 },
+                        1200: { items: 5 }
+                    }
+                };
+                break;
         }
 
-        // 🦾 تشغيل السلايدر
+        // تفعيل السلايدر
         slider.owlCarousel(options);
     });
 });
 </script>
 @endsection
+
