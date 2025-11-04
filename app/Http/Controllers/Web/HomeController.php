@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 use App\Services\Reviews\ReviewService;
 use App\Services\Banners\BannersService;
 use App\Services\Sliders\SlidersService;
@@ -49,7 +50,10 @@ class HomeController extends Controller
             'sliders'           => $this->slidersService->index($request),
             'banners'           => $this->bannersService->index($request),
             'features'          => $this->featureService->index($request)->where('active', 1),
-            'categories'        => $this->categoryService->index()->where('active', 1)->take(6),
+            'categories'        => Cache::remember('home_categories', now()->addHours(3), function () {
+            return $this->categoryService->index()->where('active', 1)->take(6);
+        }),
+
         ];
         return view('web.pages.home', compact('result'));
     }
