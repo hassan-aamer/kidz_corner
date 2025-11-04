@@ -36,9 +36,9 @@
 
     <!-- Shop Detail Start -->
     <div class="container-fluid py-5">
-                <div class="mb-4">
+        {{-- <div class="mb-4">
             <h2 class="px-lg-5 px-3" style="font-weight: bold; text-align: left; margin-bottom: 0;">Product details</h2>
-        </div>
+        </div> --}}
         <div class="row px-xl-5">
 
             <!-- صور المنتج -->
