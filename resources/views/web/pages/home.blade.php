@@ -57,37 +57,6 @@
 
 
 
-    {{-- <div class="container-fluid pt-5">
-        <div class="mb-4">
-
-            <div class="owl-carousel owl-theme px-xl-5">
-                @foreach ($result['categories']->sortBy('position') as $category)
-                    <div class="item text-center">
-                        <a href="">
-                            <img class="img-fluid lazyload"
-                                src="{{ App\Helpers\Image::getMediaUrl($category, 'repositories') }}"
-                                alt="{{ $category->title ?? '' }}" loading="lazy"
-                                style="width:200px; height:200px; object-fit:cover; border-radius:50%; box-shadow:0 6px 18px rgba(0,0,0,0.08);">
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div> --}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @foreach ($result['categories']->sortBy('position') as $category)
         <div class="container-fluid pt-5">
             <div class="mb-4">
@@ -236,59 +205,30 @@
 @endsection
 
 @section('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // مثال: سلايدر أول كاتيجوري
-            $("#carousel-1").owlCarousel({
-                loop: true,
-                margin: 20,
-                nav: true,
-                dots: false,
-                autoplay: true,
-                autoplayTimeout: 2000,
-                responsive: { 0: { items: 2 }, 576: { items: 2 }, 992: { items: 3 }, 1200: { items: 4 } }
-            });
-
-            // مثال: سلايدر ثاني كاتيجوري
-            $("#carousel-2").owlCarousel({
-                loop: true,
-                margin: 10,
-                nav: false,
-                dots: true,
-                autoplay: true,
-                autoplayTimeout: 4000,
-                responsive: { 0: { items: 1 }, 576: { items: 2 }, 992: { items: 3 }, 1200: { items: 5 } }
-            });
-
-            // مثال: سلايدر ثالث كاتيجوري
-            $("#carousel-3").owlCarousel({
-                loop: false,
-                margin: 30,
-                nav: true,
-                dots: true,
-                autoplay: false,
-                responsive: { 0: { items: 2 }, 576: { items: 3 }, 992: { items: 4 }, 1200: { items: 6 } }
-            });
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script>
+$(document).ready(function () {
+    $("[id^='carousel-']").each(function () {
+        $(this).owlCarousel({
+            loop: true,
+            margin: 20,
+            nav: true,
+            dots: false,
+            autoplay: true,
+            autoplayTimeout: 2500,
+            responsive: {
+                0: { items: 2 },
+                576: { items: 2 },
+                992: { items: 3 },
+                1200: { items: 4 }
+            }
         });
-    </script>
-    {{-- <script>
-        $(document).ready(function () {
-            $(".owl-carousel").owlCarousel({
-                loop: true,
-                margin: 10,
-                nav: true,
-                dots: false,
-                autoplay: true,
-                autoplayTimeout: 3000,
-                responsive: {
-                    0: { items: 2 },
-                    576: { items: 3 },
-                    992: { items: 4 },
-                    1200: { items: 6 }
-                }
-            });
-        });
-    </script> --}}
+    });
+});
+
+$(window).on('load', function() {
+    $("[id^='carousel-']").trigger('refresh.owl.carousel');
+});
+</script>
 @endsection
