@@ -54,9 +54,6 @@
     <!-- Navbar End -->
 
 
-
-
-
     @foreach ($result['categories']->sortBy('position') as $category)
         <div class="container-fluid pt-5">
             <div class="mb-4">
@@ -127,7 +124,6 @@
             </div>
         </div>
     @endforeach
-
 
 
 
@@ -207,28 +203,40 @@
 @section('js')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-<script>
-$(document).ready(function () {
-    $("[id^='carousel-']").each(function () {
-        $(this).owlCarousel({
-            loop: true,
-            margin: 20,
-            nav: true,
-            dots: false,
-            autoplay: true,
-            autoplayTimeout: 2500,
-            responsive: {
-                0: { items: 2 },
-                576: { items: 2 },
-                992: { items: 3 },
-                1200: { items: 4 }
-            }
-        });
-    });
-});
+    <script>
+        $(document).ready(function () {
+            // مثال: سلايدر أول كاتيجوري
+            $("#carousel-1").owlCarousel({
+                loop: true,
+                margin: 20,
+                nav: true,
+                dots: false,
+                autoplay: true,
+                autoplayTimeout: 2000,
+                responsive: { 0: { items: 2 }, 576: { items: 2 }, 992: { items: 3 }, 1200: { items: 4 } }
+            });
 
-$(window).on('load', function() {
-    $("[id^='carousel-']").trigger('refresh.owl.carousel');
-});
-</script>
+            // مثال: سلايدر ثاني كاتيجوري
+            $("#carousel-2").owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: false,
+                dots: true,
+                autoplay: true,
+                autoplayTimeout: 4000,
+                responsive: { 0: { items: 1 }, 576: { items: 2 }, 992: { items: 3 }, 1200: { items: 5 } }
+            });
+
+            // مثال: سلايدر ثالث كاتيجوري
+            $("#carousel-3").owlCarousel({
+                loop: false,
+                margin: 30,
+                nav: true,
+                dots: true,
+                autoplay: false,
+                responsive: { 0: { items: 2 }, 576: { items: 3 }, 992: { items: 4 }, 1200: { items: 6 } }
+            });
+        });
+    </script>
+
 @endsection
