@@ -3,7 +3,8 @@
 @section('css')
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
@@ -58,8 +59,11 @@
         <div class="container-fluid pt-5">
             <div class="mb-4">
                 <div class="mb-4">
-                    <h2 class="px-5" style="font-weight: bold;">{{ $category->title ?? '' }}</h2>
+                    <h2 class="px-lg-5 px-3" style="font-weight: bold; text-align: left; margin-bottom: 0;">
+                        {{ $category->title ?? '' }}
+                    </h2>
                 </div>
+
 
                 <!-- سلايدر المنتجات -->
                 <div id="carousel-{{ $category->id }}" class="owl-carousel owl-theme px-xl-5">
@@ -93,7 +97,8 @@
                                     </h6>
                                     <div style="display:flex; justify-content:center; align-items:center; gap:8px;">
                                         <h6 style="color:#C73B65; font-weight:700; margin:0;">EGP
-                                            {{ $products->price ?? '' }}</h6>
+                                            {{ $products->price ?? '' }}
+                                        </h6>
                                         @if ($products->old_price)
                                             <h6 style="color:#999; font-size:14px; margin:0; text-decoration:line-through;">
                                                 EGP {{ $products->old_price ?? '' }}
@@ -205,10 +210,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             // نجلب كل العناصر اللي ID بتاعها بيبدأ بـ carousel-
-            $("[id^='carousel-']").each(function(index) {
+            $("[id^='carousel-']").each(function (index) {
                 let slider = $(this);
                 let sliderIndex = index + 1; // يبدأ من 1 بدل 0
 

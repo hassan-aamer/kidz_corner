@@ -39,7 +39,7 @@
   <div class="container-fluid pt-5">
 
     <div class="mb-4">
-      <h2 class="px-5" style="font-weight: bold;">🛒 Shopping Cart</h2>
+      <h2 class="px-lg-5 px-3" style="font-weight: bold; text-align: left; margin-bottom: 0;">🛒 Shopping Cart</h2>
     </div>
 
     <div class="row px-xl-5">
