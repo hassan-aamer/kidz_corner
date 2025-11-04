@@ -24,9 +24,9 @@
     <!-- Shop Start -->
     <div class="container-fluid pt-5">
 
-        <div class="mb-4">
+        {{-- <div class="mb-4">
             <h2 class="px-lg-5 px-3" style="font-weight: bold; text-align: left; margin-bottom: 0;">{{ __('attributes.products') }}</h2>
-        </div>
+        </div> --}}
 
         <div class="row px-xl-5">
             <!-- Shop Product Start -->
