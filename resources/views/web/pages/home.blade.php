@@ -27,7 +27,7 @@
                                     alt="{{ $banner->title ?? 'Banner' }}" loading="lazy" style="object-fit: cover;">
                                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                     <div class="p-3" style="max-width: 700px;">
-                                        <h3 class="display-5 text-white font-weight-semi-bold mb-4">
+                                        <h3 class="display-5  font-weight-semi-bold mb-4" style="color: #C73B65;">
                                             {{ $banner->title ?? '' }}
                                         </h3>
                                         <a href="" class="btn btn-light py-2 px-3" style="border-radius: 16px;">Shop
