@@ -3,8 +3,7 @@
 @section('css')
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
@@ -31,7 +30,8 @@
                                         <h3 class="display-5 text-white font-weight-semi-bold mb-4">
                                             {{ $banner->title ?? '' }}
                                         </h3>
-                                        <a href="" class="btn btn-light py-2 px-3" style="border-radius: 16px;">Shop Now</a>
+                                        <a href="" class="btn btn-light py-2 px-3" style="border-radius: 16px;">Shop
+                                            Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -92,8 +92,9 @@
                                         {{ strtoupper($products->title ?? '') }}
                                     </h6>
                                     <div style="display:flex; justify-content:center; align-items:center; gap:8px;">
-                                        <h6 style="color:#C73B65; font-weight:700; margin:0;">EGP {{ $products->price ?? '' }}</h6>
-                                        @if($products->old_price)
+                                        <h6 style="color:#C73B65; font-weight:700; margin:0;">EGP
+                                            {{ $products->price ?? '' }}</h6>
+                                        @if ($products->old_price)
                                             <h6 style="color:#999; font-size:14px; margin:0; text-decoration:line-through;">
                                                 EGP {{ $products->old_price ?? '' }}
                                             </h6>
@@ -165,7 +166,7 @@
                             </h6>
                             <div style="display:flex; justify-content:center; align-items:center; gap:8px;">
                                 <h6 style="color:#C73B65; font-weight:700; margin:0;">EGP {{ $products->price ?? '' }}</h6>
-                                @if($products->old_price)
+                                @if ($products->old_price)
                                 <h6 style="color:#999; font-size:14px; margin:0; text-decoration:line-through;">
                                     EGP {{ $products->old_price ?? '' }}
                                 </h6>
@@ -200,94 +201,126 @@
 
 @endsection
 @section('js')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
-<script>
-$(document).ready(function () {
+    <script>
+        $(document).ready(function() {
 
-    // نجلب كل العناصر اللي ID بتاعها بيبدأ بـ carousel-
-    $("[id^='carousel-']").each(function (index) {
-        let slider = $(this);
-        let sliderIndex = index + 1; // يبدأ من 1 بدل 0
+            // نجلب كل العناصر اللي ID بتاعها بيبدأ بـ carousel-
+            $("[id^='carousel-']").each(function(index) {
+                let slider = $(this);
+                let sliderIndex = index + 1; // يبدأ من 1 بدل 0
 
-        // إعدادات مختلفة لكل سلايدر
-        let options = {};
+                // إعدادات مختلفة لكل سلايدر
+                let options = {};
 
-        switch (sliderIndex) {
-            case 1:
-                options = {
-                    loop: true,
-                    margin: 20,
-                    nav: true,
-                    dots: false,
-                    autoplay: true,
-                    autoplayTimeout: 2000,
-                    responsive: {
-                        0: { items: 2 },
-                        576: { items: 2 },
-                        992: { items: 3 },
-                        1200: { items: 4 }
-                    }
-                };
-                break;
+                switch (sliderIndex) {
+                    case 1:
+                        options = {
+                            loop: true,
+                            margin: 20,
+                            nav: true,
+                            dots: false,
+                            autoplay: true,
+                            autoplayTimeout: 2000,
+                            responsive: {
+                                0: {
+                                    items: 2
+                                },
+                                576: {
+                                    items: 2
+                                },
+                                992: {
+                                    items: 3
+                                },
+                                1200: {
+                                    items: 4
+                                }
+                            }
+                        };
+                        break;
 
-            case 2:
-                options = {
-                    loop: true,
-                    margin: 10,
-                    nav: false,
-                    dots: true,
-                    autoplay: true,
-                    autoplayTimeout: 4000,
-                    responsive: {
-                        0: { items: 1 },
-                        576: { items: 2 },
-                        992: { items: 3 },
-                        1200: { items: 5 }
-                    }
-                };
-                break;
+                    case 2:
+                        options = {
+                            loop: true,
+                            margin: 10,
+                            nav: false,
+                            dots: true,
+                            autoplay: true,
+                            autoplayTimeout: 4000,
+                            responsive: {
+                                0: {
+                                    items: 1
+                                },
+                                576: {
+                                    items: 2
+                                },
+                                992: {
+                                    items: 3
+                                },
+                                1200: {
+                                    items: 5
+                                }
+                            }
+                        };
+                        break;
 
-            case 3:
-                options = {
-                    loop: false,
-                    margin: 30,
-                    nav: true,
-                    dots: true,
-                    autoplay: false,
-                    responsive: {
-                        0: { items: 2 },
-                        576: { items: 3 },
-                        992: { items: 4 },
-                        1200: { items: 6 }
-                    }
-                };
-                break;
+                    case 3:
+                        options = {
+                            loop: false,
+                            margin: 30,
+                            nav: true,
+                            dots: true,
+                            autoplay: true,
+                            autoplayTimeout: 1500,
+                            responsive: {
+                                0: {
+                                    items: 2
+                                },
+                                576: {
+                                    items: 3
+                                },
+                                992: {
+                                    items: 4
+                                },
+                                1200: {
+                                    items: 6
+                                }
+                            }
+                        };
+                        break;
 
-            default:
-                // أي سلايدر بعد الثالث ياخذ إعدادات افتراضية
-                options = {
-                    loop: true,
-                    margin: 15,
-                    nav: true,
-                    dots: true,
-                    autoplay: true,
-                    autoplayTimeout: 2500,
-                    responsive: {
-                        0: { items: 2 },
-                        576: { items: 3 },
-                        992: { items: 4 },
-                        1200: { items: 5 }
-                    }
-                };
-                break;
-        }
+                    default:
+                        // أي سلايدر بعد الثالث ياخذ إعدادات افتراضية
+                        options = {
+                            loop: true,
+                            margin: 15,
+                            nav: true,
+                            dots: true,
+                            autoplay: true,
+                            autoplayTimeout: 2500,
+                            responsive: {
+                                0: {
+                                    items: 2
+                                },
+                                576: {
+                                    items: 3
+                                },
+                                992: {
+                                    items: 4
+                                },
+                                1200: {
+                                    items: 5
+                                }
+                            }
+                        };
+                        break;
+                }
 
-        // تفعيل السلايدر
-        slider.owlCarousel(options);
-    });
-});
-</script>
+                // تفعيل السلايدر
+                slider.owlCarousel(options);
+            });
+        });
+    </script>
 @endsection
-
