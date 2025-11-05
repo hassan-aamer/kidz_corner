@@ -90,7 +90,7 @@
                     {{ $result['product']->title ?? '' }}
                 </h2>
                 <h3 style="font-weight:700; color:#C73B65; margin-bottom:20px;">
-                    EGP {{ $result['product']->price ?? '' }}
+                    {{ $result['product']->price ?? '' }}
                 </h3>
                 <p style="color:#555; line-height:1.6; margin-bottom:25px;">
                     {{ $result['product']->description ?? '' }}

@@ -119,12 +119,12 @@
                                         {{ strtoupper($products->title ?? '') }}
                                     </h6>
                                     <div style="display:flex; justify-content:center; align-items:center; gap:8px;">
-                                        <h6 style="color:#C73B65; font-weight:700; margin:0;">EGP
+                                        <h6 style="color:#C73B65; font-weight:700; margin:0;">
                                             {{ $products->price ?? '' }}
                                         </h6>
                                         @if ($products->old_price)
                                             <h6 style="color:#999; font-size:14px; margin:0; text-decoration:line-through;">
-                                                EGP {{ $products->old_price ?? '' }}
+                                                {{ $products->old_price ?? '' }}
                                             </h6>
                                         @endif
                                     </div>

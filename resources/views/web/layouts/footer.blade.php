@@ -111,8 +111,8 @@
                 </a>
                 <span class="d-block d-md-inline">
                     | Powered by
-                    <a class="text-dark fw-semibold text-decoration-none" href="https://wa.me/201129730475" style="font-weight: bold;">
-                        Hassan Mohamed
+                    <a class="text-dark fw-semibold text-decoration-none" href="https://viralmonkeys.net/" style="font-weight: bold;">
+                        Viral monkeys
                     </a>
                 </span>
             </p>
