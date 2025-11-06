@@ -154,6 +154,9 @@
             .carousel-item-custom {
                 height: 280px !important;
             }
+            .product-image-container {
+                height: 200px;
+            }
         }
     </style>
 @endsection
