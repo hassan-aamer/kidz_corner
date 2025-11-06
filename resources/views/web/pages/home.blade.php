@@ -155,7 +155,7 @@
                 height: 280px !important;
             }
             .product-image-container {
-                height: 200px;
+                height: 150px;
             }
         }
     </style>
