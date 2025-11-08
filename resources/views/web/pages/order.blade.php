@@ -60,7 +60,7 @@
                         <div class="col-md-6 form-group">
                             <label style="font-weight:600;">City</label>
                             <select class="custom-select" name="city_id" id="citySelect" required
-                                style="border-radius:8px; border:1px solid #ddd; padding:12px;">
+                                style="border-radius:8px; border:1px solid #ddd;">
                                 <option value="" disabled selected>Select City</option>
                                 @foreach ($cities->where('parent_id', null) as $city)
                                     <option value="{{ $city->id }}">{{ $city->title }}</option>
@@ -71,7 +71,7 @@
                         <div class="col-md-6 form-group">
                             <label style="font-weight:600;">Area</label>
                             <select class="custom-select" name="area_id" id="areaSelect" required
-                                style="border-radius:8px; border:1px solid #ddd; padding:12px;">
+                                style="border-radius:8px; border:1px solid #ddd;">
                                 <option value="" disabled selected>Select Area</option>
                             </select>
                         </div>
