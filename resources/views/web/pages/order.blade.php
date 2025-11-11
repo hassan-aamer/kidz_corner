@@ -98,23 +98,24 @@
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <img src="{{ App\Helpers\Image::getMediaUrl($item->product, 'products') }}" alt=""
                                     style="width:50px; border-radius:8px;" loading="lazy">
-                                <p style="margin:0; font-weight:600; color:#333;">EGP {{ $item->product->price ?? '' }}</p>
+                                <p style="margin:0; font-weight:600; color:#333;"> {{ $item->product->price ?? '' }} EGP</p>
                             </div>
                         @endforeach
                     </div>
                     <div class="card-footer bg-white">
                         <div class="d-flex justify-content-between">
                             <h6 style="font-weight:600;">Subtotal</h6>
-                            <h6 id="subtotalInput" style="font-weight:700; color:#C73B65;">EGP {{ $total }}</h6>
+                            <h6 id="subtotalInput" style="font-weight:700; color:#C73B65;"> {{ $total }} EGP</h6>
                         </div>
                         <div class="d-flex justify-content-between mt-2">
-                            <h6 style="font-weight:600;">Shipping</h6>
-                            <h6 id="shippingPrice" style="font-weight:700; color:#C73B65;">EGP 0</h6>
+                            <h6 style="font-weight:600;">Free Shipping</h6>
+                            <h6 style="font-weight:700; color:#C73B65;"><del> 80 EGP</del></h6>
+                            {{-- <h6 id="shippingPrice" style="font-weight:700; color:#C73B65;">0 EGP</h6> --}}
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between">
                             <h5 style="font-weight:700;">Grand Total</h5>
-                            <h5 id="totalPrice" style="font-weight:700; color:#C73B65;">EGP {{ $total }}</h5>
+                            <h5 id="totalPrice" style="font-weight:700; color:#C73B65;"> {{ $total }} EGP</h5>
                         </div>
                         <!-- input hidden يرسل القيمة إلى قاعدة البيانات -->
                         <input type="hidden" id="totalInput" name="total" value="{{ $total }}">
@@ -176,7 +177,7 @@
             let shipping = parseFloat(shippingText) || 0;
             let total = subtotal + shipping;
 
-            $('#totalPrice').text('EGP ' + total);
+            $('#totalPrice').text(total + ' EGP ');
             $('#totalInput').val(total);
         }
 
