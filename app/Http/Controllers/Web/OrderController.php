@@ -7,6 +7,8 @@ use App\Models\City;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Services\Categories\CategoryService;
@@ -122,6 +124,54 @@ class OrderController extends Controller
     public function thanks($orderId)
     {
         $order = Order::findOrFail($orderId);
+        $this->sendPurchaseEvent($order);
         return view('web.pages.thanks', compact('order'));
     }
+
+
+
+
+
+    public function sendPurchaseEvent($order)
+    {
+        // dd($order);
+        $pixel_id = 1099641122366792;
+        $access_token = 'EAAV1VhkDeZCwBP26FcfNsERr8bgE0fZAWXCTd314fYzBkKYWjLWQubtk8BqpyZCJXqdF1VVwt0W4jBh3ZAIZBnmT0vQkOuCj2ypBQvhNS19bLydGZAjveHMdipFyNZCD31sicN8qRuUUTWQPffY4woGi6OGBA90kHiCk91PwAlAaWlaiPXrNjr5kmAUwiyJdgZDZD'; // ضع Access Token هنا
+
+        // تجهيز بيانات العميل مشفرة SHA256
+        $user_data = [
+            'em' => hash('sha256', strtolower(trim($order->email))),
+            'ph' => hash('sha256', preg_replace('/\D/', '', $order->phone)),
+            'client_ip_address' => request()->ip(),
+            'client_user_agent' => request()->userAgent()
+        ];
+
+        // بيانات الحدث
+        $event_data = [
+            'data' => [
+                [
+                    'event_name' => 'Purchase',
+                    'event_time' => time(),
+                    'action_source' => 'website',
+                    'event_id' => uniqid(),
+                    'user_data' => $user_data,
+                    'custom_data' => [
+                        'currency' => 'EGP',
+                        'value' => $order->total
+                    ]
+                ]
+            ]
+        ];
+
+        // إرسال الحدث للـ Meta
+        $response = Http::post("https://graph.facebook.com/v17.0/{$pixel_id}/events?access_token={$access_token}", $event_data);
+
+        // تسجيل الرد في اللوج لمراجعة أي مشاكل
+        Log::info('Meta CAPI Response', ['response' => $response->body()]);
+
+        return $response->body();
+    }
+
+
+    
 }
