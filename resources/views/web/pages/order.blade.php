@@ -21,7 +21,7 @@
 <!-- Navbar End -->
 
 <!-- Checkout Start -->
-<div class="container-fluid pt-5">
+<div class="container-fluid pt-2">
     <form action="{{ route('order.checkout') }}" method="post">
         @csrf
         <div class="row px-xl-5">
@@ -33,32 +33,31 @@
                     <h4 style="font-weight:700; margin-bottom:20px; color:#333;">🚚 Shipping Address</h4>
                     <div class="row">
 
-                        <div class="col-md-6 form-group">
-                            <label style="font-weight:600;">Full Name</label>
-                            <input class="form-control" type="text" required name="full_name" placeholder="John Doe"
+                        <div class="col-md-4 form-group">
+                            {{-- <label style="font-weight:600;">Full Name</label> --}}
+                            <input class="form-control" autocomplete="full_name" type="text" required name="full_name" placeholder="Full Name"
                                 style="border-radius:8px; border:1px solid #ddd; padding:12px;">
                         </div>
 
-                        <div class="col-md-6 form-group">
-                            <label style="font-weight:600;">E-mail (optional)</label>
-                            <input class="form-control" type="email" name="email" placeholder="example@email.com"
+                        <div class="col-md-4 form-group">
+                            {{-- <label style="font-weight:600;">E-mail (optional)</label> --}}
+                            <input class="form-control" autocomplete="email" type="email" name="email" placeholder="E-mail (optional)"
                                 style="border-radius:8px; border:1px solid #ddd; padding:12px;">
                         </div>
 
-                        <div class="col-md-6 form-group">
-                            <label style="font-weight:600;">Phone</label>
-                            <input class="form-control" type="text" required name="phone" placeholder="+123 456 789"
+                        <div class="col-md-4 form-group">
+                            {{-- <label style="font-weight:600;">Phone</label> --}}
+                            <input class="form-control" autocomplete="phone" type="text" required name="phone" placeholder="Phone"
                                 style="border-radius:8px; border:1px solid #ddd; padding:12px;">
                         </div>
 
-                        <div class="col-md-6 form-group">
+                        {{-- <div class="col-md-6 form-group">
                             <label style="font-weight:600;">Another phone (optional)</label>
                             <input class="form-control" type="text" name="another_phone" placeholder="+123 456 789"
                                 style="border-radius:8px; border:1px solid #ddd; padding:12px;">
-                        </div>
+                        </div> --}}
 
-                        <div class="col-md-6 form-group">
-                            <label style="font-weight:600;">City</label>
+                        {{-- <div class="col-md-6 form-group">
                             <select class="custom-select" name="city_id" id="citySelect" required
                                 style="border-radius:8px; border:1px solid #ddd;">
                                 <option value="" disabled selected>Select City</option>
@@ -66,19 +65,18 @@
                                     <option value="{{ $city->id }}">{{ $city->title }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
 
-                        <div class="col-md-6 form-group">
-                            <label style="font-weight:600;">Area</label>
+                        {{-- <div class="col-md-6 form-group">
                             <select class="custom-select" name="area_id" id="areaSelect" required
                                 style="border-radius:8px; border:1px solid #ddd;">
                                 <option value="" disabled selected>Select Area</option>
                             </select>
-                        </div>
+                        </div> --}}
 
                         <div class="col-md-12 form-group">
-                            <label style="font-weight:600;">Address</label>
-                            <textarea rows="4" class="form-control" name="address" placeholder="123 Street"
+                            {{-- <label style="font-weight:600;">Address</label> --}}
+                            <textarea rows="2" autocomplete="address" class="form-control" name="address" placeholder="Full Address: ( Country ,City ,1 Street )"
                                 style="border-radius:8px; border:1px solid #ddd; padding:12px;"></textarea>
                         </div>
                     </div>
@@ -92,7 +90,7 @@
                 <div class="card mb-4" style="border:none; border-radius:16px; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
                     <div class="card-header"
                         style="background:#C73B65; color:#fff; border-radius:16px 16px 0 0; text-align:center;">
-                        <h4 style="margin:0; font-weight:700;">Order Total</h4>
+                        <h4 style="margin:0; font-weight:700;">Total Order </h4>
                     </div>
                     <div class="card-body">
                         <h5 style="font-weight:600; margin-bottom:15px;">Products</h5>
@@ -151,7 +149,7 @@
                     </div>
                     <div class="card-footer bg-white">
                         <button type="submit"
-                            style="background:#C73B65; color:#fff; border:none; border-radius:8px; padding:14px; font-weight:700; width:100%; transition:0.3s;">
+                            style="background:blue; color:#fff; border:none; border-radius:8px; padding:14px; font-weight:700; width:100%; transition:0.3s;">
                             Place Order
                         </button>
                     </div>

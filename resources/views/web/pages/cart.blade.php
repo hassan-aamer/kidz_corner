@@ -117,7 +117,7 @@
                 <h5 style="font-weight:700; color:#C73B65;">EGP {{ $total ?? 0 }}</h5>
               </div>
               <a href="{{ route('order') }}"
-                style="display:block; text-align:center; background:#C73B65; color:#fff; font-weight:700; padding:12px; border-radius:8px; text-decoration:none; transition:0.3s;">
+                style="display:block; text-align:center; background:blue; color:#fff; font-weight:700; padding:12px; border-radius:8px; text-decoration:none; transition:0.3s;">
                 Proceed To Checkout
               </a>
             </div>
