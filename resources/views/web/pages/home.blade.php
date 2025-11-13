@@ -209,7 +209,7 @@
 
 
     @foreach ($result['categories']->sortBy('position') as $category)
-        <div class="container-fluid pt-5">
+        <div class="container-fluid pt-1">
             <div class="mb-4">
                 <div class="mb-4">
                     <h2 class="px-lg-5 px-3 category-title">
