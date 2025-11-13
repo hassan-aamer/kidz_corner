@@ -221,7 +221,7 @@
                 <div id="carousel-{{ $category->id }}" class="owl-carousel owl-theme px-xl-5" data-category-index="{{ $loop->index }}">
                     @foreach ($category->products->sortBy('position') as $products)
                         <div class="item">
-                            <div class="card border-0 mb-4 product-card">
+                            <div class="card border-0 mb-2 product-card">
                                 <!-- Product Image -->
                                 <a href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title)]) }}">
                                     <div class="position-relative product-image-container">
