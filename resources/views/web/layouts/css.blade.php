@@ -29,7 +29,7 @@
             width: 55px;
             height: 55px;
             border-radius: 50%;
-            background: #d72864;
+            background: #1D9DB1;
             color: #fff;
             display: flex;
             align-items: center;

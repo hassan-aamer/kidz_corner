@@ -3,7 +3,7 @@
     <div class="row justify-content-md-center py-5 px-xl-5">
         <div class="col-md-6 col-12 py-5">
             <div class="text-center  pb-2">
-                <h5 style="font-weight: bold;color:#C73B65;">{{__('attributes.subscription')}}</h5>
+                <h5 style="font-weight: bold;color:#1D9DB1;">{{__('attributes.subscription')}}</h5>
             </div>
             <form action="{{ route('subscription') }}" method="POST">
                 @csrf
@@ -11,7 +11,7 @@
                     <input type="text" name="email" class="form-control border-white p-4" placeholder="Email Goes Here"
                         style="box-shadow: 0 12px 28px rgba(0,0,0,0.12);border-radius: 16px 0 0 16px;">
                     <div class="input-group-append">
-                        <button type="submit" style="background-color:#C73B65; color:#fff; border:none; 
+                        <button type="submit" style="background-color:#1D9DB1; color:#fff; border:none; 
            box-shadow:0 12px 28px rgba(0,0,0,0.12);
            border-radius:0 16px 16px 0; padding:0 24px; font-weight:600;">
                             {{ __('attributes.submit') }}
@@ -36,19 +36,19 @@
         </div> --}}
         <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
             @if (setting('address'))
-                <p class="mb-2" style="font-weight: bold;color:#C73B65;"><i class="fa fa-map-marker-alt text-primary mr-3"></i>{{ setting('address') ?? '' }}</p>
+                <p class="mb-2" style="font-weight: bold;color:#1D9DB1;"><i class="fa fa-map-marker-alt text-primary mr-3"></i>{{ setting('address') ?? '' }}</p>
             @endif
             @if (setting('email'))
-                <p class="mb-2" style="font-weight: bold;color:#C73B65;"><i class="fa fa-envelope text-primary mr-3"></i>{{ setting('email') ?? '' }}</p>
+                <p class="mb-2" style="font-weight: bold;color:#1D9DB1;"><i class="fa fa-envelope text-primary mr-3"></i>{{ setting('email') ?? '' }}</p>
             @endif
             @if (setting('phone'))
-                <p class="mb-0" style="font-weight: bold;color:#C73B65;"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ setting('phone') ?? '' }}</p>
+                <p class="mb-0" style="font-weight: bold;color:#1D9DB1;"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ setting('phone') ?? '' }}</p>
             @endif
         </div>
         <div class="col-lg-4 col-md-12">
             <div class="row">
                 <div class="col-md-4 mb-5">
-                    <h5 class="font-weight-bold mb-4" style="color:#C73B65;">Quick links</h5>
+                    <h5 class="font-weight-bold mb-4" style="color:#1D9DB1;">Quick links</h5>
                     <div class="d-flex flex-column justify-content-start">
                         <a class=" mb-2" style="color:#C73B65;" href="{{ route('home') }}"><i
                                 class="fa fa-angle-right mr-2"></i>{{__('attributes.home')}}</a>
@@ -64,7 +64,7 @@
         <div class="col-lg-4 col-md-12">
             <div class="row">
                 <div class="col-md-4 mb-5">
-                    <h5 class="font-weight-bold mb-4" style="color:#C73B65;">{{__('attributes.social_links')}}</h5>
+                    <h5 class="font-weight-bold mb-4" style="color:#1D9DB1;">{{__('attributes.social_links')}}</h5>
                     <div class="mt-3">
                         @if (setting('facebook'))
                             <a class="px-2" href="{{ setting('facebook') ?? '' }}" style="color:#C73B65;">

@@ -35,7 +35,7 @@
         }
         .shop-now-btn {
             border-radius: 16px;
-            color: #C73B65;
+            color: #1D9DB1;
             font-weight: 600;
         }
         .carousel-control-custom {
@@ -56,7 +56,7 @@
             font-weight: bold;
             text-align: left;
             margin-bottom: 0;
-            color: #C73B65;
+            color: #1D9DB1;
         }
         .product-card {
             border-radius: 16px;
@@ -110,7 +110,7 @@
             margin: 0;
         }
         .old-price {
-            color: #999;
+            color: #1D9DB1;
             font-size: 14px;
             margin: 0;
             text-decoration: line-through;
@@ -137,7 +137,7 @@
             margin-right: 6px;
         }
         .add-to-cart-btn {
-            background: #C73B65;
+            background: #1D9DB1;
             color: #fff;
             border: none;
             padding: 6px 14px;

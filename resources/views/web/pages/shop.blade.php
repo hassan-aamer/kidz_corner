@@ -67,7 +67,7 @@
                                             <h6 style="color:#C73B65; font-weight:700; margin:0;">{{ $products->price ?? '' }}
                                             </h6>
                                             @if($products->old_price)
-                                                <h6 style="color:#999; font-size:14px; margin:0; text-decoration:line-through;">
+                                                <h6 style="color:#1D9DB1; font-size:14px; margin:0; text-decoration:line-through;">
                                                     {{ $products->old_price ?? '' }}
                                                 </h6>
                                             @endif
@@ -85,7 +85,7 @@
                                             @csrf
                                             <input type="hidden" name="quantity" value="1">
                                             <button type="submit"
-                                                style="background:#C73B65; color:#fff; border:none; padding:6px 14px; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; transition:background 0.3s ease;">
+                                                style="background:#1D9DB1; color:#fff; border:none; padding:6px 14px; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; transition:background 0.3s ease;">
                                                 <i class="fas fa-shopping-cart" style="margin-right:6px;"></i>
                                             </button>
                                         </form>
