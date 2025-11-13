@@ -36,14 +36,14 @@
             </div>
         </div>
     </div> --}}
-    <div class="row align-items-center  px-xl-5">
+    <div class="row align-items-center py-3 px-xl-5">
         <div class="col-lg-3 d-none d-lg-block">
             <a href="{{ route('home') }}" class="text-decoration-none">
                 <img src="{{ App\Helpers\Image::getMediaUrl(App\Models\Setting::first(), 'logo') }}"
                     alt="{{ setting('name') ?? '' }}" height="70" width="170">
             </a>
         </div>
-        {{-- <div class="col-lg-6 col-12">
+        <div class="col-lg-6 col-12">
             <form action="{{ route('products.search') }}" method="GET" style="width:100%;">
                 <div
                     style="display:flex; align-items:center; background:#fff; border:2px solid #C73B65; border-radius:30px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.05); transition:all 0.3s ease;">
@@ -60,7 +60,7 @@
                     </button>
                 </div>
             </form>
-        </div> --}}
+        </div>
 
         <div class="col-lg-3 col-6 text-right cart-fixed">
             <a href="{{ route('cart.index') }}" class="cart-float-btn">
