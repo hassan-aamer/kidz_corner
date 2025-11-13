@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 
 class MetaCapiController extends Controller
 {
-        public function handle(Request $request)
+    public function handle(Request $request)
     {
         $data = $request->all();
 
