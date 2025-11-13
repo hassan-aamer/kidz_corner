@@ -25,7 +25,7 @@ class BannersRequest extends FormRequest
             'category_id'         => 'nullable|exists:categories,id',
             'title'    => 'nullable|array',
             'title.*'       => [
-                'required',
+                'nullable',
                 'string',
                 'max:255',
                 \CodeZero\UniqueTranslation\UniqueTranslationRule::for('banners')->ignore($this->id)
