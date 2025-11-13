@@ -90,6 +90,25 @@
     display: block;
 }
 
+.mobile-header {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.mobile-header .logo {
+    border: none !important;
+}
+
+.mobile-header .menu-icon {
+    border: none !important;
+}
+
+.navbar,
+.mobile-header {
+    border-bottom: 0 !important;
+}
+
+
 /* Hide desktop navbar on mobile */
 @media(max-width: 992px) {
     .desktop-nav { display: none !important; }
