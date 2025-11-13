@@ -17,16 +17,32 @@
 
 @include('admin.layouts.sweetalert')
 @yield('js')
+<script>
+    const openMenu = document.getElementById("openMenu");
+    const sideMenu = document.getElementById("sideMenu");
+    const menuOverlay = document.getElementById("menuOverlay");
+
+    openMenu.onclick = () => {
+        sideMenu.classList.add("active");
+        menuOverlay.classList.add("active");
+    };
+
+    menuOverlay.onclick = () => {
+        sideMenu.classList.remove("active");
+        menuOverlay.classList.remove("active");
+    };
+</script>
 
 
-    {{-- <script>
-        document.addEventListener('contextmenu', function(e) {
+{{--
+<script>
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
             e.preventDefault();
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
-                e.preventDefault();
-            }
-        });
-    </script> --}}
+        }
+    });
+</script> --}}

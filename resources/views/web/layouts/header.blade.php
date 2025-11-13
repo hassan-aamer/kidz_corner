@@ -1,6 +1,6 @@
 <!-- Topbar Start -->
 <div class="container-fluid">
-    <div class="row py-2 px-xl-5" style="background-color:#C73B65;">
+    {{-- <div class="row py-2 px-xl-5" style="background-color:#C73B65;">
         <div class="col-lg-6 d-none d-lg-block">
             <div class="d-inline-flex align-items-center">
                 <a class="text-dark" href="{{ route('contact') }}" style="font-weight: bold;">Support</a>
@@ -35,7 +35,7 @@
                 @endif
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="row align-items-center py-3 px-xl-5">
         <div class="col-lg-3 d-none d-lg-block">
             <a href="{{ route('home') }}" class="text-decoration-none">

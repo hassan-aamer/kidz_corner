@@ -22,6 +22,81 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('web/css/main.css') }}" rel="stylesheet">
     <style>
+        /* ===== MOBILE NAVBAR ===== */
+.mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 18px;
+    background: #ffffff;
+    border-bottom: 1px solid #eee;
+}
+
+.mobile-header img.logo {
+    height: 55px;
+}
+
+.mobile-header .menu-icon {
+    font-size: 26px;
+    color: #C73B65; /* لون موقعك */
+    cursor: pointer;
+}
+
+/* ===== SIDE MENU ===== */
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -260px;
+    width: 260px;
+    height: 100%;
+    background: #fff;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+    padding: 25px 20px;
+    transition: .4s ease;
+    z-index: 9999;
+}
+
+.side-menu.active {
+    right: 0;
+}
+
+.side-menu a {
+    display: block;
+    padding: 14px 0;
+    font-size: 19px;
+    font-weight: bold;
+    color: #444;
+    border-bottom: 1px solid #eee;
+    transition: .2s;
+}
+
+.side-menu a:hover {
+    color: #C73B65;
+}
+
+/* ===== OVERLAY ===== */
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.35);
+    z-index: 9990;
+}
+
+.menu-overlay.active {
+    display: block;
+}
+
+/* Hide desktop navbar on mobile */
+@media(max-width: 992px) {
+    .desktop-nav { display: none !important; }
+}
+
+    </style>
+    <style>
         .cart-float-btn {
             position: fixed;
             bottom: 25px;
