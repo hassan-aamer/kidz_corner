@@ -37,7 +37,8 @@
             <div class="order-details"
                 style="background: #f8f9fa; border-radius: 10px; padding: 25px; margin: 30px 0; text-align: left;">
                 <h3 style="color: #2c3e50; margin-bottom: 15px; border-bottom: 1px solid #eaeaea; padding-bottom: 10px;">
-                    {{ __('attributes.order_details') }}</h3>
+                    {{ __('attributes.order_details') }}
+                </h3>
                 <div class="order-info" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
                     <div
                         style="flex: 1; min-width: 200px; margin: 10px; padding: 15px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);">
@@ -117,37 +118,52 @@
 @endsection
 @section('js')
 
-    {{-- <script>
-        window.addEventListener('load', function() {
-
-            var orderId = '{{ $order->id }}';
-            var orderTotal = Number({{ $order->total ?? 0 }});
-
-            window.dataLayer = window.dataLayer || [];
-
-            window.dataLayer.push({
-                event: 'purchase',
-                transaction_id: orderId,
-                value: orderTotal,
-                currency: 'EGP'
+    {{--
+    <script>
+        fbq('track', 'Purchase', {
+            value: {{ $order-> total ?? 0 }},
+            currency: 'EGP'
             });
-
-            console.log('✅ GTM purchase event pushed:', {
-                transaction_id: orderId,
-                value: orderTotal,
-                currency: 'EGP'
-            });
-
-        });
     </script> --}}
 
     <script>
-  fbq('track', 'Purchase', {
-    value: {{ $order->total ?? 0 }},
-    currency: 'EGP'
-  });
-</script>
+        function uuidv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
 
+        (function () {
+            const eventId = uuidv4();
+            const orderValue = {{ $order->total ?? 0 }};
+            const currency = 'EGP';
+            const orderId = "{{ $order->id ?? '' }}";
+
+            fbq('track', 'Purchase',
+                { value: orderValue, currency: currency },
+                { eventID: eventId }
+            );
+
+            fetch("{{ url('/meta-capi') }}", {
+                method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    event_id: eventId,
+                    value: orderValue,
+                    currency: currency,
+                    order_id: orderId,
+                    customer: {
+                        email: "{{ $order->email ?? '' }}",
+                        phone: "{{ $order->phone ?? '' }}"
+                    }
+                })
+            })
+                .then(res => res.json())
+                .then(data => console.log("CAPI Response:", data))
+                .catch(err => console.error("CAPI Error:", err));
+        })();
+    </script>
 
 
 

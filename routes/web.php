@@ -24,3 +24,4 @@ Route::get('/thanks/{orderId}',     [App\Http\Controllers\Web\OrderController::c
 
 
 
+Route::post('/meta-capi', [App\Http\Controllers\MetaCapiController::class, 'handle']);

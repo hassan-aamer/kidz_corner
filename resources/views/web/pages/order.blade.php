@@ -239,7 +239,7 @@
 </script>
 
 <script>
-    fbq('track', 'Checkout', {
+    fbq('track', 'InitiateCheckout', {
         value: {{ $total ?? 0 }},
         currency: 'EGP'
     });

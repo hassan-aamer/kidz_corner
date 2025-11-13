@@ -114,3 +114,13 @@
 
 
 @endsection
+@section('js')
+    <script>
+        fbq('track', 'ViewContent', {
+            content_ids: ['{{ $result['product']->id }}'],
+            content_name: '{{ $result['product']->title }}'],
+            value: {{ $result['product']->price ?? 0 }},
+            currency: 'EGP'
+        });
+    </script>
+@endsection
