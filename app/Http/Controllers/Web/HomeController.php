@@ -35,8 +35,7 @@ class HomeController extends Controller
             'categories' => Cache::remember('home_categories', now()->addHours(6), function () {
                 return Category::with(['products' => function ($query) {
                     $query->where('active', 1)
-                        ->orderBy('position', 'asc')  // ترتيب حسب الحقل position
-                        ->take(6);                   // أول 6 منتجات فقط
+                        ->orderBy('position', 'asc');  // ترتيب حسب الحقل position
                 }])
                     ->where('active', 1)
                     ->take(6)                             // أول 6 فئات
