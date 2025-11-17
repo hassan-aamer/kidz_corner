@@ -143,9 +143,9 @@
                             style="border-color:#d72864 !important; display:none;">
                             <strong class="text-dark">Payment Instructions:</strong><br>
                             <span class="text-muted small" style="font-style:italic;">
-                                • Bank Account CIB: <b>100069774657</b><br>
-                                • Transfer the total order amount to: <b>0109 2476133</b><br>
-                                • After payment, send a screenshot via WhatsApp to the same number.
+                                • CIB Account: <b>100069774657</b><br>
+                                • InstaPay: <b>0109 2476133</b><br>
+                                • Please transfer the order amount and send the payment receipt via WhatsApp to confirm your order.
                             </span>
                         </div>
                     </div>
