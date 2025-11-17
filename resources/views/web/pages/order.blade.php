@@ -137,12 +137,13 @@
                         <div class="custom-control custom-radio">
                             <input type="radio" class="custom-control-input" name="payment_method" value="instapay"
                                 id="instapay">
-                            <label class="custom-control-label" for="instapay">Insta Pay</label>
+                            <label class="custom-control-label" for="instapay">Insta Pay & Bank Account</label>
                         </div>
                         <div id="instapayBox" class="mt-3 p-3 border rounded bg-light"
                             style="border-color:#d72864 !important; display:none;">
                             <strong class="text-dark">Payment Instructions:</strong><br>
                             <span class="text-muted small" style="font-style:italic;">
+                                • Bank Account CIB: <b>100069774657</b><br>
                                 • Transfer the total order amount to: <b>0109 2476133</b><br>
                                 • After payment, send a screenshot via WhatsApp to the same number.
                             </span>
