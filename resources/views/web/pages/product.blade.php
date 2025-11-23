@@ -62,13 +62,13 @@
                                     <img class="d-block w-100" src="{{ $media->getUrl() }}" alt="Product Image" loading="lazy"
                                         style="height:400px; object-fit:cover;">
                                     @if($result['product']->old_price && $result['product']->old_price > $result['product']->price)
-                                                        @php
-                                                            $discount = round((($result['product']->old_price - $result['product']->price) / $result['product']->old_price) * 100);
-                                                        @endphp
+                                        @php
+                                            $discount = round((($result['product']->old_price - $result['product']->price) / $result['product']->old_price) * 100);
+                                        @endphp
                                         <span
-                                                            style="position:absolute; top:12px; right:12px; background:#1D9DB1; color:#fff; font-size:13px; padding:4px 10px; border-radius:12px; font-weight:600; z-index: 10;">
-                                                            {{ $discount }}% OFF
-                                                        </span>
+                                            style="position:absolute; top:12px; right:12px; background:#dc3545; color:#fff; font-size:13px; padding:4px 10px; border-radius:12px; font-weight:600; z-index: 10;">
+                                            - {{ $discount }}%
+                                        </span>
                                     @endif
                                 </div>
                             @endforeach
@@ -80,13 +80,13 @@
                                     src="{{ App\Helpers\Image::getMediaUrl($result['product'], 'products') }}" alt="Image"
                                     loading="lazy" style="height:400px; object-fit:cover;">
                                 @if($result['product']->old_price && $result['product']->old_price > $result['product']->price)
-                                                @php
-                                                    $discount = round((($result['product']->old_price - $result['product']->price) / $result['product']->old_price) * 100);
-                                                @endphp
+                                    @php
+                                        $discount = round((($result['product']->old_price - $result['product']->price) / $result['product']->old_price) * 100);
+                                    @endphp
                                     <span
-                                                    style="position:absolute; top:12px; right:12px; background:#1D9DB1; color:#fff; font-size:13px; padding:4px 10px; border-radius:12px; font-weight:600; z-index: 10;">
-                                                    {{ $discount }}% OFF
-                                                </span>
+                                        style="position:absolute; top:12px; right:12px; background:#dc3545; color:#fff; font-size:13px; padding:4px 10px; border-radius:12px; font-weight:600; z-index: 10;">
+                                        - {{ $discount }}%
+                                    </span>
                                 @endif
                             </div>
                         </div>

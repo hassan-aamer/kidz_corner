@@ -278,7 +278,7 @@
                                             @php
                                                 $discount = round((($products->old_price - $products->price) / $products->old_price) * 100);
                                             @endphp
-                                            <span class="discount-badge">{{ $discount }}% OFF</span>
+                                            <span class="discount-badge">- {{ $discount }}%</span>
                                         @endif
                                     </div>
                                 </a>

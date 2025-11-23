@@ -61,7 +61,7 @@
                                                 @endphp
                                                 <span
                                                     style="position:absolute; top:12px; right:12px; background:#dc3545; color:#fff; font-size:13px; padding:4px 10px; border-radius:12px; font-weight:600;">
-                                                    {{ $discount }}% OFF
+                                                    - {{ $discount }}%
                                                 </span>
                                             @endif
                                         </div>
