@@ -309,8 +309,9 @@
                                     <form action="{{ route('cart.add', $products->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         <input type="hidden" name="quantity" value="1">
-                                        <button type="submit" class="add-to-cart-btn">
-                                            <i class="fas fa-shopping-cart"></i>
+                                        <button type="submit"
+                                            style="background:transparent; border:none; padding:0; cursor:pointer;">
+                                            <i class="fas fa-shopping-cart" style="color:#fff;"></i>
                                         </button>
                                     </form>
                                 </div>

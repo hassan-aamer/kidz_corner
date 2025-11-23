@@ -95,8 +95,8 @@
                                             @csrf
                                             <input type="hidden" name="quantity" value="1">
                                             <button type="submit"
-                                                style="background:#1D9DB1; color:#fff; border:none; padding:6px 14px; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; transition:background 0.3s ease;">
-                                                <i class="fas fa-shopping-cart" style="margin-right:6px;"></i>
+                                                style="background:transparent; border:none; padding:0; cursor:pointer;">
+                                                <i class="fas fa-shopping-cart" style="color:#fff;"></i>
                                             </button>
                                         </form>
                                     </div>
