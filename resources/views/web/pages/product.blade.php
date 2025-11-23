@@ -89,9 +89,16 @@
                 <h2 style="font-weight:700; color:#333; margin-bottom:15px;">
                     {{ $result['product']->title ?? '' }}
                 </h2>
-                <h3 style="font-weight:700; color:#C73B65; margin-bottom:20px;">
-                    {{ $result['product']->price ?? '' }}
-                </h3>
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+                    <h3 style="font-weight:700; color:#C73B65; margin:0;">
+                        {{ $result['product']->price ?? '' }}
+                    </h3>
+                    @if($result['product']->old_price && $result['product']->old_price > $result['product']->price)
+                        <h4 style="color:#1D9DB1; font-size:18px; margin:0; text-decoration:line-through;">
+                            {{ $result['product']->old_price ?? '' }}
+                        </h4>
+                    @endif
+                </div>
                 <p style="color:#555; line-height:1.6; margin-bottom:25px;">
                     {{ $result['product']->description ?? '' }}
                 </p>
