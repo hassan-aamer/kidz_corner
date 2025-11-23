@@ -120,8 +120,8 @@
             position: fixed;
             bottom: 25px;
             right: 25px;
-            width: 55px;
-            height: 55px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: #1D9DB1;
             color: #fff;
