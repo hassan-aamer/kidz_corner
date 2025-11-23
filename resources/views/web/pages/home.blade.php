@@ -3,7 +3,8 @@
 @section('css')
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
     <style>
         .header-carousel {
@@ -12,10 +13,12 @@
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
             transition: 0.3s ease;
         }
+
         .carousel-item-custom {
             width: 100%;
             height: 410px;
         }
+
         .carousel-caption-custom {
             top: 0;
             bottom: 0;
@@ -26,24 +29,29 @@
             align-items: center;
             justify-content: center;
         }
+
         .carousel-caption-inner {
             max-width: 700px;
             text-align: center;
         }
+
         .banner-title {
             color: #C73B65;
         }
+
         .shop-now-btn {
             border-radius: 16px;
             color: #1D9DB1;
             font-weight: 600;
         }
+
         .carousel-control-custom {
             width: auto;
             height: auto;
             display: flex;
             align-items: center;
         }
+
         .carousel-control-btn {
             width: 45px;
             height: 45px;
@@ -52,28 +60,33 @@
             align-items: center;
             justify-content: center;
         }
+
         .category-title {
             font-weight: bold;
             text-align: left;
             margin-bottom: 0;
             color: #1D9DB1;
         }
+
         .product-card {
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease;
         }
+
         .product-image-container {
             height: 300px;
             overflow: hidden;
         }
+
         .product-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.4s ease;
         }
+
         .sold-out-badge {
             position: absolute;
             top: 12px;
@@ -85,10 +98,12 @@
             border-radius: 12px;
             font-weight: 600;
         }
+
         .product-body {
             padding: 16px;
             text-align: center;
         }
+
         .product-title {
             font-size: 16px;
             font-weight: bold;
@@ -98,23 +113,27 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+
         .price-container {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 8px;
         }
+
         .current-price {
             color: #C73B65;
             font-weight: 700;
             margin: 0;
         }
+
         .old-price {
             color: #1D9DB1;
             font-size: 14px;
             margin: 0;
             text-decoration: line-through;
         }
+
         .product-footer {
             background: #C73B65;
             border-top: 1px solid #eee;
@@ -123,6 +142,7 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .view-details {
             font-size: 14px;
             font-weight: 600;
@@ -132,10 +152,12 @@
             align-items: center;
             transition: color 0.3s ease;
         }
+
         .view-details i {
             color: #fff;
             margin-right: 6px;
         }
+
         .add-to-cart-btn {
             background: #1D9DB1;
             color: #fff;
@@ -147,13 +169,16 @@
             cursor: pointer;
             transition: background 0.3s ease;
         }
+
         .add-to-cart-btn i {
             margin-right: 6px;
         }
+
         @media (max-width: 768px) {
             .carousel-item-custom {
                 height: 280px !important;
             }
+
             .product-image-container {
                 height: 150px;
             }
@@ -211,19 +236,25 @@
     @foreach ($result['categories']->sortBy('position') as $category)
         <div class="container-fluid">
             <div class="mb-2">
-                <div class="mb-2">
-                    <h2 class="px-lg-5 px-3 category-title">
+                <div class="d-flex justify-content-between align-items-center mb-2 px-lg-5 px-3">
+                    <h2 class="category-title">
                         {{ $category->title ?? '' }}
                     </h2>
+                    <a href="{{ route('products.category', $category->id) }}"
+                        class="text-primary font-weight-bold text-decoration-none">
+                        See More
+                    </a>
                 </div>
 
                 <!-- Product Slider -->
-                <div id="carousel-{{ $category->id }}" class="owl-carousel owl-theme px-xl-5" data-category-index="{{ $loop->index }}">
+                <div id="carousel-{{ $category->id }}" class="owl-carousel owl-theme px-xl-5"
+                    data-category-index="{{ $loop->index }}">
                     @foreach ($category->products->sortBy('position') as $products)
                         <div class="item">
                             <div class="card border-0 mb-2 product-card">
                                 <!-- Product Image -->
-                                <a href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title)]) }}">
+                                <a
+                                    href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title)]) }}">
                                     <div class="position-relative product-image-container">
                                         <img class="img-fluid lazyload product-image"
                                             src="{{ App\Helpers\Image::getMediaUrl($products, 'products') }}"
@@ -253,7 +284,8 @@
 
                                 <!-- Buttons -->
                                 <div class="card-footer product-footer">
-                                    <a href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title)]) }}" class="view-details">
+                                    <a href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title)]) }}"
+                                        class="view-details">
                                         <i class="fas fa-eye"></i>
                                     </a>
                                     <form action="{{ route('cart.add', $products->id) }}" method="POST" class="d-inline">
