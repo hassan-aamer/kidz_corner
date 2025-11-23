@@ -91,7 +91,7 @@
             position: absolute;
             top: 12px;
             left: 12px;
-            background: #dc3545;
+            background: #1D9BAE;
             color: #fff;
             font-size: 13px;
             padding: 4px 10px;

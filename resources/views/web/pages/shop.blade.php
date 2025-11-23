@@ -51,7 +51,7 @@
 
                                             @if ($products->sold_out == 1)
                                                 <span
-                                                    style="position:absolute; top:12px; left:12px; background:#dc3545; color:#fff; font-size:13px; padding:4px 10px; border-radius:12px; font-weight:600;">
+                                                    style="position:absolute; top:12px; left:12px; background:#1D9BAE; color:#fff; font-size:13px; padding:4px 10px; border-radius:12px; font-weight:600;">
                                                     Sold Out
                                                 </span>
                                             @endif
