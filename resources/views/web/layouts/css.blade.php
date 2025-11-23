@@ -143,7 +143,7 @@
             position: absolute;
             top: 5px;
             right: 5px;
-            background: #C73B65;
+            background: #dc3545;
             color: #fff;
             font-size: 12px;
             padding: 3px 6px;

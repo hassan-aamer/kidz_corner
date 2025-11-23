@@ -60,7 +60,7 @@
                                                     $discount = round((($products->old_price - $products->price) / $products->old_price) * 100);
                                                 @endphp
                                                 <span
-                                                    style="position:absolute; top:12px; right:12px; background:#1D9DB1; color:#fff; font-size:13px; padding:4px 10px; border-radius:12px; font-weight:600;">
+                                                    style="position:absolute; top:12px; right:12px; background:#dc3545; color:#fff; font-size:13px; padding:4px 10px; border-radius:12px; font-weight:600;">
                                                     {{ $discount }}% OFF
                                                 </span>
                                             @endif

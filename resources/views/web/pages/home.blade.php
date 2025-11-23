@@ -103,7 +103,7 @@
             position: absolute;
             top: 12px;
             right: 12px;
-            background: #1D9DB1;
+            background: #dc3545;
             color: #fff;
             font-size: 13px;
             padding: 4px 10px;
@@ -253,7 +253,7 @@
                         {{ $category->title ?? '' }}
                     </h2>
                     <a href="{{ route('products.category', $category->id) }}"
-                        class="text-primary font-weight-bold text-decoration-none">
+                        class="text-primary font-weight-bold text-decoration-none" style="color:#dc3545">
                         See More
                     </a>
                 </div>
