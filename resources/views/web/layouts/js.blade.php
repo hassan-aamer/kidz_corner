@@ -17,22 +17,6 @@
 
 @include('admin.layouts.sweetalert')
 @yield('js')
-<script>
-    const openMenu = document.getElementById("openMenu");
-    const sideMenu = document.getElementById("sideMenu");
-    const menuOverlay = document.getElementById("menuOverlay");
-
-    openMenu.onclick = () => {
-        sideMenu.classList.add("active");
-        menuOverlay.classList.add("active");
-    };
-
-    menuOverlay.onclick = () => {
-        sideMenu.classList.remove("active");
-        menuOverlay.classList.remove("active");
-    };
-</script>
-
 
 {{--
 <script>

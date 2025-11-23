@@ -5,7 +5,7 @@
     </a>
 
     <div class="justify-content-between">
-        <div class="navbar-nav mr-auto py-0"  style="font-weight: bold;">
+        <div class="navbar-nav mr-auto py-0" style="font-weight: bold;">
             <a href="{{ route('home') }}" class="nav-item nav-link">Home</a>
             <a href="{{ route('products') }}" class="nav-item nav-link">Shop</a>
             <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
@@ -14,20 +14,18 @@
 </nav>
 
 <!-- ===== MOBILE NAVBAR ===== -->
-<div class="mobile-header d-lg-none">
+<div class="mobile-header d-lg-none d-flex justify-content-between align-items-center px-3 py-2">
     <a href="{{ route('home') }}">
-        <img src="{{ App\Helpers\Image::getMediaUrl(App\Models\Setting::first(), 'logo') }}" class="logo">
+        <img src="{{ App\Helpers\Image::getMediaUrl(App\Models\Setting::first(), 'logo') }}" class="logo"
+            style="max-height: 50px; width: auto;">
     </a>
 
-    <i class="fa fa-bars menu-icon" id="openMenu"></i>
+    <div class="d-flex align-items-center" style="gap: 15px;">
+        <a href="{{ route('home') }}" class="text-dark text-decoration-none font-weight-bold"
+            style="font-size: 14px;">Home</a>
+        <a href="{{ route('products') }}" class="text-dark text-decoration-none font-weight-bold"
+            style="font-size: 14px;">Shop</a>
+        <a href="{{ route('contact') }}" class="text-dark text-decoration-none font-weight-bold"
+            style="font-size: 14px;">Contact</a>
+    </div>
 </div>
-
-<!-- ===== SIDE MENU ===== -->
-<div class="side-menu" id="sideMenu">
-    <a href="{{ route('home') }}">Home</a>
-    <a href="{{ route('products') }}">Shop</a>
-    <a href="{{ route('contact') }}">Contact</a>
-</div>
-
-<!-- ===== OVERLAY ===== -->
-<div class="menu-overlay" id="menuOverlay"></div>
