@@ -21,11 +21,11 @@
     </a>
 
     <div class="d-flex align-items-center" style="gap: 15px;">
-        <a href="{{ route('home') }}" class="text-dark text-decoration-none font-weight-bold"
-            style="font-size: 14px;">Home</a>
-        <a href="{{ route('products') }}" class="text-dark text-decoration-none font-weight-bold"
-            style="font-size: 14px;">Shop</a>
-        <a href="{{ route('contact') }}" class="text-dark text-decoration-none font-weight-bold"
-            style="font-size: 14px;">Contact</a>
+        <a href="{{ route('home') }}" class="text-decoration-none font-weight-bold"
+            style="font-size: 14px; color:#C73B65;">Home</a>
+        <a href="{{ route('products') }}" class="text-decoration-none font-weight-bold"
+            style="font-size: 14px; color:#C73B65;">Shop</a>
+        <a href="{{ route('contact') }}" class="text-decoration-none font-weight-bold"
+            style="font-size: 14px; color:#C73B65;">Contact</a>
     </div>
 </div>
