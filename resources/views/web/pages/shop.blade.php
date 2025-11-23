@@ -25,7 +25,8 @@
     <div class="container-fluid pt-5">
 
         {{-- <div class="mb-4">
-            <h2 class="px-lg-5 px-3" style="font-weight: bold; text-align: left; margin-bottom: 0;">{{ __('attributes.products') }}</h2>
+            <h2 class="px-lg-5 px-3" style="font-weight: bold; text-align: left; margin-bottom: 0;">{{
+                __('attributes.products') }}</h2>
         </div> --}}
 
         <div class="row px-xl-5">
@@ -35,14 +36,14 @@
 
                     @if ($result['products']->count())
                         @foreach ($result['products']->sortBy('position') as $products)
-                            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                            <div class="col-lg-3 col-md-6 col-6 pb-1">
                                 <div class="card border-0 mb-4"
                                     style="border-radius:16px; overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,0.08); transition:transform 0.3s ease, box-shadow 0.3s ease;">
 
                                     <!-- صورة المنتج -->
                                     <a
                                         href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title)]) }}">
-                                        <div class="position-relative" style="height:300px; overflow:hidden;">
+                                        <div class="position-relative" style="height:150px; overflow:hidden;">
                                             <img class="img-fluid lazyload"
                                                 src="{{ App\Helpers\Image::getMediaUrl($products, 'products') }}"
                                                 alt="{{ $products->title ?? '' }}" loading="lazy"
@@ -79,7 +80,7 @@
                                         style="background:#C73B65; border-top:1px solid #eee; padding:12px 16px;">
                                         <a href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title)]) }}"
                                             style="font-size:14px; font-weight:600; color:#333; text-decoration:none; display:flex; align-items:center; transition:color 0.3s ease;">
-                                            <i class="fas fa-eye" style="color:#fff; margin-right:6px;"></i> 
+                                            <i class="fas fa-eye" style="color:#fff; margin-right:6px;"></i>
                                         </a>
                                         <form action="{{ route('cart.add', $products->id) }}" method="POST" class="d-inline">
                                             @csrf
