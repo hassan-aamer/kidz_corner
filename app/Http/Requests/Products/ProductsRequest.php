@@ -23,20 +23,20 @@ class ProductsRequest extends FormRequest
     {
         return [
             'category_id'         => 'required|exists:categories,id',
-            'title'         => 'nullable|array',
+            'title'         => 'required|array',
             'title.*'       => [
-                'nullable',
+                'required',
                 'string',
                 'max:255',
                 // \CodeZero\UniqueTranslation\UniqueTranslationRule::for('products')->ignore($this->id)
             ],
-            'description'   => 'nullable|array',
-            'description.*' => 'nullable|string|max:1000',
-            'content'       => 'nullable|array',
-            'old_price'     => 'nullable|numeric',
-            'price'         => 'nullable|numeric',
+            'description'   => 'required|array',
+            'description.*' => 'required|string|max:1000',
+            'content'       => 'required|array',
+            'content.*'     => 'required|string|max:1000',
+            'old_price'     => 'required|numeric',
+            'price'         => 'required|numeric',
             'quantity'      => 'nullable|numeric',
-            'content.*'     => 'nullable|string|max:1000',
             'position'      => 'nullable',
             'image'         => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
             'images'        => 'nullable|array|max:10',
