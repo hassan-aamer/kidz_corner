@@ -266,7 +266,7 @@
                             <div class="card border-0 mb-2 product-card">
                                 <!-- Product Image -->
                                 <a
-                                    href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title)]) }}">
+                                    href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title ?? '')]) }}">
                                     <div class="position-relative product-image-container">
                                         <img class="img-fluid lazyload product-image"
                                             src="{{ App\Helpers\Image::getMediaUrl($products, 'products') }}"
