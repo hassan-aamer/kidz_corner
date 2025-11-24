@@ -18,4 +18,15 @@ class Product extends Model implements HasMedia
     {
         return $this->belongsTo(Category::class);
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            if (is_null($model->position)) {
+                $model->position = (self::max('position') ?? 0) + 1;
+            }
+        });
+    }
 }
