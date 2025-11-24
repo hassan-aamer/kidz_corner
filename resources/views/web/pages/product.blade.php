@@ -117,6 +117,99 @@
                         </h4>
                     @endif
                 </div>
+
+                <!-- Countdown Timer -->
+                <div class="mb-4">
+                    <div
+                        style="background-color: #b11d1d; color: white; padding: 5px 15px; display: inline-block; font-weight: bold; font-size: 1.2rem; margin-bottom: 15px;">
+                        The offer ends during
+                    </div>
+                    <div id="countdown" style="display: flex; gap: 15px; font-family: 'Arial', sans-serif; direction: ltr;">
+                        <div class="text-center">
+                            <div id="days" style="font-size: 2.5rem; font-weight: bold; line-height: 1;">00</div>
+                            <div style="font-size: 0.8rem; color: #666; text-transform: uppercase;">DAYS</div>
+                        </div>
+                        <div style="font-size: 2.5rem; font-weight: bold; line-height: 1;">:</div>
+                        <div class="text-center">
+                            <div id="hours" style="font-size: 2.5rem; font-weight: bold; line-height: 1;">23</div>
+                            <div style="font-size: 0.8rem; color: #666; text-transform: uppercase;">HRS</div>
+                        </div>
+                        <div style="font-size: 2.5rem; font-weight: bold; line-height: 1;">:</div>
+                        <div class="text-center">
+                            <div id="minutes" style="font-size: 2.5rem; font-weight: bold; line-height: 1;">59</div>
+                            <div style="font-size: 0.8rem; color: #666; text-transform: uppercase;">MINS</div>
+                        </div>
+                        <div style="font-size: 2.5rem; font-weight: bold; line-height: 1;">:</div>
+                        <div class="text-center">
+                            <div id="seconds" style="font-size: 2.5rem; font-weight: bold; line-height: 1;">06</div>
+                            <div style="font-size: 0.8rem; color: #666; text-transform: uppercase;">SECS</div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    // Set the date we're counting down to (24 hours from now for static demo)
+                    // For a truly static 24h loop that resets daily, we can target the next midnight or just a fixed duration.
+                    // The user asked for "counts on 24 hours", let's make it count down from 23:59:59 visually.
+
+                    window.onload = function () {
+                        var duration = 12 * 60 * 60; // 12 hours in seconds
+                        var displayDays = document.querySelector('#days');
+                        var displayHours = document.querySelector('#hours');
+                        var displayMinutes = document.querySelector('#minutes');
+                        var displaySeconds = document.querySelector('#seconds');
+
+                        // Check if there's a stored timestamp
+                        var storedTime = localStorage.getItem('countdown_end_time');
+                        var now = new Date().getTime();
+                        var remainingTime;
+
+                        if (storedTime && now < storedTime) {
+                            // Calculate remaining seconds
+                            remainingTime = Math.floor((storedTime - now) / 1000);
+                        } else {
+                            // Set new end time
+                            var endTime = now + (duration * 1000);
+                            localStorage.setItem('countdown_end_time', endTime);
+                            remainingTime = duration;
+                        }
+
+                        startTimer(remainingTime, displayDays, displayHours, displayMinutes, displaySeconds);
+                    };
+
+                    function startTimer(duration, displayDays, displayHours, displayMinutes, displaySeconds) {
+                        var timer = duration, days, hours, minutes, seconds;
+
+                        // Update the timer immediately to avoid delay
+                        updateDisplay(timer);
+
+                        var interval = setInterval(function () {
+                            if (--timer < 0) {
+                                // Timer expired, reset
+                                var now = new Date().getTime();
+                                var newDuration = 12 * 60 * 60;
+                                var endTime = now + (newDuration * 1000);
+                                localStorage.setItem('countdown_end_time', endTime);
+                                timer = newDuration;
+                            }
+                            updateDisplay(timer);
+                        }, 1000);
+
+                        function updateDisplay(t) {
+                            days = Math.floor(t / (24 * 60 * 60));
+                            var remainingSeconds = t % (24 * 60 * 60);
+                            hours = Math.floor(remainingSeconds / (60 * 60));
+                            remainingSeconds %= (60 * 60);
+                            minutes = Math.floor(remainingSeconds / 60);
+                            seconds = remainingSeconds % 60;
+
+                            displayDays.textContent = days < 10 ? "0" + days : days;
+                            displayHours.textContent = hours < 10 ? "0" + hours : hours;
+                            displayMinutes.textContent = minutes < 10 ? "0" + minutes : minutes;
+                            displaySeconds.textContent = seconds < 10 ? "0" + seconds : seconds;
+                        }
+                    }
+                </script>
                 <p style="color:#555; line-height:1.6; margin-bottom:25px;">
                     {{ $result['product']->description ?? '' }}
                 </p>

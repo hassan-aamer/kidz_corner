@@ -23,25 +23,25 @@ class ProductsRequest extends FormRequest
     {
         return [
             'category_id'         => 'required|exists:categories,id',
-            'title'         => 'required|array',
+            'title'         => 'nullable|array',
             'title.*'       => [
-                'required',
+                'nullable',
                 'string',
                 'max:255',
                 // \CodeZero\UniqueTranslation\UniqueTranslationRule::for('products')->ignore($this->id)
             ],
-            'description'   => 'required|array',
-            'description.*' => 'required|string|max:1000',
-            'content'       => 'required|array',
-            'old_price'     => 'required|numeric',
-            'price'         => 'required|numeric',
+            'description'   => 'nullable|array',
+            'description.*' => 'nullable|string|max:1000',
+            'content'       => 'nullable|array',
+            'old_price'     => 'nullable|numeric',
+            'price'         => 'nullable|numeric',
             'quantity'      => 'nullable|numeric',
-            'content.*'     => 'required|string|max:1000',
-            'position'      => 'required',
+            'content.*'     => 'nullable|string|max:1000',
+            'position'      => 'nullable',
             'image'         => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
             'images'        => 'nullable|array|max:10',
             'images.*'      => 'image|mimes:jpeg,png,jpg,gif,svg,webp',
-            'active'        => 'required|in:0,1',
+            'active'        => 'nullable|in:0,1',
         ];
     }
 }
