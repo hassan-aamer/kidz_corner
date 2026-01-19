@@ -7,16 +7,17 @@ use App\Models\Product;
 use App\Models\CartItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Cache;
 use App\Services\Categories\CategoryService;
 
 class CartController extends Controller
 {
     protected CategoryService $categoryService;
+
     public function __construct(CategoryService $categoryService)
     {
         $this->categoryService = $categoryService;
     }
+
     private function getCart()
     {
         $sessionId = session()->getId();
@@ -28,11 +29,12 @@ class CartController extends Controller
 
     public function index()
     {
-        $cart = $this->getCart()->load('items.product');
+        $cart = $this->getCart()->load('items.product.media');
 
         $total = $cart->items->sum(function ($item) {
             return $item->quantity * $item->product->price;
         });
+
         return view('web.pages.cart', compact('cart', 'total'));
     }
 
@@ -49,9 +51,11 @@ class CartController extends Controller
         $item->quantity += $request->input('quantity', 1);
         $item->save();
 
+        // Clear cart cache after modification
+        clearCartCache();
+
         return redirect()->back()->with('success', 'The product has been added to the cart ✅');
     }
-
 
     public function update(Request $request, $itemId)
     {
@@ -67,13 +71,19 @@ class CartController extends Controller
 
         $item->save();
 
+        // Clear cart cache after modification
+        clearCartCache();
+
         return redirect()->back()->with('success', 'The quantity has been updated 🔄');
     }
-
 
     public function remove($itemId)
     {
         CartItem::destroy($itemId);
+
+        // Clear cart cache after modification
+        clearCartCache();
+
         return redirect()->back()->with('success', 'The product has been removed from the cart 🗑️');
     }
 
@@ -81,6 +91,9 @@ class CartController extends Controller
     {
         $cart = $this->getCart();
         $cart->items()->delete();
+
+        // Clear cart cache after modification
+        clearCartCache();
 
         return redirect()->back()->with('success', 'The cart has been cleared 🚮');
     }

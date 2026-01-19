@@ -20,84 +20,115 @@ class ProductController extends Controller
         $this->categoryService = $categoryService;
     }
 
-    // Show all products
+    /**
+     * Show all products with pagination.
+     */
     public function index(Request $request)
     {
-
         $page = $request->get('page', 1);
-
         $cacheKey = "products_page_{$page}";
 
+        $products = Cache::remember($cacheKey, 60 * 60 * 3, function () {
+            return Product::with('media')
+                ->publish()
+                ->recent()
+                ->paginate(12);
+        });
+
+        // Ensure pagination URLs work correctly
+        $products->withPath(route('products'));
+
         $result = [
-            'products' => Cache::remember($cacheKey, now()->addHours(3), function () {
-                return Product::where('active', 1)->orderByDesc('id')->paginate(12);
-            }),
+            'products' => $products,
         ];
 
         return view('web.pages.shop', compact('result'));
     }
 
-
-    // Filter by category
+    /**
+     * Filter products by category.
+     */
     public function indexByCategory(Request $request, $categoryId)
     {
-
         $page = $request->get('page', 1);
         $cacheKey = "products_category_{$categoryId}_page_{$page}";
 
+        $products = Cache::remember($cacheKey, 60 * 60 * 3, function () use ($categoryId) {
+            return Product::with('media')
+                ->where('category_id', $categoryId)
+                ->publish()
+                ->recent()
+                ->paginate(12);
+        });
+
+        // Ensure pagination URLs work correctly
+        $products->withPath(route('products.category', $categoryId));
+
         $result = [
-            'products' => Cache::remember($cacheKey, now()->addHours(3), function () use ($categoryId) {
-                return Product::where('active', 1)
-                    ->where('category_id', $categoryId)
-                    ->orderByDesc('id')
-                    ->paginate(12);
-            }),
+            'products' => $products,
         ];
 
         return view('web.pages.shop', compact('result'));
     }
 
-
-    // Search products
+    /**
+     * Search products by title or description.
+     * Note: Search results are cached for 1 hour to balance freshness and performance.
+     */
     public function indexBySearch(Request $request)
     {
-
-        $search = $request->get('search');
+        $search = $request->get('search', '');
         $page = $request->get('page', 1);
 
-        $cacheKey = "products_search_{$search}_page_{$page}";
+        // Use md5 hash for search term to avoid cache key issues with special characters
+        $searchHash = md5($search);
+        $cacheKey = "products_search_{$searchHash}_page_{$page}";
+
+        $products = Cache::remember($cacheKey, 60 * 60, function () use ($search) {
+            return Product::with('media')
+                ->publish()
+                ->where(function ($query) use ($search) {
+                    $query->where('title', 'like', "%{$search}%")
+                        ->orWhere('description', 'like', "%{$search}%");
+                })
+                ->recent()
+                ->paginate(12);
+        });
+
+        // Ensure pagination URLs work correctly
+        $products->appends(['search' => $search]);
 
         $result = [
-            'products' => Cache::remember($cacheKey, now()->addHours(3), function () use ($search) {
-                return Product::where('active', 1)
-                    ->where(function ($query) use ($search) {
-                        $query->where('title', 'like', "%{$search}%")
-                            ->orWhere('description', 'like', "%{$search}%");
-                    })
-                    ->orderByDesc('id')
-                    ->paginate(12);
-            }),
+            'products' => $products,
         ];
 
         return view('web.pages.shop', compact('result'));
     }
 
-
-    // Show single product
+    /**
+     * Show single product with related products.
+     */
     public function show($id)
     {
-        $product = Product::with('category')->findOrFail($id);
-        $relatedProducts = Product::where('category_id', $product->category_id)
-            ->where('id', '!=', $product->id)
-            ->where('active', 1)
-            ->inRandomOrder()
-            ->take(12)
-            ->get();
+        $product = Cache::remember("product_{$id}", 60 * 60 * 3, function () use ($id) {
+            return Product::with(['category', 'media'])->findOrFail($id);
+        });
+
+        $relatedProducts = Cache::remember("product_{$id}_related", 60 * 60 * 3, function () use ($product, $id) {
+            return Product::with('media')
+                ->where('category_id', $product->category_id)
+                ->where('id', '!=', $id)
+                ->publish()
+                ->inRandomOrder()
+                ->take(12)
+                ->get();
+        });
 
         $result = [
             'product' => $product,
             'relatedProducts' => $relatedProducts,
         ];
+
         return view('web.pages.product', compact('result'));
     }
 }

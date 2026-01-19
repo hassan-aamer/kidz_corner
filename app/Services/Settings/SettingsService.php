@@ -86,6 +86,10 @@ class SettingsService
             }
 
             DB::commit();
+
+            // Clear settings cache after update
+            clearSettingsCache();
+
         } catch (\Throwable $e) {
             DB::rollBack();
             throw $e;

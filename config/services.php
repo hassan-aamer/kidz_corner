@@ -36,10 +36,16 @@ return [
     ],
 
     'facebook_pixel' => [
-    'id' => env('FACEBOOK_PIXEL_ID', null),
-],
+        'id' => env('FACEBOOK_PIXEL_ID', null),
+    ],
+
     'google_tag_manager' => [
-    'id' => env('GOOGLE_TAG_MANAGER_ID', null),
-],
+        'id' => env('GOOGLE_TAG_MANAGER_ID', null),
+    ],
+
+    'meta' => [
+        'pixel_id' => env('META_PIXEL_ID', '1099641122366792'),
+        'access_token' => env('META_ACCESS_TOKEN'),
+    ],
 
 ];
