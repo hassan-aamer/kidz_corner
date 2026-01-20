@@ -246,81 +246,7 @@
 
 
     @foreach ($result['categories']->sortBy('position') as $category)
-        <div class="container-fluid">
-            <div class="mb-2">
-                <div class="d-flex justify-content-between align-items-center mb-2 px-lg-5 px-3">
-                    <h2 class="category-title">
-                        {{ $category->title ?? '' }}
-                    </h2>
-                    <a href="{{ route('products.category', $category->id) }}"
-                        class="text-primary font-weight-bold text-decoration-none" style="color:#dc3545">
-                        See More
-                    </a>
-                </div>
-
-                <!-- Product Slider -->
-                <div id="carousel-{{ $category->id }}" class="owl-carousel owl-theme px-xl-5"
-                    data-category-index="{{ $loop->index }}">
-                    @foreach ($category->products->sortBy('position') as $products)
-                        <div class="item">
-                            <div class="card border-0 mb-2 product-card">
-                                <!-- Product Image -->
-                                <a
-                                    href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title) ?? '']) }}">
-                                    <div class="position-relative product-image-container">
-                                        <img class="img-fluid lazyload product-image"
-                                            src="{{ App\Helpers\Image::getMediaUrl($products, 'products') }}"
-                                            alt="{{ $products->title ?? '' }}" loading="lazy">
-                                        @if ($products->sold_out == 1)
-                                            <span class="sold-out-badge">Sold Out</span>
-                                        @endif
-                                        @if($products->old_price && $products->old_price > $products->price)
-                                            @php
-                                                $discount = round((($products->old_price - $products->price) / $products->old_price) * 100);
-                                            @endphp
-                                            <span class="discount-badge">- {{ $discount }}%</span>
-                                        @endif
-                                    </div>
-                                </a>
-
-                                <!-- Product Details -->
-                                <div class="card-body product-body">
-                                    <h6 class="product-title">
-                                        {{ strtoupper($products->title ?? '') }}
-                                    </h6>
-                                    <div class="price-container">
-                                        <h6 class="current-price">
-                                            {{ $products->price ?? '' }}
-                                        </h6>
-                                        @if ($products->old_price)
-                                            <h6 class="old-price">
-                                                {{ $products->old_price ?? '' }}
-                                            </h6>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <!-- Buttons -->
-                                <div class="card-footer product-footer">
-                                    <a href="{{ route('product.details', ['id' => $products->id, 'title' => Str::slug($products->title)]) }}"
-                                        class="view-details">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
-                                    <form action="{{ route('cart.add', $products->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        <input type="hidden" name="quantity" value="1">
-                                        <button type="submit"
-                                            style="background:transparent; border:none; padding:0; cursor:pointer;">
-                                            <i class="fas fa-shopping-cart" style="color:#fff;"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
+        @include('web.components.category-products-slider', ['category' => $category, 'index' => $loop->index])
     @endforeach
 
 
@@ -331,25 +257,80 @@
     {{-- jQuery and OwlCarousel are already loaded in js.blade.php --}}
     <script>
         $(document).ready(function () {
-            // Default options for all product carousels
-            const defaultOptions = {
-                loop: true,
-                margin: 20,
-                nav: false,
-                dots: true,
-                autoplay: true,
-                autoplayTimeout: 3000,
-                responsive: {
-                    0: { items: 2 },
-                    576: { items: 3 },
-                    992: { items: 4 },
-                    1200: { items: 5 }
-                }
-            };
+            /**
+             * Smart Carousel Initialization
+             * Dynamically adjusts loop behavior based on item count vs visible items
+             */
 
-            // Initialize all carousels with default options
-            $("[id^='carousel-']").each(function () {
-                $(this).owlCarousel(defaultOptions);
+            // Get responsive item counts
+            function getResponsiveItemCount(width) {
+                if (width >= 1200) return 5;
+                if (width >= 992) return 4;
+                if (width >= 576) return 3;
+                return 2;
+            }
+
+            // Initialize each carousel with smart options
+            $(".product-carousel").each(function () {
+                const $carousel = $(this);
+                const itemCount = parseInt($carousel.data('items-count')) || $carousel.find('.item').length;
+                const visibleItems = getResponsiveItemCount($(window).width());
+
+                // Only enable loop if we have more items than visible
+                const shouldLoop = itemCount > visibleItems;
+
+                const options = {
+                    loop: shouldLoop,
+                    rewind: !shouldLoop, // Use rewind for smooth experience when loop is disabled
+                    margin: 20,
+                    nav: itemCount > visibleItems, // Show nav only when there are more items
+                    navText: [
+                        '<i class="fas fa-chevron-left"></i>',
+                        '<i class="fas fa-chevron-right"></i>'
+                    ],
+                    dots: true,
+                    autoplay: shouldLoop, // Only autoplay if looping
+                    autoplayTimeout: 3000,
+                    autoplayHoverPause: true,
+                    smartSpeed: 500,
+                    responsive: {
+                        0: {
+                            items: Math.min(2, itemCount),
+                            nav: false
+                        },
+                        576: {
+                            items: Math.min(3, itemCount),
+                            nav: itemCount > 3
+                        },
+                        992: {
+                            items: Math.min(4, itemCount),
+                            nav: itemCount > 4
+                        },
+                        1200: {
+                            items: Math.min(5, itemCount),
+                            nav: itemCount > 5
+                        }
+                    },
+                    onInitialized: function () {
+                        // Add loaded class for CSS transitions
+                        $carousel.addClass('carousel-loaded');
+                    }
+                };
+
+                $carousel.owlCarousel(options);
+            });
+
+            // Handle window resize for responsive adjustments
+            let resizeTimeout;
+            $(window).on('resize', function () {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(function () {
+                    $(".product-carousel").each(function () {
+                        const $carousel = $(this);
+                        // Trigger refresh on resize
+                        $carousel.trigger('refresh.owl.carousel');
+                    });
+                }, 250);
             });
         });
     </script>
