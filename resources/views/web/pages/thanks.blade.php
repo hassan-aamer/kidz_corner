@@ -123,7 +123,7 @@
         fbq('track', 'Purchase', {
             value: {{ $order-> total ?? 0 }},
             currency: 'EGP'
-            });
+                });
     </script> --}}
 
     <script>
@@ -147,7 +147,10 @@
 
             fetch("{{ url('/meta-capi') }}", {
                 method: 'POST',
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
                 body: JSON.stringify({
                     event_id: eventId,
                     value: orderValue,
