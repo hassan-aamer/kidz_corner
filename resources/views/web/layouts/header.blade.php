@@ -39,8 +39,8 @@
     <div class="row align-items-center py-3 px-xl-5">
         <div class="col-lg-3 d-none d-lg-block">
             <a href="{{ route('home') }}" class="text-decoration-none">
-                <img src="{{ App\Helpers\Image::getMediaUrl(App\Models\Setting::first(), 'logo') }}"
-                    alt="{{ setting('name') ?? '' }}" height="70" width="170">
+                <img src="{{ App\Helpers\Image::getMediaUrl(setting(), 'logo') }}"
+                    alt="{{ setting('name') ?? '' }}" height="70" width="170" loading="lazy">
             </a>
         </div>
         <div class="col-lg-6 col-12">
