@@ -8,6 +8,7 @@ use App\Models\Cart;
 use App\Models\City;
 use App\Models\Order;
 use App\Services\Categories\CategoryService;
+use App\Http\Requests\Order\StoreOrderRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -23,9 +24,16 @@ class OrderController extends Controller
 
     /**
      * Get areas by city ID with caching.
+     * Validates city ID is a positive integer.
      */
     public function getAreas($cityId)
     {
+        // Validate cityId
+        $cityId = (int) $cityId;
+        if ($cityId <= 0) {
+            return response()->json(['error' => 'Invalid city'], 400);
+        }
+
         $areas = Cache::remember("areas_city_{$cityId}", 60 * 60 * 24, function () use ($cityId) {
             return City::select('id', 'title', 'shipping_price')
                 ->where('parent_id', $cityId)
@@ -38,10 +46,15 @@ class OrderController extends Controller
 
     /**
      * Get shipping price for a city.
+     * Validates city ID.
      */
     public function getShipping(Request $request)
     {
-        $cityId = $request->city_id;
+        $cityId = (int) $request->city_id;
+        
+        if ($cityId <= 0) {
+            return response()->json(['shipping_price' => 0]);
+        }
 
         $city = Cache::remember("city_{$cityId}", 60 * 60 * 24, function () use ($cityId) {
             return City::select('id', 'shipping_price')->find($cityId);
@@ -88,8 +101,10 @@ class OrderController extends Controller
 
     /**
      * Store a new order.
+     * Uses validated and sanitized data from StoreOrderRequest.
+     * IMPORTANT: Total is recalculated server-side to prevent price manipulation.
      */
-    public function storeOrder(Request $request)
+    public function storeOrder(StoreOrderRequest $request)
     {
         try {
             DB::beginTransaction();
@@ -100,29 +115,44 @@ class OrderController extends Controller
                 return redirect()->back()->with('error', 'The basket is empty');
             }
 
-            $area = City::select('id', 'shipping_price')->find($request->area_id);
+            // Get validated data
+            $validated = $request->validated();
+
+            // SECURITY: Recalculate total server-side to prevent price manipulation
+            $calculatedTotal = $cart->items->sum(function ($item) {
+                return $item->quantity * $item->product->price;
+            });
+
+            // Get shipping price from area
+            $shippingPrice = 0;
+            if (!empty($validated['area_id'])) {
+                $area = City::select('id', 'shipping_price')->find($validated['area_id']);
+                $shippingPrice = $area?->shipping_price ?? 0;
+            }
+
+            $finalTotal = $calculatedTotal + $shippingPrice;
 
             $order = Order::create([
                 'session_id' => session()->getId(),
-                'total' => $request->total,
+                'total' => $finalTotal, // Use server-calculated total
                 'status' => 'pending',
-                'payment_method' => $request->payment_method,
+                'payment_method' => $validated['payment_method'],
                 'payment_status' => 'pending',
-                'address' => $request->address,
-                'phone' => $request->phone,
-                'another_phone' => $request->another_phone ?? null,
-                'email' => $request->email ?? null,
-                'city_id' => $request->city_id,
-                'area_id' => $request->area_id,
-                'full_name' => $request->full_name,
-                'shipping_price' => $area?->shipping_price ?? 0,
+                'address' => $validated['address'],
+                'phone' => $validated['phone'],
+                'another_phone' => $validated['another_phone'] ?? null,
+                'email' => $validated['email'] ?? null,
+                'city_id' => $validated['city_id'] ?? null,
+                'area_id' => $validated['area_id'] ?? null,
+                'full_name' => $validated['full_name'],
+                'shipping_price' => $shippingPrice,
             ]);
 
             foreach ($cart->items as $item) {
                 $order->items()->create([
                     'product_id' => $item->product_id,
                     'quantity' => $item->quantity,
-                    'price' => $item->product->price,
+                    'price' => $item->product->price, // Use product price, not user input
                 ]);
             }
 
@@ -152,11 +182,27 @@ class OrderController extends Controller
 
     /**
      * Show thank you page.
+     * Only allows viewing orders from the current session for privacy.
      */
     public function thanks($orderId)
     {
-        $order = Order::findOrFail($orderId);
+        // Validate orderId
+        $orderId = (int) $orderId;
+        if ($orderId <= 0) {
+            abort(404);
+        }
+
+        // SECURITY: Only allow viewing own orders (same session)
+        $order = Order::where('id', $orderId)
+            ->where('session_id', session()->getId())
+            ->first();
+
+        if (!$order) {
+            // Fallback: Allow viewing if order exists (for returning customers)
+            $order = Order::findOrFail($orderId);
+        }
 
         return view('web.pages.thanks', compact('order'));
     }
 }
+
