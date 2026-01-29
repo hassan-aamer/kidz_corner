@@ -9,29 +9,29 @@
         <div class="col-lg-6 text-center text-lg-right">
             <div class="d-inline-flex align-items-center">
                 @if (setting('facebook'))
-                    <a class="text-dark px-2" href="{{ setting('facebook') ?? '' }}">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
+                <a class="text-dark px-2" href="{{ setting('facebook') ?? '' }}">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
                 @endif
                 @if (setting('twitter'))
-                    <a class="text-dark px-2" href="{{ setting('twitter') ?? '' }}">
-                        <i class="fab fa-twitter"></i>
-                    </a>
+                <a class="text-dark px-2" href="{{ setting('twitter') ?? '' }}">
+                    <i class="fab fa-twitter"></i>
+                </a>
                 @endif
                 @if (setting('linkedIn'))
-                    <a class="text-dark px-2" href="{{ setting('linkedIn') ?? '' }}">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
+                <a class="text-dark px-2" href="{{ setting('linkedIn') ?? '' }}">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
                 @endif
                 @if (setting('instagram'))
-                    <a class="text-dark px-2" href="{{ setting('instagram') ?? '' }}">
-                        <i class="fab fa-instagram"></i>
-                    </a>
+                <a class="text-dark px-2" href="{{ setting('instagram') ?? '' }}">
+                    <i class="fab fa-instagram"></i>
+                </a>
                 @endif
                 @if (setting('youtube'))
-                    <a class="text-dark pl-2" href="{{ setting('youtube') ?? '' }}">
-                        <i class="fab fa-youtube"></i>
-                    </a>
+                <a class="text-dark pl-2" href="{{ setting('youtube') ?? '' }}">
+                    <i class="fab fa-youtube"></i>
+                </a>
                 @endif
             </div>
         </div>
@@ -39,22 +39,23 @@
     <div class="row align-items-center py-3 px-xl-5">
         <div class="col-lg-3 d-none d-lg-block">
             <a href="{{ route('home') }}" class="text-decoration-none">
-                <img src="{{ App\Helpers\Image::getMediaUrl(setting(), 'logo') }}"
-                    alt="{{ setting('name') ?? '' }}" height="70" width="170" loading="lazy">
+                <img src="{{ App\Helpers\Image::getMediaUrl(setting(), 'logo') }}" alt="{{ setting('name') ?? '' }}"
+                    height="70" width="170" loading="lazy">
             </a>
         </div>
         <div class="col-lg-6 col-12">
-            <form action="{{ route('products.search') }}" method="GET" style="width:100%;">
+            <form action="{{ route('products.search') }}" method="GET" style="width:100%;" role="search">
                 <div
                     style="display:flex; align-items:center; background:#fff; border:2px solid #C73B65; border-radius:30px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.05); transition:all 0.3s ease;">
 
-                    <!-- Input -->
-                    <input type="text" name="search" value="{{ request('search') }}"
-                        placeholder="Find your favorite product..."
+                    <!-- Search Input with security attributes -->
+                    <input type="search" name="search" value="{{ e(request('search', '')) }}"
+                        placeholder="Find your favorite product..." maxlength="100" autocomplete="off"
+                        spellcheck="false" aria-label="Search products"
                         style="flex:1; border:none; outline:none; padding:12px 18px; font-size:15px; color:#333; font-family:inherit;">
 
                     <!-- Button -->
-                    <button type="submit"
+                    <button type="submit" aria-label="Search"
                         style="background:#1D9DB1; border:none; color:#fff; padding:20px 20px; cursor:pointer; transition:all 0.3s ease; display:flex; align-items:center; justify-content:center;border-radius: 50%;padding: 10px 12px; margin-right: 8px;">
                         <i class="fa fa-search" style="font-size:16px;"></i>
                     </button>

@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Cache;
 use App\Services\Products\ProductsService;
 use App\Services\Categories\CategoryService;
+use App\Http\Requests\Search\SearchRequest;
 
 class ProductController extends Controller
 {
@@ -25,7 +26,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $page = $request->get('page', 1);
+        $page = max(1, (int) $request->get('page', 1));
         $cacheKey = "products_page_{$page}";
 
         $products = Cache::remember($cacheKey, 60 * 60 * 3, function () {
@@ -47,10 +48,17 @@ class ProductController extends Controller
 
     /**
      * Filter products by category.
+     * Validates category ID to prevent injection.
      */
     public function indexByCategory(Request $request, $categoryId)
     {
-        $page = $request->get('page', 1);
+        // Validate categoryId is a positive integer
+        $categoryId = (int) $categoryId;
+        if ($categoryId <= 0) {
+            abort(404);
+        }
+
+        $page = max(1, (int) $request->get('page', 1));
         $cacheKey = "products_category_{$categoryId}_page_{$page}";
 
         $products = Cache::remember($cacheKey, 60 * 60 * 3, function () use ($categoryId) {
@@ -73,12 +81,18 @@ class ProductController extends Controller
 
     /**
      * Search products by title or description.
+     * Uses SearchRequest for strict input validation.
      * Note: Search results are cached for 1 hour to balance freshness and performance.
      */
-    public function indexBySearch(Request $request)
+    public function indexBySearch(SearchRequest $request)
     {
-        $search = $request->get('search', '');
-        $page = $request->get('page', 1);
+        $search = $request->getSearchTerm();
+        $page = $request->getPage();
+
+        // If search is empty, redirect to products page
+        if (empty($search)) {
+            return redirect()->route('products');
+        }
 
         // Use md5 hash for search term to avoid cache key issues with special characters
         $searchHash = md5($search);
@@ -88,6 +102,7 @@ class ProductController extends Controller
             return Product::with('media')
                 ->publish()
                 ->where(function ($query) use ($search) {
+                    // Use parameter binding (already done by Eloquent) for extra safety
                     $query->where('title', 'like', "%{$search}%")
                         ->orWhere('description', 'like', "%{$search}%");
                 })
@@ -107,11 +122,20 @@ class ProductController extends Controller
 
     /**
      * Show single product with related products.
+     * Validates product ID to prevent injection.
      */
     public function show($id)
     {
+        // Validate ID is a positive integer
+        $id = (int) $id;
+        if ($id <= 0) {
+            abort(404);
+        }
+
         $product = Cache::remember("product_{$id}", 60 * 60 * 3, function () use ($id) {
-            return Product::with(['category', 'media'])->findOrFail($id);
+            return Product::with(['category', 'media'])
+                ->publish()
+                ->findOrFail($id);
         });
 
         $relatedProducts = Cache::remember("product_{$id}_related", 60 * 60 * 3, function () use ($product, $id) {
@@ -132,3 +156,4 @@ class ProductController extends Controller
         return view('web.pages.product', compact('result'));
     }
 }
+
