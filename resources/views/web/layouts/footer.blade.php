@@ -8,7 +8,9 @@
             <form action="{{ route('subscription') }}" method="POST">
                 @csrf
                 <div class="input-group">
-                    <input type="text" name="email" class="form-control border-white p-4" placeholder="Email Goes Here"
+                    <input type="email" name="email"
+                        class="form-control border-white p-4 @error('email') is-invalid @enderror"
+                        placeholder="your.email@gmail.com" value="{{ old('email') }}"
                         style="box-shadow: 0 12px 28px rgba(0,0,0,0.12);border-radius: 16px 0 0 16px;">
                     <div class="input-group-append">
                         <button type="submit" style="background-color:#1D9DB1; color:#fff; border:none; 
@@ -18,6 +20,11 @@
                         </button>
                     </div>
                 </div>
+                @error('email')
+                    <div class="text-danger mt-2 text-center" style="font-size: 14px;">
+                        <i class="fa fa-exclamation-circle"></i> {{ $message }}
+                    </div>
+                @enderror
             </form>
         </div>
     </div>
@@ -36,13 +43,16 @@
         </div> --}}
         <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
             @if (setting('address'))
-                <p class="mb-2" style="font-weight: bold;color:#1D9DB1;"><i class="fa fa-map-marker-alt text-primary mr-3"></i>{{ setting('address') ?? '' }}</p>
+                <p class="mb-2" style="font-weight: bold;color:#1D9DB1;"><i
+                        class="fa fa-map-marker-alt text-primary mr-3"></i>{{ setting('address') ?? '' }}</p>
             @endif
             @if (setting('email'))
-                <p class="mb-2" style="font-weight: bold;color:#1D9DB1;"><i class="fa fa-envelope text-primary mr-3"></i>{{ setting('email') ?? '' }}</p>
+                <p class="mb-2" style="font-weight: bold;color:#1D9DB1;"><i
+                        class="fa fa-envelope text-primary mr-3"></i>{{ setting('email') ?? '' }}</p>
             @endif
             @if (setting('phone'))
-                <p class="mb-0" style="font-weight: bold;color:#1D9DB1;"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ setting('phone') ?? '' }}</p>
+                <p class="mb-0" style="font-weight: bold;color:#1D9DB1;"><i
+                        class="fa fa-phone-alt text-primary mr-3"></i>{{ setting('phone') ?? '' }}</p>
             @endif
         </div>
         <div class="col-lg-4 col-md-12">
@@ -72,14 +82,14 @@
                             </a>
                         @endif
                         @if (setting('twitter'))
-                        <a class=" px-2" href="{{ setting('twitter') ?? '' }}" style="color:#C73B65;">
-                            <i class="fab fa-twitter"></i>
-                        </a>
+                            <a class=" px-2" href="{{ setting('twitter') ?? '' }}" style="color:#C73B65;">
+                                <i class="fab fa-twitter"></i>
+                            </a>
                         @endif
                         @if (setting('linkedIn'))
-                        <a class=" px-2" href="{{ setting('linkedIn') ?? '' }}" style="color:#C73B65;">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
+                            <a class=" px-2" href="{{ setting('linkedIn') ?? '' }}" style="color:#C73B65;">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
                         @endif
                         @if (setting('instagram'))
                             <a class=" px-2" href="{{ setting('instagram') ?? '' }}" style="color:#C73B65;">
@@ -87,9 +97,9 @@
                             </a>
                         @endif
                         @if (setting('youtube'))
-                        <a class=" pl-2" href="{{ setting('youtube') ?? '' }}" style="color:#C73B65;">
-                            <i class="fab fa-youtube"></i>
-                        </a>
+                            <a class=" pl-2" href="{{ setting('youtube') ?? '' }}" style="color:#C73B65;">
+                                <i class="fab fa-youtube"></i>
+                            </a>
                         @endif
                         @if (setting('tiktok'))
                             <a class=" pl-2" href="{{ setting('tiktok') ?? '' }}" style="color:#C73B65;">
@@ -111,7 +121,8 @@
                 </a>
                 <span class="d-block d-md-inline">
                     | Powered by
-                    <a class="text-dark fw-semibold text-decoration-none" href="https://viralmonkeys.net/" style="font-weight: bold;">
+                    <a class="text-dark fw-semibold text-decoration-none" href="https://viralmonkeys.net/"
+                        style="font-weight: bold;">
                         Viral monkeys
                     </a>
                 </span>
