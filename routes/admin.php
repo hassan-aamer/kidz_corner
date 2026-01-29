@@ -4,8 +4,14 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 Route::delete('/media/{id}', [\App\Http\Controllers\Admin\Media\MediaController::class, 'destroy'])->name('media.destroy');
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 🔐 ADMIN AUTH (Rate Limited: 5/minute to prevent brute force)
+// ═══════════════════════════════════════════════════════════════════════════
 Route::get('login', [\App\Http\Controllers\Admin\Auth\AuthController::class, 'showLoginForm'])->name('login.page');
-Route::post('store/login', [\App\Http\Controllers\Admin\Auth\AuthController::class, 'login'])->name('login');
+Route::post('store/login', [\App\Http\Controllers\Admin\Auth\AuthController::class, 'login'])
+    ->middleware('throttle:login')
+    ->name('login');
 Route::middleware('checkAuth')->group(function () {
     Route::get('store/logout', [\App\Http\Controllers\Admin\Auth\AuthController::class, 'logout'])->name('logout');
     Route::get('dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
