@@ -7,16 +7,18 @@ use Illuminate\Support\Facades\Route;
 // ═══════════════════════════════════════════════════════════════════════════
 Route::get('/', [App\Http\Controllers\Web\HomeController::class, 'index'])->name('home');
 Route::get('/products', [App\Http\Controllers\Web\ProductController::class, 'index'])->name('products');
-Route::get('/products/{id}', [App\Http\Controllers\Web\ProductController::class, 'indexByCategory'])->name('products.category');
 Route::get('/product/details/{id}/{title}', [App\Http\Controllers\Web\ProductController::class, 'show'])->name('product.details');
 Route::get('/contact', [App\Http\Controllers\Web\ContactController::class, 'index'])->name('contact');
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 🔍 SEARCH (Rate Limited: 30/minute)
+// 🔍 SEARCH (Rate Limited: 30/minute) - MUST BE BEFORE /products/{id}
 // ═══════════════════════════════════════════════════════════════════════════
 Route::get('/products/search', [App\Http\Controllers\Web\ProductController::class, 'indexBySearch'])
     ->middleware('throttle:search')
     ->name('products.search');
+
+// Category route AFTER search (because {id} catches everything)
+Route::get('/products/{id}', [App\Http\Controllers\Web\ProductController::class, 'indexByCategory'])->name('products.category');
 
 // ═══════════════════════════════════════════════════════════════════════════
 // 📞 CONTACT FORM (Rate Limited: 5/hour)
